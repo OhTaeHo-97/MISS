@@ -44,13 +44,29 @@ public class ProductFrontController extends HttpServlet {
 		String command = uri.substring(cp.length());
 		
 		ActionForward forward = null;
-		if(command.contentEquals("main.do")) {
+		if(command.equals("main_music.do")) {
 			try {
-				forward = new MainAction().execute(request, response);
+				forward = new MainMusicAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if(command.equals("main_product.do")) {
+			try {
+				forward = new MainProductAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("fav.do")) {
+			try {
+				forward = new FavAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("detail.do")) {
+			
 		}
 		
 		if(forward != null) {
