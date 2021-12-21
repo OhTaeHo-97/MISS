@@ -23,7 +23,6 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-
 </head>
 
 <body>
@@ -68,7 +67,7 @@
                                     <li><a href="shop.jsp">Albums</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="basket.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <li><a href="cart.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -80,7 +79,7 @@
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -108,8 +107,6 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                    
-                        
 						<div class="ui vertical menu">
   							<div class="ui dropdown item">
     						Filter 
@@ -121,9 +118,6 @@
    							</div>
   							</div>
 						</div>
-						
-						
-						
                     </div>
                 </div>
             </div>

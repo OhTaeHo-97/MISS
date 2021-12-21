@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% boolean test=true; %>
 <!DOCTYPE html>
 <html>
 
@@ -69,7 +71,7 @@
                                     <li><a href="shop.jsp">Albums</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="basket.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <li><a href="cart.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -81,7 +83,7 @@
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +101,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Register</h2>
+            <h2>Account</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -111,22 +113,37 @@
                 <div class="col-12 col-lg-9">
 
                     <!-- Single -->
-                    
+     <h2 class="ui header">
+  Account Settings
+  <div class="sub header">Manage your account settings and set e-mail preferences.</div>
+</h2>               
 <form class="ui form">
-  <h4 class="ui dividing header">Shipping Information</h4>
+  
 <div class="ui form">
-
+  <div class="field">
+     	 <label>Account</label>
+     	 <input type="text" disabled>
+  </div>
+  <!-- 첫 비밀번호확인 --> 
+  	<div class="required field">
+    	<label>Confirm Password</label>
+    	<input type="password" placeholder="Write it including -">
+  	</div>	
+  	<button class="ui primary button">
+ 	 confirm
+	</button> 
+	
+     <!--  비밀번호 확인 완료시 (현재 로그인중인 세션의 비밀번호랑 파라미터값이 일치하는지)
   <div class="two fields">
     <div class="required field">
-     	 <label>Old password</label>
+     	 <label>New password</label>
      	 <input type="password">
     </div>
-   	<div class="required field">
-     	 <label>New password</label>
+   	<div class="field">
+     	 <label>Confirm password</label>
      	<input type="password">
     </div>
   </div>
-  비밀번호 확인버튼자리
 	<div class="required field">
     	<label>Phone Number</label>
     	<input type="text" placeholder="Write it including -">
@@ -143,23 +160,15 @@
     	<label>Billing Address</label>
     	<input type="text" placeholder="Street Address">
   	</div>
-</div><br>
-<button class="ui secondary button">
-  save changes
-</button>
-</form>
-                    <!-- Single -->
-                    
-                    
+  	<button class="ui secondary button">
+  		save changes
+	</button>  -->  
+</div> 
 
-                   
-                   
-                   
-                   
-                   
-                   
-                   
-                   
+</form>
+
+                    <!-- Single -->
+ 
                 </div>
 
                 <div class="col-12 col-lg-3">
@@ -321,6 +330,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    	<script src="semantic/dist/semantic.min.js"></script>
 </body>
 
 </html>

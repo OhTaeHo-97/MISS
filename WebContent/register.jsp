@@ -69,7 +69,7 @@
                                     <li><a href="shop.jsp">Albums</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="basket.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <li><a href="cart.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -82,7 +82,7 @@
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -114,10 +114,10 @@
                     <!-- Single -->
                     
 <form class="ui form">
-  <h4 class="ui dividing header">Shipping Information</h4>
+  <h4 class="ui dividing header">Create Account</h4>
 <div class="ui form">
     <div class="required field">
-      <label>Account</label>
+      <label>ID</label>
       <input type="text" placeholder="Enter your account">
       
           <div class="ui pointing label">   <!--  if조건으로 value 입력없을시 사용가능한 css  -->
@@ -136,7 +136,10 @@
      	<input type="password">
     </div>
   </div>
-  비밀번호 확인버튼자리
+	<button class="ui primary button">
+ 	 confirm
+	</button>
+	 <br><br>
 	<div class="required field">
     	<label>Phone Number</label>
     	<input type="text" placeholder="Write it including -">
@@ -153,8 +156,10 @@
     	<label>Billing Address</label>
     	<input type="text" placeholder="Street Address">
   	</div>
+  	  	<button class="ui secondary button">
+  			sign up
+		</button>
 </div><br>
- <div class="ui button" tabindex="0">Sign up</div>
 </form>
                     <!-- Single -->
                     
