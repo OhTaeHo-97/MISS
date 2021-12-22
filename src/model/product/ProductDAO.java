@@ -11,11 +11,11 @@ import model.member.ConsumerSet;
 import model.member.ConsumerVO;
 
 public class ProductDAO {
-	// 1. ArrayList<ProductSet> 보내주기 - selectAll
+	// 1. ArrayList<ProductVO> 보내주기 - selectAll
 	// 2. 클릭해서 특정 상품 보여주기 - selectOne
 	// 3. 필터검색을 통해 보여주기  - search~~~~~
 	//	 - '음원'인지 '상품'인지 먼저 product_category를 통해 분류 => product_category = ?
-	//		--	최신순 버튼 클릭  => order by product_regdate desc
+	//		--	최신순 버튼 클릭 - searchNewest => order by product_regdate desc 
 	//		--	오래된순 버튼 클릭 => order by product_regdate
 	//		--	좋아요순 버튼 클릭 => order by favorite_count desc, product_name
 	//		--	제목 검색위한 테스트 입력 => product_name like %~% --> pstmt.setString(1,"%"+pvo.getProduct_name()+"%")
@@ -34,23 +34,22 @@ public class ProductDAO {
 	String sql_selectOne = "select * from product where product_id = ?";
 	String sql_update = "update product set favorite_count = favorite_count + 1 where product_id = ?";
 	String sql_insertReview = "insert into review(review_id,product_id,nickname,review_content) values((select nvl(MAX(review_id),0)+1 from review),?,?,?)";
-	String sql_searchNewest = "select * from product where product_category = ? order by writedate desc";
+	String sql_searchFromNew = "select * from (select * from product where product_category = ? order by product_regdate desc) where ROWNUM <= ?";
+	String sql_searchFromOld = "select * from (select * from product where product_category = ? order by product_regdate asc) where ROWNUM <= ?";
+	String sql_searchFavorite = "select * from (select * from product where product_category = ? order by favorite_count desc) where ROWNUM <= ?";
+	String sql_searchWord = "select * from (select * from product where product_category = ? and product_name like ?) where ROWNUM <= ?";
 	
-	
-	public ArrayList<ProductSet> selectAll(int mcnt) {
-		ArrayList<ProductSet> datas = new ArrayList<>();
-		
+	public ArrayList<ProductVO> selectAll(int mcnt) { 
+		ArrayList<ProductVO> datas = new ArrayList<>();
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(sql_selectAll);
 			//select * from product where ROWNUM <= ?
 			pstmt.setInt(1, mcnt);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ProductSet ps = new ProductSet();
+			while(rs.next()) {				
 				ProductVO pvo = new ProductVO();
-				ArrayList<ReviewVO> rdatas = new ArrayList<>();
-				
+
 				pvo.setProduct_id(rs.getInt("product_id"));
 				pvo.setProduct_name(rs.getString("product_name"));
 				pvo.setPrice(rs.getInt("price"));
@@ -63,6 +62,43 @@ public class ProductDAO {
 				pvo.setFavorite_count(rs.getInt("favorite_count"));
 				pvo.setStock(rs.getInt("stock"));
 				//어떤 제품정보가 메인페이지에서 필요한지는 몰라서 일단 전부 담아보냅니다.
+				
+				datas.add(pvo);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("ProdcutDAO selectAll중 예외발생");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		
+		return datas;
+	}
+	
+	public ProductSet selectOne(ProductVO pvo) {
+		conn = JDBCUtil.connect();
+		ProductSet data = new ProductSet();
+		try {
+			pstmt = conn.prepareStatement(sql_selectOne);
+			//select * from product where product_id = ?
+			pstmt.setInt(1, pvo.getProduct_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				ProductVO vo = new ProductVO();
+				ArrayList<ReviewVO> rdatas = new ArrayList<>();
+				
+				vo.setProduct_id(rs.getInt("product_id"));
+				vo.setProduct_name(rs.getString("product_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setProdcut_regdate(rs.getString("product_regdate"));
+				vo.setProduct_comment(rs.getString("product_comment"));
+				vo.setProduct_pictureurl(rs.getString("product_pictureurl"));
+				vo.setProduct_category(rs.getString("product_category"));
+				vo.setMusic_singer(rs.getString("music_singer"));
+				vo.setMusic_genre(rs.getString("music_genre"));
+				vo.setFavorite_count(rs.getInt("favorite_count"));
+				vo.setStock(rs.getInt("stock"));
 				
 				pstmt = conn.prepareStatement(sql_selectAllReview);
 				//select * from review where product_id=? order by review_date desc;
@@ -78,43 +114,9 @@ public class ProductDAO {
 					rvo.setReview_date(rs2.getString("review_date"));
 					rdatas.add(rvo);
 				}
-				pvo.setReviewcnt(rdatas.size());
-				
-				ps.setProduct(pvo);
-				ps.setReviewdata(rdatas);
-				datas.add(ps);
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("ProdcutDAO selectAll중 예외발생");
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.disconnect(pstmt, conn);
-		}
-		
-		return datas;
-	}
-	
-	public ProductVO selectOne(ProductVO pvo) {
-		conn = JDBCUtil.connect();
-		ProductVO data = new ProductVO();
-		try {
-			pstmt = conn.prepareStatement(sql_selectOne);
-			//select * from product where product_id = ?
-			pstmt.setInt(1, pvo.getProduct_id());
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				data.setProduct_id(rs.getInt("product_id"));
-				data.setProduct_name(rs.getString("product_name"));
-				data.setPrice(rs.getInt("price"));
-				data.setProdcut_regdate(rs.getString("product_regdate"));
-				data.setProduct_comment(rs.getString("product_comment"));
-				data.setProduct_pictureurl(rs.getString("product_pictureurl"));
-				data.setProduct_category(rs.getString("product_category"));
-				data.setMusic_singer(rs.getString("music_singer"));
-				data.setMusic_genre(rs.getString("music_genre"));
-				data.setFavorite_count(rs.getInt("favorite_count"));
-				data.setStock(rs.getInt("stock"));
+				vo.setReviewcnt(rdatas.size());
+				data.setProduct(vo);
+				data.setReviewdata(rdatas);
 			}
 			
 		} catch (SQLException e) {
@@ -126,23 +128,147 @@ public class ProductDAO {
 		return data;
 	}
 	
-	public void searchNewest(ProductVO pvo, int mcnt) {
+	public ArrayList<ProductVO> searchNewest(ProductVO pvo, int mcnt) {
+		ArrayList<ProductVO> datas = new ArrayList<>(); 
 		conn = JDBCUtil.connect();
 		try {
-			pstmt = conn.prepareStatement(sql_searchNewest);
-			//select * from product where product_category = ? order by writedate desc
+			pstmt = conn.prepareStatement(sql_searchFromNew);
+			//select * from (select * from product where product_category = ? order by product_regdate desc) where ROWNUM <= ?
 			pstmt.setString(1, pvo.getProduct_category());
+			pstmt.setInt(2, mcnt);
 			rs = pstmt.executeQuery();
-			
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProduct_id(rs.getInt("product_id"));
+				vo.setProduct_name(rs.getString("product_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setProdcut_regdate(rs.getString("product_regdate"));
+				vo.setProduct_comment(rs.getString("product_comment"));
+				vo.setProduct_pictureurl(rs.getString("product_pictureurl"));
+				vo.setProduct_category(rs.getString("product_category"));
+				vo.setMusic_singer(rs.getString("music_singer"));
+				vo.setMusic_genre(rs.getString("music_genre"));
+				vo.setFavorite_count(rs.getInt("favorite_count"));
+				vo.setStock(rs.getInt("stock"));
+				
+				datas.add(vo);
+			}
 		} catch (SQLException e) {
 			System.out.println("ProductDAO searchNewest중 예외발생");
 			e.printStackTrace();
 		} finally {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
-		
+		return datas;
 	}
 	
+	public ArrayList<ProductVO> searchOldest(ProductVO pvo, int mcnt) {
+		ArrayList<ProductVO> datas = new ArrayList<>(); 
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql_searchFromOld);
+			//select * from (select * from product where product_category = ? order by product_regdate asc) where ROWNUM <= ?
+			pstmt.setString(1, pvo.getProduct_category());
+			pstmt.setInt(2, mcnt);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProduct_id(rs.getInt("product_id"));
+				vo.setProduct_name(rs.getString("product_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setProdcut_regdate(rs.getString("product_regdate"));
+				vo.setProduct_comment(rs.getString("product_comment"));
+				vo.setProduct_pictureurl(rs.getString("product_pictureurl"));
+				vo.setProduct_category(rs.getString("product_category"));
+				vo.setMusic_singer(rs.getString("music_singer"));
+				vo.setMusic_genre(rs.getString("music_genre"));
+				vo.setFavorite_count(rs.getInt("favorite_count"));
+				vo.setStock(rs.getInt("stock"));
+				
+				datas.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println("ProductDAO searchOldest중 예외발생");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return datas;
+	}
+	
+	public ArrayList<ProductVO> searchFavoriteCnt(ProductVO pvo, int mcnt) {
+		ArrayList<ProductVO> datas = new ArrayList<>();
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql_searchFavorite);
+			//select * from (select * from product where product_category = ? order by favorite_count desc) where ROWNUM <= ?
+			pstmt.setString(1, pvo.getProduct_category());
+			pstmt.setInt(2, mcnt);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProduct_id(rs.getInt("product_id"));
+				vo.setProduct_name(rs.getString("product_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setProdcut_regdate(rs.getString("product_regdate"));
+				vo.setProduct_comment(rs.getString("product_comment"));
+				vo.setProduct_pictureurl(rs.getString("product_pictureurl"));
+				vo.setProduct_category(rs.getString("product_category"));
+				vo.setMusic_singer(rs.getString("music_singer"));
+				vo.setMusic_genre(rs.getString("music_genre"));
+				vo.setFavorite_count(rs.getInt("favorite_count"));
+				vo.setStock(rs.getInt("stock"));
+				
+				datas.add(vo);
+			}	
+		} catch (SQLException e) {
+			System.out.println("ProductDAO searchFavoriteCnt중 예외발생");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return datas;
+	}
+	
+	public ArrayList<ProductVO> searchWord(ProductVO pvo, String searchword,  int mcnt) { //  String searchword 이부분을 pvo의 product_name으로 받아올 수도 있다.
+		ArrayList<ProductVO> datas = new ArrayList<>();
+		conn = JDBCUtil.connect();
+		if(searchword==null) {
+			searchword = "";
+		}
+		try {
+			pstmt = conn.prepareStatement(sql_searchWord);
+			//select * from (select * from product where product_category = ? and product_name like ?) where ROWNUM <= ?
+			pstmt.setString(1, pvo.getProduct_category());
+			pstmt.setString(2, "%"+searchword+"%");
+			pstmt.setInt(3, mcnt);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProduct_id(rs.getInt("product_id"));
+				vo.setProduct_name(rs.getString("product_name"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setProdcut_regdate(rs.getString("product_regdate"));
+				vo.setProduct_comment(rs.getString("product_comment"));
+				vo.setProduct_pictureurl(rs.getString("product_pictureurl"));
+				vo.setProduct_category(rs.getString("product_category"));
+				vo.setMusic_singer(rs.getString("music_singer"));
+				vo.setMusic_genre(rs.getString("music_genre"));
+				vo.setFavorite_count(rs.getInt("favorite_count"));
+				vo.setStock(rs.getInt("stock"));
+				
+				datas.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		
+		return datas;
+	}
 	
 	public boolean update(ProductVO pvo) {
 		conn = JDBCUtil.connect();
