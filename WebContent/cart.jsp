@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>One Music - Modern Music HTML5 Template</title>
+    <title>Miss. - Cart</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -65,10 +65,10 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Albums</a></li>
+                                    <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="cart.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -125,6 +125,34 @@
       			 </div>
     		     </div>
   			</div>
+  			<div class="item">
+    			<div class="ui small image">
+      				<img src="img/1975.jpg">
+    			</div>
+  			    <div class="content">
+     			 <div class="header">The1975 - A Brief Inquiry into Online Relationships</div>
+   				 <div class="meta">
+      			 	<span class="price">$1340</span>
+   				 </div>
+				 <div class="extra">
+        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
+      			 </div>
+    		     </div>
+  			</div>
+  			<div class="item">
+    			<div class="ui small image">
+      				<img src="img/lp.jpg">
+    			</div>
+  			    <div class="content">
+     			 <div class="header">LP Player Gadhouse x Honne</div>
+   				 <div class="meta">
+      			 	<span class="price">$1840</span>
+   				 </div>
+				 <div class="extra">
+        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
+      			 </div>
+    		     </div>
+  			</div>
   			
 			</div>
             </div>
@@ -161,7 +189,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="#">Contact</a></li>

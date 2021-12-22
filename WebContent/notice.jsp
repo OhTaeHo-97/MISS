@@ -66,10 +66,10 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Albums</a></li>
+                                    <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="cart.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
@@ -229,7 +229,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="#">Contact</a></li>

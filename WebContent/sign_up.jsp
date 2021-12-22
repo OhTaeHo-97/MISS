@@ -10,14 +10,14 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Miss - Music Song/Speaker</title>
+    <title>Admin - sign up for Product</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 	<script
  		 src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -48,7 +48,6 @@
 
                         <!-- Nav brand -->
                         <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-						
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -76,7 +75,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="login">Login</a> / <a href="register.jsp" id="register">Register</a>
+                                        <a href="#" id="login">Login</a> / <a href="register.jsp" id="register">Register</a>
                                     </div>
 
                                     <!-- Cart Button -->
@@ -90,57 +89,79 @@
                         </div>
                     </nav>
                 </div>
-                
-                
-                
             </div>
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
-        <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-1.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-2.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>Upload</h2>
         </div>
     </section>
-    <!-- ##### Hero Area End ##### -->
+    <!-- ##### Breadcumb Area End ##### -->
+    <!--  제품등록 시작 -->
 
+    <section class="events-area section-padding-100">
+        <div class="container">	
+		<h4 class="ui horizontal divider header">
+		  <i class="tag icon"></i>
+		  Description
+		</h4>
+		<p>This page is where admin registers the product.</p>
+		<h4 class="ui horizontal divider header">
+		  <i class="upload icon"></i>
+		  Sign_up
+		</h4>
+		<table class="ui definition table">
+		  <tbody>
+		    <tr>
+		      <td>Category</td>
+		      <td><input type="radio" name="category" checked="checked">Music
+		      <input type="radio" name="category">Device</td>
+		    </tr>
+		    <tr>
+		      <td>Image</td>
+		      <td><input type="file" id="image" name="image" accept=".jpg, .jpeg, .png"></td>
+		    </tr>
+		    <tr>
+		      <td>Product_Name(Song)</td>
+		      <td><input type="text" value="finish line"></td>
+		    </tr>
+		    <tr>
+		      <td>Singer</td>
+		      <td><input type="text" value="chance the rapper"></td>
+		    </tr>
+		    <tr>
+		      <td>Release Date</td>
+		      <td><input type="text" value="2018.09.13"></td>
+		    </tr>
+		    <tr>
+		      <td>Genre</td>
+		      <td><input type="text" value="랩/힙합" required></td>
+		    </tr>
+		    <tr>
+		      <td>Price</td>
+		      <td><input type="text" value="$120"></td>
+		    </tr>
+		    <tr>
+		      <td>Stock</td>
+		      <td><input type="text" value="992"></td>
+		    </tr>
+		    <tr>
+		      <td>Introduce Product(song)</td>
+		      <td><input type="textarea" value="제품소개 및 곡소개"></td>
+		    </tr>
+		  </tbody>
+		</table>
+		<button class="positive ui button">Sign Up</button>
+		</div>
+    </section>
 
+<!--  제품등록 끝 -->
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
@@ -154,6 +175,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
+                            <li><a href="#">Home</a></li>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
@@ -179,4 +201,3 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/active.js"></script>
 </body>
 
-</html>
