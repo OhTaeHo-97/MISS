@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% boolean test=true; %>
 <!DOCTYPE html>
 <html>
 
@@ -13,19 +11,13 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>One Music - Register</title>
+    <title>One Music - Modern Music HTML5 Template</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-		<script
- 		 src="https://code.jquery.com/jquery-3.1.1.min.js"
-  		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  		crossorigin="anonymous"></script>
-	<script src="semantic/dist/semantic.min.js"></script>
 
 </head>
 
@@ -68,10 +60,10 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Albums</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
+                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="albums-store.jsp">Albums</a></li>
+                                    <li><a href="shop.jsp">Shop</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="cart.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -101,7 +93,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Account</h2>
+            <h2>News</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -112,63 +104,97 @@
             <div class="row">
                 <div class="col-12 col-lg-9">
 
-                    <!-- Single -->
-     <h2 class="ui header">
-  Account Settings
-  <div class="sub header">Manage your account settings and set e-mail preferences.</div>
-</h2>               
-<form class="ui form">
-  
-<div class="ui form">
-  <div class="field">
-     	 <label>Account</label>
-     	 <input type="text" disabled>
-  </div>
-  <!-- 첫 비밀번호확인 --> 
-  	<div class="required field">
-    	<label>Confirm Password</label>
-    	<input type="password" placeholder="Write it including -">
-  	</div>	
-  	<button class="ui primary button">
- 	 confirm
-	</button> 
-	
-     <!--  비밀번호 확인 완료시 (현재 로그인중인 세션의 비밀번호랑 파라미터값이 일치하는지)
-  <div class="two fields">
-    <div class="required field">
-     	 <label>New password</label>
-     	 <input type="password">
-    </div>
-   	<div class="field">
-     	 <label>Confirm password</label>
-     	<input type="password">
-    </div>
-  </div>
-	<div class="required field">
-    	<label>Phone Number</label>
-    	<input type="text" placeholder="Write it including -">
-  	</div>
-    <div class="required field">
-    	<label>Nickname</label>
-    	<input type="text">
-  	</div>
-  	<div class="field">
-    	<label>E-mail</label>
-    	<input type="email" placeholder="oscar2272@naver.com">
-  	</div>
-  	<div class="field">
-    	<label>Billing Address</label>
-    	<input type="text" placeholder="Street Address">
-  	</div>
-  	<button class="ui secondary button">
-  		save changes
-	</button>  -->  
-</div> 
+                    <!-- Single Post Start -->
+                    <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Post Thumb -->
+                        <div class="blog-post-thumb mt-30">
+                            <a href="#"><img src="img/bg-img/blog1.jpg" alt=""></a>
+                            <!-- Post Date -->
+                            <div class="post-date">
+                                <span>15</span>
+                                <span>June ‘18</span>
+                            </div>
+                        </div>
 
-</form>
+                        <!-- Blog Content -->
+                        <div class="blog-content">
+                            <!-- Post Title -->
+                            <a href="#" class="post-title">5 Festivals you shouldn’t miss this summer</a>
+                            <!-- Post Meta -->
+                            <div class="post-meta d-flex mb-30">
+                                <p class="post-author">By<a href="#"> Admin</a></p>
+                                <p class="tags">in<a href="#"> Events</a></p>
+                                <p class="tags"><a href="#">2 Comments</a></p>
+                            </div>
+                            <!-- Post Excerpt -->
+                            <p>Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis. Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis.</p>
+                        </div>
+                    </div>
 
-                    <!-- Single -->
- 
+                    <!-- Single Post Start -->
+                    <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Post Thumb -->
+                        <div class="blog-post-thumb mt-30">
+                            <a href="#"><img src="img/bg-img/blog2.jpg" alt=""></a>
+                            <!-- Post Date -->
+                            <div class="post-date">
+                                <span>15</span>
+                                <span>June ‘18</span>
+                            </div>
+                        </div>
+
+                        <!-- Blog Content -->
+                        <div class="blog-content">
+                            <!-- Post Title -->
+                            <a href="#" class="post-title">5 Festivals you shouldn’t miss this summer</a>
+                            <!-- Post Meta -->
+                            <div class="post-meta d-flex mb-30">
+                                <p class="post-author">By<a href="#"> Admin</a></p>
+                                <p class="tags">in<a href="#"> Events</a></p>
+                                <p class="tags"><a href="#">2 Comments</a></p>
+                            </div>
+                            <!-- Post Excerpt -->
+                            <p>Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis. Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Post Start -->
+                    <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Post Thumb -->
+                        <div class="blog-post-thumb mt-30">
+                            <a href="#"><img src="img/bg-img/blog3.jpg" alt=""></a>
+                            <!-- Post Date -->
+                            <div class="post-date">
+                                <span>15</span>
+                                <span>June ‘18</span>
+                            </div>
+                        </div>
+
+                        <!-- Blog Content -->
+                        <div class="blog-content">
+                            <!-- Post Title -->
+                            <a href="#" class="post-title">5 Festivals you shouldn’t miss this summer</a>
+                            <!-- Post Meta -->
+                            <div class="post-meta d-flex mb-30">
+                                <p class="post-author">By<a href="#"> Admin</a></p>
+                                <p class="tags">in<a href="#"> Events</a></p>
+                                <p class="tags"><a href="#">2 Comments</a></p>
+                            </div>
+                            <!-- Post Excerpt -->
+                            <p>Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis. Pellentesque sit amet velit a libero viverra porta non eu justo. Vivamus mollis metus sem, ac sodales dui lobortis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="oneMusic-pagination-area wow fadeInUp" data-wow-delay="300ms">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
 
                 <div class="col-12 col-lg-3">
@@ -330,7 +356,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-    	<script src="semantic/dist/semantic.min.js"></script>
 </body>
 
 </html>

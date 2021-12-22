@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Miss. - Device</title>
+    <title>One Music - Modern Music HTML5 Template</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -65,10 +65,10 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
+                                    <li><a href="shop.jsp">Albums</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <li><a href="cart.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -129,13 +129,21 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
-                            <img src="img/lp.jpg" alt="">
+                            <img src="img/bg-img/b1.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- Play Icon -->
+                            <div class="play-icon">
+                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+                            </div>
                         </div>
                         <div class="album-info">
-                            <a href="product.jsp">
-                                <h5>LP Player</h5>
+                            <a href="#">
+                                <h5>Garage Band</h5>
                             </a>
-                            <p>$1400</p>
+                            <p>Radio Station</p>
                         </div>
                     </div>
                 </div>
@@ -190,6 +198,14 @@
                     <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b1.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- Play Icon -->
+                            <div class="play-icon">
+                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+                            </div>
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -250,6 +266,14 @@
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b1.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- Play Icon -->
+                            <div class="play-icon">
+                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+                            </div>
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -442,7 +466,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Music</a></li>
+                            <li><a href="#">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="#">Contact</a></li>
