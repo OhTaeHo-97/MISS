@@ -24,7 +24,8 @@ public class MemberDAO {
 	String sql_selectAdmin = "select * from admin where member_id =?";
 	String sql_insertMVO = "insert into member(member_id,member_pw) values(?,?)"; // 회원가입때 필요한 sql구문 - member 테이블용
 	String sql_insertCVO = "insert into consumer values(?,?,?,?,?)"; // 회원가입때 필요한 sql구문 - consumer 테이블용
-	String sql_update = "UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?";
+	String sql_updateCon = "UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?";
+	String sql_updateMem = "update member set member_pw = ? where member_id = ?";
 	String sql_delete = "delete from member where member_id = ?";
 	
 	public ConsumerSet consumerLogin(MemberVO mvo) { // mvo객체를 통해 member_id와 member_pw를 넘겨받아야 한다.
@@ -44,7 +45,7 @@ public class MemberDAO {
 					ConsumerVO csvo = new ConsumerVO();
 					
 					mbvo.setMember_id(rs.getString("member_id"));
-					mbvo.setMember_pw(rs.getString("member_pw"));
+					//mbvo.setMember_pw(rs.getString("member_pw"));
 					mbvo.setAuth(rs.getString("auth"));
 					
 					pstmt = conn.prepareStatement(sql_selectCVO);
@@ -171,10 +172,18 @@ public class MemberDAO {
 		return true;
 	}
 	
-	public boolean update(ConsumerVO cvo) { // 비밀번호 정보까지 바꾸려면 member테이블까지 접근해야 하니, 현재는 id와 pw는 변경이 안되서 update코딩함(바뀔수있음)
+	public boolean update(ConsumerSet cs) { // 비밀번호 정보까지 바꾸려면 member테이블까지 접근해야 하니, 현재는 id와 pw는 변경이 안되서 update코딩함(바뀔수있음)
 		conn = JDBCUtil.connect();
+		MemberVO mvo = cs.getMvo();
+		ConsumerVO cvo = cs.getCvo();
 		try {
-			pstmt = conn.prepareStatement(sql_update);
+			pstmt = conn.prepareStatement(sql_updateMem); // --> 비밀번호 변경
+			//update member set member_pw = ? where member_id = ?
+			pstmt.setString(1, mvo.getMember_pw());
+			pstmt.setString(2, mvo.getMember_id());
+			pstmt.executeUpdate();
+			
+			pstmt = conn.prepareStatement(sql_updateCon);
 			//UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?
 			pstmt.setString(1, cvo.getNickname());
 			pstmt.setString(2, cvo.getAddress());

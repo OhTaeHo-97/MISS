@@ -38,6 +38,9 @@ public class ProductDAO {
 	String sql_searchFromOld = "select * from (select * from product where product_category = ? order by product_regdate asc) where ROWNUM <= ?";
 	String sql_searchFavorite = "select * from (select * from product where product_category = ? order by favorite_count desc) where ROWNUM <= ?";
 	String sql_searchWord = "select * from (select * from product where product_category = ? and product_name like ?) where ROWNUM <= ?";
+	String sql_stock = "update product set stock = stock - 1 where product_id = ?";
+	String sql_insertProduct = "insert into product(product_id,product_name,price,product_comment,product_pictureurl,product_category,music_singer,music_genre) values(select nvl(max(product_id),0)+1 from product,?,?,?,?,?,?,?)";
+	String sql_deleteReview = "delete from review where review_id = ?";
 	
 	public ArrayList<ProductVO> selectAll(int mcnt) { 
 		ArrayList<ProductVO> datas = new ArrayList<>();
@@ -230,17 +233,18 @@ public class ProductDAO {
 		return datas;
 	}
 	
-	public ArrayList<ProductVO> searchWord(ProductVO pvo, String searchword,  int mcnt) { //  String searchword 이부분을 pvo의 product_name으로 받아올 수도 있다.
+	public ArrayList<ProductVO> searchWord(ProductVO pvo, int mcnt) { //  String searchword 이부분을 pvo의 product_name으로 받아올 수도 있다.
 		ArrayList<ProductVO> datas = new ArrayList<>();
 		conn = JDBCUtil.connect();
-		if(searchword==null) {
-			searchword = "";
+		String filterWord = pvo.getProduct_name();
+		if(filterWord==null) {
+			 filterWord = "";
 		}
 		try {
 			pstmt = conn.prepareStatement(sql_searchWord);
 			//select * from (select * from product where product_category = ? and product_name like ?) where ROWNUM <= ?
 			pstmt.setString(1, pvo.getProduct_category());
-			pstmt.setString(2, "%"+searchword+"%");
+			pstmt.setString(2, "%"+filterWord+"%");
 			pstmt.setInt(3, mcnt);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -270,7 +274,7 @@ public class ProductDAO {
 		return datas;
 	}
 	
-	public boolean update(ProductVO pvo) {
+	public boolean clickFav(ProductVO pvo) {
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(sql_update);
@@ -285,6 +289,42 @@ public class ProductDAO {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
 		return true;
+	}
+	
+	public boolean stock(ArrayList<ProductVO> pvo) {// 결제를 진행했을 때 stock(수량)이 빠지게끔 한다.
+		conn = JDBCUtil.connect();
+		try {			
+			conn.setAutoCommit(false);
+			for (ProductVO data : pvo) {
+				int pid = data.getProduct_id();
+				pstmt = conn.prepareStatement(sql_selectOne);
+				//select * from product where product_id = ?
+				pstmt.setInt(1, pid);
+				rs = pstmt.executeQuery();
+				rs.next();
+				int stock = rs.getInt("stock");
+				if(stock > 0) {
+					pstmt = conn.prepareStatement(sql_stock);
+					//update product set stock = stock - 1 where product_id = ?
+					pstmt.setInt(1, pid);
+					pstmt.executeUpdate();
+				}
+				else {
+					conn.rollback(); // 장바구니에 담긴 물품 중 하나라도 수량이 부족하다면 전체 주문을 취소시킨다.
+					return false;
+				}			
+			}
+			conn.commit();
+			
+			
+		} catch (SQLException e) {
+			System.out.println("ProductDAO stock(결제수량체크)중 에외발생");
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return true;	
 	}
 	
 	public boolean insertReview(ReviewVO rvo) {
@@ -307,6 +347,79 @@ public class ProductDAO {
 		return true;
 	}
 	
+	public boolean insertProduct(ProductVO pvo) { //product_pictureurl, favorite_count, stock은 default값으로 지정
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql_insertProduct); 
+			//insert into product(product_id,product_name,price,product_comment,product_category,music_singer,music_genre) 
+			//		values(select nvl(max(product_id),0)+1 from product,?,?,?,?,?,?)
+			pstmt.setString(1, pvo.getProduct_name());
+			pstmt.setInt(2, pvo.getPrice());
+			pstmt.setString(3, pvo.getProduct_comment());
+			pstmt.setString(4, pvo.getProduct_category());
+			pstmt.setString(5, pvo.getMusic_singer());
+			pstmt.setString(6, pvo.getMusic_genre());
+			pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			System.out.println("ProductDAO insertProduct중 예외발생");
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return true;
+	}
+	
+	public boolean deleteReview(ReviewVO rvo) {
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql_deleteReview);
+			//delete from review where review_id = ?
+			pstmt.setInt(1, rvo.getReview_id());
+			pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			System.out.println("ProductDAO deleteReview중 예외발생");
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return true;
+	}
+	
+	public ArrayList<ProductVO> selectShopList(ArrayList<ProductVO> pvoList) { // Controller에서 중복을 제거한 후 넘겨줌
+		conn = JDBCUtil.connect();
+		ArrayList<ProductVO> datas = new ArrayList<>(); 
+		ProductVO data = null;
+		try {
+			for (ProductVO pvo : pvoList) {
+				data = new ProductVO();
+				pstmt = conn.prepareStatement(sql_selectOne);
+				//select * from product where product_id = ?
+				pstmt.setInt(1, pvo.getProduct_id());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					data.setProduct_id(rs.getInt("product_id"));
+					data.setProduct_name(rs.getString("product_name"));
+					data.setPrice(rs.getInt("price"));
+					data.setProduct_pictureurl(rs.getString("product_pictureurl"));
+					data.setProduct_category(rs.getString("product_category"));
+				}
+				datas.add(data);
+			}	
+			
+		} catch (SQLException e) {
+			System.out.println("ProductDAO selectShopList중 예외발생");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return datas;
+	}
 }
 
 
