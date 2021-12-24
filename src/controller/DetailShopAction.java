@@ -11,23 +11,18 @@ public class DetailShopAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String product = request.getParameter("product");
-		ProductDAO dao = new ProductDAO();
-		ProductVO vo = new ProductVO();
-		ProductVO data = vo.setProductID(product);
-		dao.selectOne(vo);
+		int product = Integer.parseInt(request.getParameter("product"));
 		HttpSession session = request.getSession();
-		ArrayList<ProductVO> datas = (ArrayList)session.getAttribute("datas");
+		ArrayList<Integer> datas = (ArrayList<Integer>)session.getAttribute("datas");
 		if(datas == null) {
-			datas = new ArrayList<ProductVO>();
+			datas = new ArrayList<Integer>();
 			session.setAttribute("datas", datas);
 		}
-		datas.add(data);
+		datas.add(product);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("detail.do");
 		forward.setRedirect(true);
 		return forward;
 	}
-
 }
