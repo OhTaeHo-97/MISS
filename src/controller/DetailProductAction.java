@@ -12,9 +12,13 @@ public class DetailProductAction implements Action {
 		ProductVO vo = new ProductVO();
 		vo.setProductID(request.getParameter("product"));
 		
+		ProductSet data = dao.selectOne(vo);
+		request.setAttribute("product", data.getProduct());
+		request.setAttribute("reply", data.getReviewdata());
 		
 		ActionForward forward = new ActionForward();
-		
-		return null;
+		forward.setPath("detail.jsp");
+		forward.setRedirect(false);
+		return forward;
 	}
 }
