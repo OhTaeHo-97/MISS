@@ -11,17 +11,20 @@ public class DetailReplyAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		ReviewVO vo = new ReviewVO();
 		
-		vo.setProductID(request.getParameter("product_id"));
+		vo.setProduct_id(request.getParameter("product_id"));
 		vo.setNickname(request.getParameter("nickname"));
-		vo.setReviewContent(request.getParameter("review_content"));
+		vo.setReview_content(request.getParameter("review_content"));
 		
-		dao.insert(vo);
+		if(dao.insertReview(vo)) {
+			System.out.println("댓글 등록 완료");
+		} else {
+			System.out.println("댓글 등록 실패");
+		}
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("product.do");
 		forward.setRedirect(false);
-		
-		return null;
+		return forward;
 	}
 
 }
