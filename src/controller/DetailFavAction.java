@@ -11,7 +11,7 @@ public class DetailFavAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		ProductVO vo = new ProductVO();
 		
-		if(dao.update(vo)) {
+		if(dao.clickFav(vo)) {
 			System.out.println("FavAction update 성공!");
 		} else {
 			System.out.println("FavAction update 실패!");
