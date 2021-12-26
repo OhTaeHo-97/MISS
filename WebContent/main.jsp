@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "mytag" tagdir = "/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,8 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="login">Login</a> / <a href="register.jsp" id="register">Register</a>
+                                        <!-- <a href="login.jsp" id="login">Login</a> / <a href="register.jsp" id="register">Register</a> -->
+                                        <mytag:login /> / <a href="register.jsp" id="register">Register</a>
                                     </div>
 
                                     <!-- Cart Button -->

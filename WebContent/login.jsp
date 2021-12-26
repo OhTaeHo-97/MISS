@@ -112,15 +112,15 @@
                         <h3>Welcome Back</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form action="#" method="post">
+                            <form action="login.mem" method="post">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">ID</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your account">
+                                    <label for="member_id">ID</label>
+                                    <input type="text" class="form-control" name = "member_id" id="member_id" aria-describedby="emailHelp" placeholder="Enter your account">
                                     <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your account with anyone else.</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <label for="member_pw">Password</label>
+                                    <input type="password" class="form-control" name = "member_pw" id="member_pw" placeholder="Password">
                                 </div>
                                 <div class="ui form">
   									<div class="inline fields">
