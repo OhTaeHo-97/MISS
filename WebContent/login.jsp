@@ -126,13 +126,13 @@
   									<div class="inline fields">
    										 <div class="field">
       									 <div class="ui radio checkbox">
-      										  <input type="radio" name="fruit" checked="checked">
+      										  <input type="radio" name="right" value = "admin" checked="checked">
      										   <label>admin</label>
      									 </div>
 								   		 </div>
 									    <div class="field">
 									      <div class="ui radio checkbox">
-									        <input type="radio" name="fruit">
+									        <input type="radio" name="right" value = "user">
 									        <label>user</label>
 									      </div>
 									    </div>

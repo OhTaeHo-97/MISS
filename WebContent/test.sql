@@ -6,6 +6,7 @@ create table member(
 
 drop table member;
 insert into member(member_id, member_pw) values('test', '1234');
+insert into member values('admin', '1234', 'Y');
 select * from member;
 
 create table admin(
@@ -14,6 +15,8 @@ create table admin(
     REFERENCES member(member_id) on DELETE CASCADE
 );
 
+insert into admin values('admin');
+select * from admin;
 
 create table consumer(
     member_id varchar2(20)not null UNIQUE,
