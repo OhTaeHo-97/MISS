@@ -22,11 +22,13 @@ public class MemberDAO {
 	String sql_selectOne = "select * from member where member_id = ?"; // 회원 로그인할 떄 필요한 sql구문
 	String sql_selectCVO = "select * from consumer where member_id = ?";
 	String sql_selectAdmin = "select * from admin where member_id =?";
+	String sql_selectNickname = "select * from consumer where nickname = ?";
 	String sql_insertMVO = "insert into member(member_id,member_pw) values(?,?)"; // 회원가입때 필요한 sql구문 - member 테이블용
 	String sql_insertCVO = "insert into consumer values(?,?,?,?,?)"; // 회원가입때 필요한 sql구문 - consumer 테이블용
 	String sql_updateCon = "UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?";
 	String sql_updateMem = "update member set member_pw = ? where member_id = ?";
 	String sql_delete = "delete from member where member_id = ?";
+	
 	
 	public ConsumerSet consumerLogin(MemberVO mvo) { // mvo객체를 통해 member_id와 member_pw를 넘겨받아야 한다.
 		conn = JDBCUtil.connect();
@@ -216,6 +218,52 @@ public class MemberDAO {
 		return true;
 	}
 	
+	public boolean checkId(MemberVO mvo) { // ID 중복검사 : 버튼클릭해서 중복여부 확인
+		boolean usable = false;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql_selectOne);
+			//select * from member where member_id = ?
+			pstmt.setString(1, mvo.getMember_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) { // 존재한다면?? false값 반환
+				usable = false;
+			}
+			else {			// 존재안한다면?? true값 반환
+				usable = true;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("MemberDAO checkId진행 중 오류");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return usable;
+	}
+	
+	public boolean checkNickname(ConsumerVO cvo) { //Nickname 중복검사
+		boolean usable = false;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql_selectNickname);
+			//select * from consumer where nickname = ?
+			pstmt.setString(1, cvo.getNickname());
+			rs = pstmt.executeQuery();
+			if(rs.next()) { // 존재한다면?? false값 반환
+				usable = false;
+			}
+			else {			// 존재안한다면?? true값 반환
+				usable = true;
+			}
+		} catch (SQLException e) {
+			System.out.println("MemberDAO checkNickname진행 중 오류");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return usable;	
+	}
 }
 
 
