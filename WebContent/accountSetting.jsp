@@ -71,9 +71,6 @@
                                     <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <c:if test = "${auth == 'Y'}">
-                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
-                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -115,59 +112,71 @@
                 <div class="col-12 col-lg-9">
 
                     <!-- Single -->
-     <h2 class="ui header">
-  Account Settings
-  <div class="sub header">Manage your account settings and set e-mail preferences.</div>
-</h2>               
+                    
 <form class="ui form">
-  
-<div class="ui form">
-
-  <!-- 첫 비밀번호확인 --> 
-  	<div class="required field">
-    	<label>Confirm Password</label>
-    	<input type="password" placeholder="Write it including -">
-  	</div>	
-  	<button class="ui primary button">
- 	 confirm
-	</button> 
-	
-     <!--  비밀번호 확인 완료시 (현재 로그인중인 세션의 비밀번호랑 파라미터값이 일치하는지)
+  <h4 class="ui dividing header">Create Account</h4>
+  <div class="ui form">
+     <div class="two fields">
+	    <div class="field">
+	     	 <label>ID</label>
+	     	 <input type="text" value="oscar2272" readonly>
+	    </div>
+	    <div class="field">
+     	</div>
+    </div>
+  </div>
   <div class="two fields">
-    <div class="required field">
-     	 <label>New password</label>
+    <div class="field">
+     	 <label>Password</label>
      	 <input type="password">
     </div>
    	<div class="field">
-     	 <label>Confirm password</label>
+     	 <label>Confirm Password</label>
      	<input type="password">
     </div>
   </div>
-	<div class="required field">
+	 <br><br>
+	<div class="field">
     	<label>Phone Number</label>
-    	<input type="text" placeholder="Write it including -">
+    	<input type="text" placeholder="Write it including -" value="010-2222-2222">
   	</div>
-    <div class="required field">
-    	<label>Nickname</label>
-    	<input type="text">
-  	</div>
+     <div class="two fields">
+	    <div class="field">
+	     	 <label>NickName</label>
+	     	 <input type="text" value="hideonbush">
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <button class="ui button">
+		  		Duplication Confirm
+		   </button>
+	   </div>
+    </div>
   	<div class="field">
     	<label>E-mail</label>
-    	<input type="email" placeholder="oscar2272@naver.com">
+    	<input type="email" placeholder="sks232@naver.com" value="oscar2272@naver.com">
   	</div>
   	<div class="field">
     	<label>Billing Address</label>
-    	<input type="text" placeholder="Street Address">
+    	<input type="text" placeholder="Street Address" value="서울시 마곡동">
   	</div>
-  	<button class="ui secondary button">
-  		save changes
-	</button>  -->  
-</div> 
-
+  	  	<button class="ui secondary button">
+  			Save
+		</button>
+<br>
 </form>
-
                     <!-- Single -->
- 
+                    
+                    
+
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
                 </div>
 
                 <div class="col-12 col-lg-3">
@@ -329,7 +338,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-    	<script src="semantic/dist/semantic.min.js"></script>
 </body>
 
 </html>
