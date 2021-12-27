@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "mytag" tagdir = "/WEB-INF/tags" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -69,15 +71,13 @@
                                     <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="login">Login</a> / <a href="register.jsp" id="register">Register</a>
-                                        
+                                        <mytag:login/>
                                     </div>
 
                                     <!-- Cart Button -->
@@ -115,17 +115,20 @@
                     
 <form class="ui form">
   <h4 class="ui dividing header">Create Account</h4>
-<div class="ui form">
-    <div class="required field">
-      <label>ID</label>
-      <input type="text" placeholder="Enter your account">
-      
-          <div class="ui pointing label">   <!--  if조건으로 value 입력없을시 사용가능한 css  -->
-      		Please enter a value
-    	  </div>
-    	  
-    	  
+  <div class="ui form">
+     <div class="two fields">
+	    <div class="required field">
+	     	 <label>ID</label>
+	     	 <input type="text">
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <button class="ui button">
+		  		Duplication Confirm
+		   </button>
+	   </div>
     </div>
+  </div>
   <div class="two fields">
     <div class="required field">
      	 <label>Password</label>
@@ -136,18 +139,23 @@
      	<input type="password">
     </div>
   </div>
-	<button class="ui primary button">
- 	 confirm
-	</button>
 	 <br><br>
 	<div class="required field">
     	<label>Phone Number</label>
     	<input type="text" placeholder="Write it including -">
   	</div>
-    <div class="required field">
-    	<label>Nickname</label>
-    	<input type="text">
-  	</div>
+     <div class="two fields">
+	    <div class="required field">
+	     	 <label>NickName</label>
+	     	 <input type="text">
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <button class="ui button">
+		  		Duplication Confirm
+		   </button>
+	   </div>
+    </div>
   	<div class="field">
     	<label>E-mail</label>
     	<input type="email" placeholder="oscar2272@naver.com">
@@ -159,7 +167,7 @@
   	  	<button class="ui secondary button">
   			sign up
 		</button>
-</div><br>
+<br>
 </form>
                     <!-- Single -->
                     

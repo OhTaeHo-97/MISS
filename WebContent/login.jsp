@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "mytag" tagdir = "/WEB-INF/tags" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,14 +70,16 @@
                                     <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <c:if test = "${auth == 'Y'}">
+                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="#" id="login">Login</a> / <a href="register.jsp" id="register">Register</a>
+                                        <mytag:login/>
                                     </div>
 
                                     <!-- Cart Button -->
@@ -103,7 +107,7 @@
     </section>
     <!-- ##### Breadcumb Area End ##### -->
 
-    <!-- ##### Login Area Start ##### -->
+ <!-- ##### Login Area Start ##### -->
     <section class="login-area section-padding-100">
         <div class="container">
             <div class="row justify-content-center">
@@ -112,27 +116,27 @@
                         <h3>Welcome Back</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form action="#" method="post">
+                            <form action="login.mem" method="post">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">ID</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your account">
+                                    <label for="member_id">ID</label>
+                                    <input type="text" class="form-control" name = "member_id" id="member_id" aria-describedby="emailHelp" placeholder="Enter your account">
                                     <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your account with anyone else.</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <label for="member_pw">Password</label>
+                                    <input type="password" class="form-control" name = "member_pw" id="member_pw" placeholder="Password">
                                 </div>
                                 <div class="ui form">
   									<div class="inline fields">
    										 <div class="field">
       									 <div class="ui radio checkbox">
-      										  <input type="radio" name="fruit" checked="checked">
+      										  <input type="radio" name="right" value = "admin" checked="checked">
      										   <label>admin</label>
      									 </div>
 								   		 </div>
 									    <div class="field">
 									      <div class="ui radio checkbox">
-									        <input type="radio" name="fruit">
+									        <input type="radio" name="right" value = "user">
 									        <label>user</label>
 									      </div>
 									    </div>
@@ -190,3 +194,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/active.js"></script>
 </body>
 
+</html>
