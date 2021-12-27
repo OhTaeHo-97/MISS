@@ -12,20 +12,19 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Miss - Music Song/Speaker</title>
+    <title>Miss. - Cart</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 	<script
  		 src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script src = "js/logout.js"></script>
 
 </head>
 
@@ -51,7 +50,6 @@
 
                         <!-- Nav brand -->
                         <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-						
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -95,61 +93,96 @@
                         </div>
                     </nav>
                 </div>
-                
-                
-                
             </div>
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
-        <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-1.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-2.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>cart</h2>
         </div>
     </section>
-    <!-- ##### Hero Area End ##### -->
+    <!-- ##### Breadcumb Area End ##### -->
 
+    <!-- ##### Cart Area Start ##### -->
+    <section class="login-area section-padding-100">
+    
+        <div class="container">
+            <div class="row justify-content-center">
 
+			<div class="ui items">
+			<!-- for each구문으로 장바구니에 담겨있는만큼 출력필요 -->
+  			<div class="item">
+    			<div class="ui small image">
+      				<img src="img/chance.jpg">
+    			</div>
+  			    <div class="content">
+     			 <div class="header">chance the rapper - coloring book</div>
+   				 <div class="meta">
+      			 	<span class="price">$1200</span>
+   				 </div>
+				 <div class="extra">
+        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
+      			 </div>
+    		     </div>
+  			</div>
+  			<div class="item">
+    			<div class="ui small image">
+      				<img src="img/1975.jpg">
+    			</div>
+  			    <div class="content">
+     			 <div class="header">The1975 - A Brief Inquiry into Online Relationships</div>
+   				 <div class="meta">
+      			 	<span class="price">$1340</span>
+   				 </div>
+				 <div class="extra">
+        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
+      			 </div>
+    		     </div>
+  			</div>
+  			<div class="item">
+    			<div class="ui small image">
+      				<img src="img/lp.jpg">
+    			</div>
+  			    <div class="content">
+     			 <div class="header">LP Player Gadhouse x Honne</div>
+   				 <div class="meta">
+      			 	<span class="price">$1840</span>
+   				 </div>
+				 <div class="extra">
+        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
+      			 </div>
+    		     </div>
+  			</div>
+  			
+			</div>
+            </div>
+            
+        </div>
+        
+    </section>
+    <!-- ##### Cart Area End ##### -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="load-more-btn text-center mt-70">
+            <a href="payment.jsp" class="btn oneMusic-btn btn-2 m-2">ORDER<i class="fa fa-angle-double-right"></i></a>
+                    <br><br>	
+                    </div> 
+                </div>
+            </div>
+	
+
+	
+	
+	
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
-                <div class="col-12 col-md-6">
+                <div class="col-12">
                     <a href="#"><img src="img/core-img/logo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -159,6 +192,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
+                            <li><a href="#">Home</a></li>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
@@ -183,5 +217,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Active js -->
     <script src="js/active.js"></script>
 </body>
-
 </html>

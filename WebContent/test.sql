@@ -1,13 +1,15 @@
 create table member(
     member_id varchar2(30) primary KEY,
     member_pw varchar2(30) not null,
-    auth CHAR(2) default 'N' not null CONSTRAINT check_auth CHECK(auth in('Y','N'))
+    auth CHAR(1) default 'N' not null CONSTRAINT check_auth CHECK(auth in('Y','N'))
 );
 
 drop table member;
 insert into member(member_id, member_pw) values('test', '1234');
 insert into member values('admin', '1234', 'Y');
 select * from member;
+delete from member where member_id = 'test2';
+delete from member where member_id = 'test3';
 
 create table admin(
     member_id varchar2(30),
@@ -17,6 +19,7 @@ create table admin(
 
 insert into admin values('admin');
 select * from admin;
+drop table admin;
 
 create table consumer(
     member_id varchar2(20)not null UNIQUE,
@@ -30,6 +33,8 @@ create table consumer(
 
 insert into consumer values('test', 'nick', 'korea', '01012345678', 'test@test.com');
 select * from member;
+drop table consumer;
+select * from consumer;
 
 create table board(
     board_id int primary key,

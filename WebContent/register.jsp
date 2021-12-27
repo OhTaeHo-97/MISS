@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "mytag" tagdir = "/WEB-INF/tags" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +13,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>One Music - Register</title>
+    <title>Miss. - Register</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -24,7 +26,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-
+	<script src = "js/registCheck.js"></script>
 </head>
 
 <body>
@@ -66,23 +68,21 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Albums</a></li>
+                                    <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="basket.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="login">Login</a> / <a href="register.jsp" id="register">Register</a>
-                                        
+                                        <mytag:login/>
                                     </div>
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -113,48 +113,59 @@
 
                     <!-- Single -->
                     
-<form class="ui form">
-  <h4 class="ui dividing header">Shipping Information</h4>
-<div class="ui form">
-    <div class="required field">
-      <label>Account</label>
-      <input type="text" placeholder="Enter your account">
-      
-          <div class="ui pointing label">   <!--  if조건으로 value 입력없을시 사용가능한 css  -->
-      		Please enter a value
-    	  </div>
-    	  
-    	  
+<form class="ui form" action = "regist.mem" method = "POST" name = "regForm" id = "regForm" onsubmit = "return check()">
+  <h4 class="ui dividing header">Create Account</h4>
+  <div class="ui form">
+     <div class="two fields">
+	    <div class="required field">
+	     	 <label>ID</label>
+	     	 <input type="text" name = "member_id" id = "member_id">
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <button class="ui button">
+		  		Duplication Confirm
+		   </button>
+	   </div>
     </div>
+  </div>
   <div class="two fields">
     <div class="required field">
      	 <label>Password</label>
-     	 <input type="password">
+     	 <input type="password" name = "member_pw" id = "member_pw">
     </div>
    	<div class="field">
      	 <label>Confirm Password</label>
-     	<input type="password">
+     	<input type="password" name = "confirm_pw" id = "confirm_pw">
     </div>
   </div>
-  비밀번호 확인버튼자리
+	 <br><br>
 	<div class="required field">
     	<label>Phone Number</label>
-    	<input type="text" placeholder="Write it including -">
+    	<input type="text" name = "phone" id = "phone" placeholder="Write it down except for -">
   	</div>
-    <div class="required field">
-    	<label>Nickname</label>
-    	<input type="text">
-  	</div>
+     <div class="two fields">
+	    <div class="required field">
+	     	 <label>NickName</label>
+	     	 <input type="text" name = "nickname" id = "nickname">
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <button class="ui button">
+		  		Duplication Confirm
+		   </button>
+	   </div>
+    </div>
   	<div class="field">
     	<label>E-mail</label>
-    	<input type="email" placeholder="oscar2272@naver.com">
+    	<input type="email" name = "email" id = "email" placeholder="oscar2272@naver.com">
   	</div>
-  	<div class="field">
+  	<div class="required field">
     	<label>Billing Address</label>
-    	<input type="text" placeholder="Street Address">
+    	<input type="text" name = "address" id = "address" placeholder="Street Address">
   	</div>
-</div><br>
- <div class="ui button" tabindex="0">Sign up</div>
+  	  	<input type = "submit" class="ui secondary button" value = "sign up" />
+<br>
 </form>
                     <!-- Single -->
                     
@@ -306,7 +317,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="#">Contact</a></li>

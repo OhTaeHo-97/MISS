@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "mytag" tagdir = "/WEB-INF/tags" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +13,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>One Music - Register</title>
+    <title>Miss. - Set Account</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -24,6 +26,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
+	<script src = "js/logout.js"></script>
 
 </head>
 
@@ -66,22 +69,24 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Albums</a></li>
+                                    <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <li><a href="basket.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    <c:if test = "${auth == 'Y'}">
+                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="login">Login</a> / <a href="register.jsp" id="register">Register</a>
+                                        <mytag:login/>
                                     </div>
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +104,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Register</h2>
+            <h2>Account</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -111,22 +116,32 @@
                 <div class="col-12 col-lg-9">
 
                     <!-- Single -->
-                    
-<form class="ui form">
-  <h4 class="ui dividing header">Shipping Information</h4>
+     <h2 class="ui header">
+  Account Settings
+  <div class="sub header">Manage your account settings and set e-mail preferences.</div>
+</h2>               
+<form class="ui form" action = "account.mem" method = "POST">
+<input type = "hidden" name = "member_id" id = "member_id" value = "${data.member_id}">
 <div class="ui form">
 
+  <!-- 첫 비밀번호확인 --> 
+  	<div class="required field">
+    	<label>Confirm Password</label>
+    	<input type="password" name = "member_pw" id = "member_pw" placeholder="비밀번호를 입력해주세요.">
+  	</div>	
+  	<input type = "submit" class="ui primary button" value = "confirm">
+	
+     <!--  비밀번호 확인 완료시 (현재 로그인중인 세션의 비밀번호랑 파라미터값이 일치하는지)
   <div class="two fields">
     <div class="required field">
-     	 <label>Old password</label>
+     	 <label>New password</label>
      	 <input type="password">
     </div>
-   	<div class="required field">
-     	 <label>New password</label>
+   	<div class="field">
+     	 <label>Confirm password</label>
      	<input type="password">
     </div>
   </div>
-  비밀번호 확인버튼자리
 	<div class="required field">
     	<label>Phone Number</label>
     	<input type="text" placeholder="Write it including -">
@@ -143,23 +158,15 @@
     	<label>Billing Address</label>
     	<input type="text" placeholder="Street Address">
   	</div>
-</div><br>
-<button class="ui secondary button">
-  save changes
-</button>
-</form>
-                    <!-- Single -->
-                    
-                    
+  	<button class="ui secondary button">
+  		save changes
+	</button>  -->  
+</div> 
 
-                   
-                   
-                   
-                   
-                   
-                   
-                   
-                   
+</form>
+
+                    <!-- Single -->
+ 
                 </div>
 
                 <div class="col-12 col-lg-3">
@@ -298,7 +305,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="#">Contact</a></li>
@@ -321,6 +328,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    	<script src="semantic/dist/semantic.min.js"></script>
 </body>
 
 </html>

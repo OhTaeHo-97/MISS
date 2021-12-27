@@ -12,20 +12,19 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Miss - Music Song/Speaker</title>
+    <title>Miss. - Payment</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 	<script
  		 src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script src = "js/logout.js"></script>
 
 </head>
 
@@ -51,7 +50,6 @@
 
                         <!-- Nav brand -->
                         <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-						
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -95,57 +93,168 @@
                         </div>
                     </nav>
                 </div>
-                
-                
-                
             </div>
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
-        <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-1.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-2.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>CheckOUt</h2>
         </div>
     </section>
-    <!-- ##### Hero Area End ##### -->
+    <!-- ##### Breadcumb Area End ##### -->
+    <!-- ##### Login Area Start ##### -->
+	
+	<section class="events-area section-padding-100">
+		<div class="ui segment">
+  		<div class="ui two column very relaxed grid">
+    	<div class="column">
+      	<p>CUSTOMER INFORMAITON</p>
+			<form class="ui form">
+  			<h4 class="ui dividing header">Shipping Information</h4>
+ 			 <div class="field">
+    			<label>Full Name</label>
+     			 <div class="field">
+        			<input type="text" name="shipping[first-name]" placeholder="Name">
+      			</div>
+  			</div>
+		  <div class="field">
+		    <label>Billing Address</label>
+		    <div class="fields">
+		      <div class="twelve wide field">
+		        <input type="text" name="shipping[address]" placeholder="Street Address">
+		      </div>
+		      <div class="four wide field">
+		        <input type="text" name="shipping[address-2]" placeholder="PostCode">
+		      </div>
+		    </div>
+		  </div>
+  
+  <h4 class="ui dividing header">Billing Information</h4>
+  <div class="field">
+    <label>Card Type</label>
+    <div class="ui selection dropdown">
+      <input type="hidden" name="card[type]">
+      <div class="default text">Type</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item" data-value="visa">
+          <i class="visa icon"></i>
+          Visa
+        </div>
+        <div class="item" data-value="amex">
+          <i class="amex icon"></i>
+          American Express
+        </div>
+        <div class="item" data-value="discover">
+          <i class="discover icon"></i>
+          Discover
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fields">
+    <div class="seven wide field">
+      <label>Card Number</label>
+      <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
+    </div>
+    <div class="three wide field">
+      <label>CVC</label>
+      <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
+    </div>
+    <div class="six wide field">
+      <label>Expiration</label>
+      <div class="two fields">
+        <div class="field">
+          <select class="ui fluid search dropdown" name="card[expire-month]">
+            <option value="">Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <div class="field">
+          <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 
 
+    	</div>
+    	
+    	
+    	<div class="column">
+     	 <p>YOUR ORDER</p>
+     	 	<!--  for each 구문으로 장바구니목록들 나열 -->
+			<div class="ui relaxed divided list">
+			  <div class="item">
+			  <i class="music icon"></i>			  
+			    <div class="content">
+			      SONNY Record LP
+			      <div class="description">$2000</div>
+			    </div>
+			  </div>
+			  <div class="item">
+			  <i class="music icon"></i>
+			    <div class="content">
+			      	Chance The Rapper-coloring book
+			      <div class="description">$1200</div>
+			    </div>
+			  </div>
+			</div><br><br>
+			
+			
+			  <h3 class="ui left floated header">
+				Price Total
+			  </h3>			  
+			  <h3 class="ui right floated header">
+			    $3200
+			  </h3><br><br>
+			  <h3 class="ui left floated header">
+			    shipping
+			  </h3>
+			  <h4 class="ui right floated header">
+			    $10
+			  </h4>
+			  <br><hr>
+			  <h3 class="ui left floated header">
+				Order Total
+			  </h3>					    
+			  <h3 class="ui right floated header">
+			    $3210
+			  </h3>		<br><br><br><br>	
+			  <div class="ui checkbox">
+				  <input type="checkbox" name="example">
+				  <label>Yes, I agree to the terms and conditions and privacy policy.</label>
+		 	  </div>
+			<button class="large ui black right floated button" onclick="location.href='main.jsp' ">Check Out</button>
+    	</div>
+  		</div>
+  		<div class="ui vertical divider">
+  		</div>
+</div>
+	 
+	 
+	 
+	 
+	 </section>
+    <!-- ##### Login Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
@@ -159,6 +268,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
+                            <li><a href="#">Home</a></li>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
