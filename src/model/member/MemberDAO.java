@@ -179,11 +179,28 @@ public class MemberDAO {
 		MemberVO mvo = cs.getMvo();
 		ConsumerVO cvo = cs.getCvo();
 		try {
-			pstmt = conn.prepareStatement(sql_updateMem); // --> 비밀번호 변경
-			//update member set member_pw = ? where member_id = ?
-			pstmt.setString(1, mvo.getMember_pw());
-			pstmt.setString(2, mvo.getMember_id());
-			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement(sql_selectOne);	// 기존 비밀번호가 무엇인지 우선 가져와서 비교.
+			//select * from member where member_id = ?
+			pstmt.setString(1, mvo.getMember_id());
+			rs = pstmt.executeQuery();
+			String originalPw = rs.getString("member_pw"); 
+			
+			if(mvo.getMember_pw()==null) {				
+				System.out.println("기존 비밀번호 유지");
+			}
+			else {
+				if(!mvo.getMember_pw().equals(originalPw)) {// 넘어온 passwrod값이 다른 경우 -> 정상적으로 password바뀜
+					pstmt = conn.prepareStatement(sql_updateMem); // --> 비밀번호 변경
+					//update member set member_pw = ? where member_id = ?
+					pstmt.setString(1, mvo.getMember_pw());
+					pstmt.setString(2, mvo.getMember_id());
+					pstmt.executeUpdate();				
+				}
+				else if(mvo.getMember_pw().equals(originalPw)) {// 넘어온 passwrod값이 같은 경우 -> false값 반환 -> 사용자에게 다른 pw입력 요구.
+					return false;
+				}
+			}
+			
 			
 			pstmt = conn.prepareStatement(sql_updateCon);
 			//UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?
