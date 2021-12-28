@@ -69,8 +69,8 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->

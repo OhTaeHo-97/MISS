@@ -66,8 +66,8 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
@@ -107,242 +107,62 @@
     <!-- ##### Breadcumb Area End ##### -->
 	<!-- ##### Shop Content Area Start ##### -->
      <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+     <form name = "frm" id = "musicPageForm" action = "main_music.do" method = "POST">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-heading style-2">
+                    <div class="section-heading style-2" style = "height:50px !important;">
 						<div class="ui vertical menu">
-  							<div class="ui dropdown item">
-    						Filter 
-    						<i class="dropdown icon"></i>
-    						<div class="menu">
-     							 <a class="item">Electronics</a>
-     							 <a class="item">Automotive</a>
-     							 <a class="item">Home</a>
-   							</div>
-  							</div>
+<!--   							<div class="ui dropdown item"> -->
+	  							<select name = "filter" onchange = "this.form.submit()" class="ui dropdown item" style = "height:50px !important; width: 98% !important;">
+	  								<option value = "recent" class="item">최신순</option>
+	  								<option value = "old" class="item">오래된순</option>
+	  								<option value = "fav" class="item" selected>좋아요순</option>
+	  							</select>
 						</div>
                     </div>
                 </div>
             </div>
-
             <div class="row">
-				
-                <!-- Single Album Area --><!-- forEach로  모든 음악들 가져와 출력필요 -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
-                        <div class="album-thumb">
-                            <img src="img/chance.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="product.jsp">
-                                <h5>Chacne the Rapper</h5>
-                            </a>
-                            <p>finish line</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
+            <c:forEach var = "pvo" items = "${datas}">
+<!--     			<div class="row"> -->
+    				<div class="col-12 col-sm-6 col-md-4 col-lg-2">
+	                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
+	                        <div class="album-thumb">
+	                            <img src="${pvo.product_pictureurl}" alt="${pvo.product_name}">
+	                            <!-- Album Price -->
+	                            <div class="album-price">
+	                                <p>${pvo.price}₩</p>
+	                            </div>
+	                            <!-- Play Icon -->
+	                            <div class="play-icon">
+	                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+	                            </div>
+	                        </div>
+	                        <div class="album-info">
+	                            <a href="product.jsp">
+	                                <h5>${pvo.product_name}</h5>
+	                            </a>
+	                            <p>${pvo.music_singer}</p>
+	                        </div>
+	                    </div>
+	                </div>
+<!--     			</div> -->
+    		</c:forEach>
+    		</div>
 
             </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
-                        <a href="#" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
+            </form>
+           	<div class="row">
+               <div class="col-12">
+                   <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
+                       <a href="main_music.do?music_cnt=${music_cnt + 6}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
+                   </div>
+               </div>
             </div>
-        </div>
+<!--         </div> -->
     </section>
+    
       <!-- ##### shop content Area End ##### -->
 
     <!-- ##### Newsletter & Testimonials Area Start ##### -->

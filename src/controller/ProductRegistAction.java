@@ -1,7 +1,12 @@
 package controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.product.ProductDAO;
+import model.product.ProductVO;
 
 public class ProductRegistAction implements Action {
 
@@ -10,19 +15,28 @@ public class ProductRegistAction implements Action {
 		
 		ProductDAO dao = new ProductDAO();
 		ProductVO vo = new ProductVO();
-		vo.setName(request.getParameter("name"));
-		vo.setPrice(request.getParameter("price"));
-		vo.setCommenct(request.getParameter("comment"));
-		vo.setPictureurl(request.getParameter("url"));
-		vo.setCategory(request.getParameter("category"));
-		vo.setSinger(request.getParameter("singer"));
-		vo.setGenre(request.getParameter("genre"));
+		System.out.println(request.getParameter("image"));
+		System.out.println(request.getParameter("comment"));
 		
-		dao.insert(vo);
+		vo.setMusic_genre(request.getParameter("genre"));
+		vo.setMusic_singer(request.getParameter("singer"));
+		vo.setPrice(Integer.parseInt(request.getParameter("price")));
+		vo.setProduct_category(request.getParameter("category"));
+		vo.setProduct_comment(request.getParameter("comment"));
+		vo.setProduct_name(request.getParameter("pname"));
+		vo.setProduct_pictureurl(request.getParameter("image"));
+		vo.setStock(Integer.parseInt(request.getParameter("stock")));
 		
-		ActionForward forward = new ActionForward();	
-		forward.setPath("main.do");
-		forward.setRedirect(false);
+		ActionForward forward = null;
+		if(dao.insertProduct(vo)) {
+			forward = new ActionForward();
+			forward.setPath("main.jsp");
+			forward.setRedirect(true);
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('제품 등록 실패!');history.go(-1);</script>");
+		}
 		return forward;
 	}
 

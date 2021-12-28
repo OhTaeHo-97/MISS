@@ -67,8 +67,8 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
@@ -109,6 +109,7 @@
     <!--  제품등록 시작 -->
 
     <section class="events-area section-padding-100">
+    	<form name = "signUpForm" action = "insertProduct.do" method = "POST">
         <div class="container">	
 		<h4 class="ui horizontal divider header">
 		  <i class="tag icon"></i>
@@ -119,50 +120,60 @@
 		  <i class="upload icon"></i>
 		  Sign_up
 		</h4>
-		<table class="ui definition table">
-		  <tbody>
-		    <tr>
-		      <td>Category</td>
-		      <td><input type="radio" name="category" checked="checked">Music
-		      <input type="radio" name="category">Device</td>
-		    </tr>
-		    <tr>
-		      <td>Image</td>
-		      <td><input type="file" id="image" name="image" accept=".jpg, .jpeg, .png"></td>
-		    </tr>
-		    <tr>
-		      <td>Product_Name(Song)</td>
-		      <td><input type="text" value="finish line"></td>
-		    </tr>
-		    <tr>
-		      <td>Singer</td>
-		      <td><input type="text" value="chance the rapper"></td>
-		    </tr>
-		    <tr>
-		      <td>Release Date</td>
-		      <td><input type="text" value="2018.09.13"></td>
-		    </tr>
-		    <tr>
-		      <td>Genre</td>
-		      <td><input type="text" value="랩/힙합" required></td>
-		    </tr>
-		    <tr>
-		      <td>Price</td>
-		      <td><input type="text" value="$120"></td>
-		    </tr>
-		    <tr>
-		      <td>Stock</td>
-		      <td><input type="text" value="992"></td>
-		    </tr>
-		    <tr>
-		      <td>Introduce Product(song)</td>
-		      <td><input type="textarea" value="제품소개 및 곡소개"></td>
-		    </tr>
-		  </tbody>
-		</table>
-		<button class="positive ui button">Sign Up</button>
-		</div>
-    </section>
+			<table class="ui definition table">
+			  <tbody>
+			    <tr>
+			      <td>Category</td>
+			      <td><input type="radio" id = "category" name="category" checked="checked" value = "music">Music
+			      <input type="radio" name="category" value = "device">Device</td>
+			    </tr>
+			    <tr>
+			      <td>Image</td>
+			      <td><input type="file" id="image" name="image" accept=".jpg, .jpeg, .png"></td>
+			    </tr>
+			    <tr>
+			      <td>Product_Name(Song)</td>
+			      <td><input type="text" name = "pname" value="finish line"></td>
+			    </tr>
+			    <tr>
+			      <td>Singer</td>
+			      <td><input type="text" name = "singer" value="chance the rapper"></td>
+			    </tr>
+			    <tr>
+			      <td>Genre</td>
+			      <td>
+<!-- 			      	<input type="text" value="랩/힙합" required> -->
+					<select name = "genre" class="ui dropdown item">
+						<option value = "ballad">발라드</option>
+						<option value = "dance">댄스</option>
+						<option value = "rap">랩/힙합</option>
+						<option value = "rb">R&B/Soul</option>
+						<option value = "indie">인디음악</option>
+						<option value = "rock">록/메탈</option>
+						<option value = "trot">트로트</option>
+						<option value = "fork">포크/블루스</option>
+					</select>
+			      </td>
+			    </tr>
+			    <tr>
+			      <td>Price</td>
+			      <td><input type="text" name = "price" value="120">₩</td>
+			    </tr>
+			    <tr>
+			      <td>Stock</td>
+			      <td><input type="text" name = "stock" value="992"></td>
+			    </tr>
+			    <tr>
+			      <td>Introduce Product(song)</td>
+			      <td><textarea name = "comment" placeholder = "제품소개 및 곡소개" cols = "100" rows = "10" style = "resize: none;"></textarea><!-- <input type="textarea" value="제품소개 및 곡소개"> --></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<input type = "submit" class="positive ui button" value = "Sign Up">
+			</div>
+		</form>
+	   </section>
+    
 
 <!--  제품등록 끝 -->
     <!-- ##### Footer Area Start ##### -->

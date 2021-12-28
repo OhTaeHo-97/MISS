@@ -45,18 +45,20 @@ create table board(
 
 create table product(
     product_id int primary key,
-    product_name varchar2(20) not null,
+    product_name varchar2(100) not null,
     price int not null,
     product_regdate date default SYSDATE,
-    product_comment varchar(50) DEFAULT 'No Comments',
-    product_pictureurl varchar(30) DEFAULT 'No images',
+    product_comment varchar(300) DEFAULT 'No Comments',
+    product_pictureurl varchar(200) DEFAULT 'No images',
     product_category varchar(20),
-    music_singer varchar(20),
+    music_singer varchar(50),
     music_genre varchar(10),
     favorite_count int default 0,
     stock int default 0
 );
 
+select * from product;
+drop table product;
 
 
 create table review(

@@ -60,7 +60,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="set_filter.do">Home</a></li>
                                     <li><a href="albums-store.jsp">Albums</a></li>
                                     <li><a href="shop.jsp">Shop</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>

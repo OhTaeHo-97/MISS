@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import model.product.ProductDAO;
 import model.product.ProductVO;
 
-public class MainMusicAction implements Action {
+public class MainDeviceAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,7 +24,7 @@ public class MainMusicAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		
 		
-		String cnt = request.getParameter("music_cnt");
+		String cnt = request.getParameter("device_cnt");
 		int mcnt = 12;
 		if(cnt != null) {
 			mcnt = Integer.parseInt(cnt);
@@ -33,27 +33,27 @@ public class MainMusicAction implements Action {
 		ActionForward forward = new ActionForward();
 		if(filter.equals("recent")) {
 			ProductVO pvo = new ProductVO();
-			pvo.setProduct_category("music");
+			pvo.setProduct_category("device");
 			ArrayList<ProductVO> datas = dao.searchNewest(pvo, mcnt);
 			request.setAttribute("datas", datas);
-			request.setAttribute("music_cnt", mcnt);
-			forward.setPath("shop.jsp");
+			request.setAttribute("device_cnt", mcnt);
+			forward.setPath("device.jsp");
 			forward.setRedirect(false);
 		} else if(filter.equals("old")) {
 			ProductVO pvo = new ProductVO();
-			pvo.setProduct_category("music");
+			pvo.setProduct_category("device");
 			ArrayList<ProductVO> datas = dao.searchOldest(pvo, mcnt);
 			request.setAttribute("datas", datas);
-			forward.setPath("shop.jsp");
-			request.setAttribute("music_cnt", mcnt);
+			forward.setPath("device.jsp");
+			request.setAttribute("device_cnt", mcnt);
 			forward.setRedirect(false);
 		} else if(filter.equals("fav")) {
 			ProductVO pvo = new ProductVO();
-			pvo.setProduct_category("music");
+			pvo.setProduct_category("device");
 			ArrayList<ProductVO> datas = dao.searchFavoriteCnt(pvo, mcnt);
 			request.setAttribute("datas", datas);
-			request.setAttribute("music_cnt", mcnt);
-			forward.setPath("shop.jsp");
+			request.setAttribute("device_cnt", mcnt);
+			forward.setPath("device.jsp");
 			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
@@ -62,5 +62,4 @@ public class MainMusicAction implements Action {
 		}
 		return forward;
 	}
-
 }

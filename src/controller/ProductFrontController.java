@@ -42,18 +42,33 @@ public class ProductFrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String command = uri.substring(cp.length());
+		System.out.println(command);
 		
 		ActionForward forward = null;
-		if(command.equals("main_music.do")) {
+		if(command.equals("/set_music_filter.do")) {
+			try {
+				forward = new SetMusicFilterAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/set_device_filter.do")) {
+			try {
+				forward = new SetDeviceFilterAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/main_music.do")) {
 			try {
 				forward = new MainMusicAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if(command.equals("main_product.do")) {
+		} else if(command.equals("/main_device.do")) {
 			try {
-				forward = new MainProductAction().execute(request, response);
+				forward = new MainDeviceAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -67,6 +82,13 @@ public class ProductFrontController extends HttpServlet {
 			}
 		} else if(command.equals("detail.do")) {
 			
+		} else if(command.equals("/insertProduct.do")) {
+			try {
+				forward = new ProductRegistAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null) {
