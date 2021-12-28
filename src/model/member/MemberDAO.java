@@ -118,22 +118,23 @@ public class MemberDAO {
 		return vo;
 	}
 	
-	/*public ConsumerVO detail(MemberVO mvo) { // 회원 상세보기 페이지에서 활용될 메서드
+	public ConsumerVO detail(MemberVO mvo) { // 회원 상세보기 페이지에서 활용될 메서드
 		// session에 저장된 회원의 member_id를 넘겨받아 상세 정보를 Controller에게 다시 넘겨준다.
 		conn = JDBCUtil.connect();
 		ConsumerVO cvo = null;
 		try {
-			pstmt = conn.prepareStatement(sql_selectOne); 
-			// select * from member where member_id = ?
-			pstmt.setString(1, mvo.getMember_id());
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				cvo = new ConsumerVO();
-				cvo.setAddress(rs.getString("address"));
-				cvo.setEmail("email");
-				cvo.setNickname("nickname"); 
-				cvo.setPhoneNumber("phoneNumber");
-			}		
+			 pstmt = conn.prepareStatement(sql_selectCVO); 
+	         // select * from consumer where member_id = ?
+	         pstmt.setString(1, mvo.getMember_id());
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            System.out.println(rs.getString("address"));
+	            cvo = new ConsumerVO();
+	            cvo.setAddress(rs.getString("address"));
+	            cvo.setEmail(rs.getString("email"));
+	            cvo.setNickname(rs.getString("nickname")); 
+	            cvo.setPhoneNumber(rs.getString("phoneNumber"));
+	         } 		
 		} catch (SQLException e) {
 			System.out.println("MemberDAO detail에서 예외발생");
 			e.printStackTrace();
@@ -141,7 +142,7 @@ public class MemberDAO {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
 		return cvo;
-	}*/
+	}
 	
 	
 	public boolean insert(ConsumerSet cs) { // 회원가입시 Member와 Consumer 테이블에 data 입력
@@ -152,7 +153,7 @@ public class MemberDAO {
 			pstmt = conn.prepareStatement(sql_insertMVO);
 			// insert into member(member_id,member_pw) values(?,?)
 			pstmt.setString(1, mvo.getMember_id());
-			pstmt.setString(2, mvo.getMember_id());
+			pstmt.setString(2, mvo.getMember_pw());
 			pstmt.executeUpdate();
 			
 			pstmt = conn.prepareStatement(sql_insertCVO);
@@ -179,11 +180,17 @@ public class MemberDAO {
 		MemberVO mvo = cs.getMvo();
 		ConsumerVO cvo = cs.getCvo();
 		try {
-			pstmt = conn.prepareStatement(sql_selectOne);	// 기존 비밀번호가 무엇인지 우선 가져와서 비교.
-			//select * from member where member_id = ?
-			pstmt.setString(1, mvo.getMember_id());
-			rs = pstmt.executeQuery();
-			String originalPw = rs.getString("member_pw"); 
+			pstmt = conn.prepareStatement(sql_selectOne);   // 기존 비밀번호가 무엇인지 우선 가져와서 비교.
+	         //select * from member where member_id = ?
+	         pstmt.setString(1, mvo.getMember_id());
+	         rs = pstmt.executeQuery();
+	         String originalPw = "";
+	         if(rs.next()) {
+	            originalPw = rs.getString("member_pw");
+	         } else {
+	            SQLException se = new SQLException();
+	            throw se;
+	         } 
 			
 			if(mvo.getMember_pw()==null) {				
 				System.out.println("기존 비밀번호 유지");

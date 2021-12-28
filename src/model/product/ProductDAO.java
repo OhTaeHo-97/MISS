@@ -39,7 +39,7 @@ public class ProductDAO {
 	String sql_searchFavorite = "select * from (select * from product where product_category = ? order by favorite_count desc) where ROWNUM <= ?";
 	String sql_searchWord = "select * from (select * from product where product_category = ? and product_name like ?) where ROWNUM <= ?";
 	String sql_stock = "update product set stock = stock - 1 where product_id = ?";
-	String sql_insertProduct = "insert into product(product_id,product_name,price,product_comment,product_pictureurl,product_category,music_singer,music_genre) values(select nvl(max(product_id),0)+1 from product,?,?,?,?,?,?,?)";
+	String sql_insertProduct = "insert into product(product_id,product_name,price,product_comment,product_pictureurl,product_category,music_singer,music_genre,stock) values((select nvl(max(product_id),0)+1 from product),?,?,?,?,?,?,?,?)";
 	String sql_deleteReview = "delete from review where review_id = ?";
 	
 	public ArrayList<ProductVO> selectAll(int mcnt) { 
@@ -351,14 +351,17 @@ public class ProductDAO {
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(sql_insertProduct); 
-			//insert into product(product_id,product_name,price,product_comment,product_category,music_singer,music_genre) 
-			//		values(select nvl(max(product_id),0)+1 from product,?,?,?,?,?,?)
+			//insert into product(product_id,product_name,price,product_comment,product_pictureurl,product_category,music_singer,music_genre,stock) 
+			//values(select nvl(max(product_id),0)+1 from product,?,?,?,?,?,?,?,?) 
+			
 			pstmt.setString(1, pvo.getProduct_name());
 			pstmt.setInt(2, pvo.getPrice());
 			pstmt.setString(3, pvo.getProduct_comment());
-			pstmt.setString(4, pvo.getProduct_category());
-			pstmt.setString(5, pvo.getMusic_singer());
-			pstmt.setString(6, pvo.getMusic_genre());
+			pstmt.setString(4, pvo.getProduct_pictureurl());
+			pstmt.setString(5, pvo.getProduct_category());
+			pstmt.setString(6, pvo.getMusic_singer());
+			pstmt.setString(7, pvo.getMusic_genre());
+			pstmt.setInt(8, pvo.getStock());
 			pstmt.executeUpdate();
 			
 			
