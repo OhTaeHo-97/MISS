@@ -115,48 +115,102 @@
 
 			<div class="ui items">
 			<!-- for each구문으로 장바구니에 담겨있는만큼 출력필요 -->
-  			<div class="item">
-    			<div class="ui small image">
-      				<img src="img/chance.jpg">
-    			</div>
-  			    <div class="content">
-     			 <div class="header">chance the rapper - coloring book</div>
-   				 <div class="meta">
-      			 	<span class="price">$1200</span>
-   				 </div>
-				 <div class="extra">
-        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
-      			 </div>
-    		     </div>
-  			</div>
-  			<div class="item">
-    			<div class="ui small image">
-      				<img src="img/1975.jpg">
-    			</div>
-  			    <div class="content">
-     			 <div class="header">The1975 - A Brief Inquiry into Online Relationships</div>
-   				 <div class="meta">
-      			 	<span class="price">$1340</span>
-   				 </div>
-				 <div class="extra">
-        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
-      			 </div>
-    		     </div>
-  			</div>
-  			<div class="item">
-    			<div class="ui small image">
-      				<img src="img/lp.jpg">
-    			</div>
-  			    <div class="content">
-     			 <div class="header">LP Player Gadhouse x Honne</div>
-   				 <div class="meta">
-      			 	<span class="price">$1840</span>
-   				 </div>
-				 <div class="extra">
-        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
-      			 </div>
-    		     </div>
-  			</div>
+			<c:choose>
+				<c:when test = "${empty data}">
+					<div style = "text-align:center;"><h6>로그인이 필요합니다!</h6></div>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test = "${empty pvoData}">
+							<div style = "text-align:center;"><h6>장바구니에 담긴 상품이 없습니다!</h6></div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var = "pvo" items = "${pvoData}">
+								<div class="item">
+					    			<div class="ui small image">
+					      				<img src="${pvo.product_pictureurl}">
+					    			</div>
+					  			    <div class="content">
+					     			 <div class="header">${pvo.product_name}
+					     			 <c:if test = "${pvo.product_category == 'music'}">
+					     			 	&nbsp;&nbsp;- ${pvo.music_singer}
+					     			 </c:if>
+					     			 </div>
+					   				 <div class="meta">
+					      			 	<span class="price">${pvo.price}₩</span>
+					   				 </div>
+									 <div class="extra">
+					        		 	<a href="deleteCart.do?deleteId=${pvo.product_id}"><i class="minus circle icon"></i></a>
+					      			 </div>
+					    		     </div>
+					  			</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
+<%-- 			<c:forEach var = "pvo" items = "pvoData"> --%>
+<!-- 				<div class="item"> -->
+<!-- 	    			<div class="ui small image"> -->
+<!-- 	      				<img src="img/chance.jpg"> -->
+<!-- 	    			</div> -->
+<!-- 	  			    <div class="content"> -->
+<%-- 	     			 <div class="header">${pvo.product_name} --%>
+<%-- 	     			 <c:if test = "${pvo.product_category == 'music'}"> --%>
+<%-- 	     			 	&nbsp;&nbsp;- ${pvo.music_singer} --%>
+<%-- 	     			 </c:if> --%>
+<!-- 	     			 </div> -->
+<!-- 	   				 <div class="meta"> -->
+<%-- 	      			 	<span class="price">${pvo.price}₩</span> --%>
+<!-- 	   				 </div> -->
+<!-- 					 <div class="extra"> -->
+<!-- 	        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!-- 	      			 </div> -->
+<!-- 	    		     </div> -->
+<!-- 	  			</div> -->
+<%-- 			</c:forEach> --%>
+<!--   			<div class="item"> -->
+<!--     			<div class="ui small image"> -->
+<!--       				<img src="img/chance.jpg"> -->
+<!--     			</div> -->
+<!--   			    <div class="content"> -->
+<!--      			 <div class="header">chance the rapper - coloring book</div> -->
+<!--    				 <div class="meta"> -->
+<!--       			 	<span class="price">$1200</span> -->
+<!--    				 </div> -->
+<!-- 				 <div class="extra"> -->
+<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!--       			 </div> -->
+<!--     		     </div> -->
+<!--   			</div> -->
+<!--   			<div class="item"> -->
+<!--     			<div class="ui small image"> -->
+<!--       				<img src="img/1975.jpg"> -->
+<!--     			</div> -->
+<!--   			    <div class="content"> -->
+<!--      			 <div class="header">The1975 - A Brief Inquiry into Online Relationships</div> -->
+<!--    				 <div class="meta"> -->
+<!--       			 	<span class="price">$1340</span> -->
+<!--    				 </div> -->
+<!-- 				 <div class="extra"> -->
+<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!--       			 </div> -->
+<!--     		     </div> -->
+<!--   			</div> -->
+<!--   			<div class="item"> -->
+<!--     			<div class="ui small image"> -->
+<!--       				<img src="img/lp.jpg"> -->
+<!--     			</div> -->
+<!--   			    <div class="content"> -->
+<!--      			 <div class="header">LP Player Gadhouse x Honne</div> -->
+<!--    				 <div class="meta"> -->
+<!--       			 	<span class="price">$1840</span> -->
+<!--    				 </div> -->
+<!-- 				 <div class="extra"> -->
+<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!--       			 </div> -->
+<!--     		     </div> -->
+<!--   			</div> -->
   			
 			</div>
             </div>

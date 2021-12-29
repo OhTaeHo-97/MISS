@@ -103,7 +103,7 @@ public class ProductFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/insertCart.do")) {
 			try {
-				forward = new ShopAction().execute(request, response);
+				forward = new CartAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -111,6 +111,20 @@ public class ProductFrontController extends HttpServlet {
 		} else if(command.equals("/deleteReview.do")) {
 			try {
 				forward = new DeleteReviewAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/cartPage.do")) {
+			try {
+				forward = new CartPageAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/deleteCart.do")) {
+			try {
+				forward = new CartDeleteAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

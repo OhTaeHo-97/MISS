@@ -85,8 +85,8 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                    <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do"><span class="quantity">1</span></a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
                                     </div>
                                 </div>
                             </div>
