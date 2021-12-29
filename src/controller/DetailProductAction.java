@@ -3,6 +3,10 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.product.ProductDAO;
+import model.product.ProductSet;
+import model.product.ProductVO;
+
 public class DetailProductAction implements Action {
 
 	@Override
@@ -10,14 +14,14 @@ public class DetailProductAction implements Action {
 		// TODO Auto-generated method stub
 		ProductDAO dao = new ProductDAO();
 		ProductVO vo = new ProductVO();
-		vo.setProductID(request.getParameter("product"));
+		vo.setProduct_id(Integer.parseInt(request.getParameter("productid")));
 		
 		ProductSet data = dao.selectOne(vo);
 		request.setAttribute("product", data.getProduct());
-		request.setAttribute("reply", data.getReviewdata());
+		request.setAttribute("replies", data.getReviewdata());
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("detail.jsp");
+		forward.setPath("product.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

@@ -73,18 +73,44 @@ public class ProductFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if(command.equals("fav.do")) {
+		} else if(command.equals("/fav.do")) {
 			try {
 				forward = new FavAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if(command.equals("detail.do")) {
-			
+		} else if(command.equals("/detail.do")) {
+			try {
+				forward = new DetailProductAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if(command.equals("/insertProduct.do")) {
 			try {
 				forward = new ProductRegistAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/insertReview.do")) {
+			try {
+				forward = new ReviewRegistAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/insertCart.do")) {
+			try {
+				forward = new ShopAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/deleteReview.do")) {
+			try {
+				forward = new DeleteReviewAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

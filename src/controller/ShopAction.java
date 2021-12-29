@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,23 +12,18 @@ public class ShopAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String product = request.getParameter("product");
-		ProductDAO dao = new ProductDAO();
-		ProductVO vo = new ProductVO();
-		ProductVO data = vo.setProductID(product);
-		dao.selectOne(vo);
 		HttpSession session = request.getSession();
-		ArrayList<ProductVO> datas = (ArrayList)session.getAttribute("datas");
-		if(datas == null) {
-			datas = new ArrayList<ProductVO>();
-			session.setAttribute("datas", datas);
+		ArrayList<Integer> cartData = (ArrayList<Integer>)session.getAttribute("cartData");
+		if(cartData == null) {
+			cartData = new ArrayList<Integer>();
+			session.setAttribute("cartData", cartData);
 		}
-		datas.add(data);
+		cartData.add(Integer.parseInt(request.getParameter("productId")));
+		System.out.println(cartData);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("main.do");
+		forward.setPath("detail.do?productid=" + request.getParameter("productId"));
 		forward.setRedirect(true);
 		return forward;
 	}
-
 }

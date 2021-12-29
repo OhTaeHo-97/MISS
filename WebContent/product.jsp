@@ -25,7 +25,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-
+	<script type="text/javascript" src="js/productPage.js"></script> 
 </head>
 
 <body>
@@ -113,14 +113,22 @@
     	<div class="ui items">
 		  <div class="item">
 		    <div class="ui medium image">
-		      <img src="img/chance.jpg">
+		      <img src="${product.product_pictureurl}" alt = "${product.product_name}">
 		    </div>
 		    <div class="content">
-		      <div class="header">Chance the rapper - Coloring book</div>
+		      <div class="header">${product.product_name}
+		      <c:if test = "${product.product_category == 'music'}">
+		      	&nbsp;&nbsp;- ${product.music_singer}
+		      </c:if>
+		      </div>
 		      <div class="meta">
-		        <span class="price"><dl><dt>발매일/출시일<dt><dd>2018.09.13</dd></dl> </span> <br>
-		        <span class="stay"><dl><dt>장르/device-비노출<dt><dd>랩/힙합</dd><dl/></span> <br>
-		        <span class="price">$120</span>
+<!-- 		        <span class="price"><dl><dt>발매일/출시일<dt><dd>2018.09.13</dd></dl> </span> <br> -->
+		        <span class="stay">
+	        		<c:if test = "${product.product_category == 'music'}">
+	        			<dl><dt>장르</dt><dd>${product.music_genre}</dd></dl>
+	        		</c:if>
+		        </span> <br>
+		        <span class="price">${product.price}₩</span>
 		      </div>
 
 		    </div>
@@ -129,69 +137,153 @@
 		 
 		<div class="ui buttons">
 		<div class="ui labeled button" tabindex="0">
-		  <div class="ui button">
-		    <i class="heart icon"></i> Like
-		  </div>
-		  <a class="ui basic label">
-		    2,048
-		  </a>
-		</div> 
-		<div class="ui vertical animated button" tabindex="0">
-		  <div class="hidden content">Cart</div>
-		  <div class="visible content">
-		    <i class="shop icon"></i>
-		  </div>
+			<c:choose>
+				<c:when test = "${empty data}">
+					<div class="ui button" onClick = "noIdFav()">
+			  			<i class="heart icon"></i> Like
+			  		</div>
+			  		<a class="ui basic label">
+			    		${product.favorite_count}
+			  		</a>
+				</c:when>
+				<c:otherwise>
+					<div class="ui button" onClick = "location.href = 'fav.do?productId=${product.product_id}'">
+				  		<i class="heart icon"></i> Like
+				  	</div>
+				  	<a class="ui basic label">
+				    	${product.favorite_count}
+				 	</a>
+				</c:otherwise>
+			</c:choose>
+<%-- 			<c:if test = "${not empty product}"> --%>
+<%-- 				<div class="ui button" onclick = "location.href = 'fav.do?productId=${product.product_id}'"> --%>
+<!-- 			  		<i class="heart icon"></i> Like -->
+<!-- 			  	</div> -->
+<!-- 			  	<a class="ui basic label"> -->
+<%-- 			    	${product.favorite_count} --%>
+<!-- 			 	</a> -->
+<%-- 			</c:if> --%>
+<%-- 			<c:if test = "${empty product}"> --%>
+<!-- 				<div class="ui button" onclick = "noIdFav()"> -->
+<!-- 		  			<i class="heart icon"></i> Like -->
+<!-- 		  		</div> -->
+<!-- 		  		<a class="ui basic label"> -->
+<%-- 		    		${product.favorite_count} --%>
+<!-- 		  		</a> -->
+<%-- 			</c:if> --%>
+<%-- 		  <div class="ui button" onclick = "location.href = 'fav.do?productId=${product.product_id}'"> --%>
+<!-- 		  	<i class="heart icon"></i> Like -->
+<!-- 		  </div> -->
+<!-- 		  <a class="ui basic label"> -->
+<%-- 		    ${product.favorite_count} --%>
+<!-- 		  </a> -->
 		</div>
+		<c:choose>
+			<c:when test = "${empty data}">
+			<div class="ui vertical animated button" tabindex="0" onClick = "noIdCart()">
+	 		<div class="hidden content">Cart</div>
+	 			<div class="visible content">
+	    			<i class="shop icon"></i>
+	  			</div>
+			</div>
+			</c:when>
+			<c:otherwise>
+				<div class="ui vertical animated button" tabindex="0" onClick = "location.href = 'insertCart.do?productId=${product.product_id}'">
+	 			<div class="hidden content">Cart</div>
+	 				<div class="visible content">
+	    				<i class="shop icon"></i>
+	  				</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
+<%-- 		<div class="ui vertical animated button" tabindex="0" onclick = "location.href = 'insertCart.do?productId=${product.product_id}'"> --%>
+<!-- 		  <div class="hidden content">Cart</div> -->
+<!-- 		  <div class="visible content"> -->
+<!-- 		    <i class="shop icon"></i> -->
+<!-- 		  </div> -->
+<!-- 		</div> -->
 		</div>
 		
 		<h3 class="ui header">곡/제품 소개</h3>
-		<p>미국 시카고 출신인 ‘Chance the Rapper’는 2012년 발표한 학창시절 경험을 담은 첫 멕스테이프 [10 Day]는 앨범으로, 미국 믹스테이프 사이트 ‘Datpiff’에 공개되어 40만 건 이상의 다운로드를 기록하였다. 첫 멕스테이프의 성공으로 대형 유통사와의 계약 체결을 할 수 있었지만, 스포티파이, 사운드 클라우드, 애플뮤직 등과 같은 무료 음원 스트리밍 사이트를 통해 팬들과 소통했으며 거대 자본의 통제에서 벗어나 오롯이 자신의 음악을 자유롭게 선보이고 있다.
-본 작, [Coloring Book]은 믹스테이프만으로 활동하고 있는 래퍼 찬스 더 래퍼의 3번째 믹스테이프로 발매 1주일 만에 약 5억 명 이상이 스트리밍하면서 빌보드 앨범차트 8위를 차지하며 많은 사랑을 받았다. 특히, 카니예 웨스트의 싱글 ‘Mercy’를 피처링하면서 최고의 인기를 구가하고 있는 힙합 아티스트 ‘2 Chainz’와 싱글 ‘Lollipop’으로 힙합씬에 자신의 이름을 각인시킨 ‘Lil Wayne’이 피처링을 맡아 화제가 된 타이틀곡 ‘No Problem’은 장난스럽지만 활기찬 곡으로 리듬을 타면서 가볍게 들을 수 있으며 힙합 매니아들이 사랑하고 왜 그래미에 어울리는지 알 수 있는 곡입니다. 8번 트랙인 ‘Angels’에 자신이 현재 음악 시장과 같은 꿈을 꾸는 힙합 아티스트들에게 던지는 ‘Chance the rapper’의 신념이 고스란히 담겨있다. 2017년 ‘Chance the Rapper’를 최고의 뮤지션으로 만든 믹스테이프 [Coloring Book]</p>
+		<p>${product.product_comment}</p>
 	<div class="ui hidden divider"></div><br>
 	<div class="ui comments">
   	<h3 class="ui dividing header">댓글</h3>
-		
-		  <div class="ui comments">
-			  <div class="comment">
+  	<form class="ui reply form" id = "replyForm" name = "replyForm" action = "insertReview.do" method = "POST">
+  	<input type = "hidden" name = "productId" value = "${product.product_id}">
+  	<input type = "hidden" name = "userNickname" value = "${data.nickname}">
+  	<div class="ui comments">
+		<c:forEach var = "rvo" items = "${replies}">
+			<div class="comment">
 			    <div class="content">
-			      <a class="author">Ohtaeho</a>
+			      <a class="author">${rvo.nickname}</a>
 			      <div class="metadata">
-			        <div class="date">1 day ago</div>
+			        <div class="date">${rvo.review_date}</div>
 			      </div>
 			      <div class="text">
-			        <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there.
-			        Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
+			        <p>${rvo.review_content}</p>
 			      </div>
 			      <div class="actions">
-			      	<a class="deleteR">delete</a>
+			      	<c:if test = "${rvo.nickname == data.nickname}">
+			      		<a href = "deleteReview.do?productId=${product.product_id}&reviewId=${rvo.review_id}" class="deleteR">delete</a>
+			      	</c:if>
+			      	<c:if test = "${auth == 'Y'}">
+			      		<a href = "deleteReview.do?productId=${product.product_id}&reviewId=${rvo.review_id}" class="deleteR">delete</a>
+			      	</c:if>
 			      </div>
 			    </div>
 			  </div>
-			  <div class="comment">
-			    <div class="content">
-			      <a class="author">Jeonghyeongyu</a>
-			      <div class="metadata">
-			        <div class="date">2 days ago</div>
-			      </div>
-			      <div class="text">
-			        I re-tweeted this.
-			      </div>
-			      <div class="actions">
-			      	<a class="deleteR">delete</a>
-			      </div>
-			    </div>
-			  </div>
-			  <form class="ui reply form">
-			    <div class="field">
-			      <textarea></textarea>
-			    </div>
-			    <a href="product.jsp">
-			    <div class="ui primary submit labeled icon button">
-			      <i class="icon edit"></i> Add Comment
-			    </div>
-			    </a>
-			  </form>
-			</div>
+		</c:forEach>
+	</div>
+<!-- 	<form class="ui reply form"> -->
+		<div class="field">
+			<textarea name = "replyContent" placeholder = "댓글을 입력하세요." cols = "100" rows = "3" style = "resize: none;"></textarea>
+		</div>
+		<div class="ui primary submit labeled icon button" onClick = "document.forms['replyForm'].submit()">
+			<i class="icon edit"></i> Add Comment
+		</div>
+  	</form>
+<!-- 		  <div class="ui comments"> -->
+<!-- 			  <div class="comment"> -->
+<!-- 			    <div class="content"> -->
+<!-- 			      <a class="author">Ohtaeho</a> -->
+<!-- 			      <div class="metadata"> -->
+<!-- 			        <div class="date">1 day ago</div> -->
+<!-- 			      </div> -->
+<!-- 			      <div class="text"> -->
+<!-- 			        <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there. -->
+<!-- 			        Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p> -->
+<!-- 			      </div> -->
+<!-- 			      <div class="actions"> -->
+<!-- 			      	<a class="deleteR">delete</a> -->
+<!-- 			      </div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
+<!-- 			  <div class="comment"> -->
+<!-- 			    <div class="content"> -->
+<!-- 			      <a class="author">Jeonghyeongyu</a> -->
+<!-- 			      <div class="metadata"> -->
+<!-- 			        <div class="date">2 days ago</div> -->
+<!-- 			      </div> -->
+<!-- 			      <div class="text"> -->
+<!-- 			        I re-tweeted this. -->
+<!-- 			      </div> -->
+<!-- 			      <div class="actions"> -->
+<!-- 			      	<a class="deleteR">delete</a> -->
+<!-- 			      </div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
+<!-- 			  <form class="ui reply form"> -->
+<!-- 			    <div class="field"> -->
+<!-- 			      <textarea name = "replyContent" placeholder = "댓글을 입력하세요." cols = "100" rows = "3" style = "resize: none;"></textarea> -->
+<!-- 			    </div> -->
+<!-- 			    <a href="product.jsp"> -->
+<!-- 			    <div class="ui primary submit labeled icon button"> -->
+<!-- 			      <i class="icon edit"></i> Add Comment -->
+<!-- 			    </div> -->
+<!-- 			    </a> -->
+<!-- 			  </form> -->
+<!-- 			</div> -->
 	</div>
 	
 	</div>

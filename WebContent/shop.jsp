@@ -140,7 +140,7 @@
 	                            </div>
 	                        </div>
 	                        <div class="album-info">
-	                            <a href="product.jsp">
+	                            <a href="detail.do?productid=${pvo.product_id}">
 	                                <h5>${pvo.product_name}</h5>
 	                            </a>
 	                            <p>${pvo.music_singer}</p>
