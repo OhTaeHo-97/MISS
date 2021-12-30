@@ -201,20 +201,32 @@
      	 <p>YOUR ORDER</p>
      	 	<!--  for each 구문으로 장바구니목록들 나열 -->
 			<div class="ui relaxed divided list">
-			  <div class="item">
-			  <i class="music icon"></i>			  
-			    <div class="content">
-			      SONNY Record LP
-			      <div class="description">$2000</div>
-			    </div>
-			  </div>
-			  <div class="item">
-			  <i class="music icon"></i>
-			    <div class="content">
-			      	Chance The Rapper-coloring book
-			      <div class="description">$1200</div>
-			    </div>
-			  </div>
+				<c:forEach var = "pvo"  items = "${pvoData}">
+					<div class="item">
+						<i class="music icon"></i>			  
+					    <div class="content">
+							${pvo.product_name}
+							<c:if test = "${pvo.product_category == 'music'}">
+							&nbsp;&nbsp;- ${pvo.music_singer}
+							</c:if>
+							<div class="description">${pvo.price}₩</div>
+						</div>
+					</div>
+				</c:forEach>
+<!-- 			  <div class="item"> -->
+<!-- 			  <i class="music icon"></i>			   -->
+<!-- 			    <div class="content"> -->
+<!-- 			      SONNY Record LP -->
+<!-- 			      <div class="description">$2000</div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
+<!-- 			  <div class="item"> -->
+<!-- 			  <i class="music icon"></i> -->
+<!-- 			    <div class="content"> -->
+<!-- 			      	Chance The Rapper-coloring book -->
+<!-- 			      <div class="description">$1200</div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
 			</div><br><br>
 			
 			
@@ -222,7 +234,11 @@
 				Price Total
 			  </h3>			  
 			  <h3 class="ui right floated header">
-			    $3200
+			  	<c:set var = "totalPvo" value = "0" />
+			  	<c:forEach var = "pvo" items = "${pvoData}">
+			  		<c:set var = "totalPvo" value = "${totalPvo+pvo.price}" />
+			  	</c:forEach>
+			    <c:out value = "${totalPvo}" />₩
 			  </h3><br><br>
 			  <h3 class="ui left floated header">
 			    shipping
@@ -235,13 +251,14 @@
 				Order Total
 			  </h3>					    
 			  <h3 class="ui right floated header">
-			    $3210
+			    <c:set var = "total" value = "${totalPvo+10}" />
+			    <c:out value = "${total}" />₩
 			  </h3>		<br><br><br><br>	
 			  <div class="ui checkbox">
 				  <input type="checkbox" name="example">
 				  <label>Yes, I agree to the terms and conditions and privacy policy.</label>
 		 	  </div>
-			<button class="large ui black right floated button" onclick="location.href='main.jsp' ">Check Out</button>
+			<button class="large ui black right floated button" onclick="location.href='payment.do'">Check Out</button>
     	</div>
   		</div>
   		<div class="ui vertical divider">

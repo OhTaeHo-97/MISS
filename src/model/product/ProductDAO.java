@@ -295,27 +295,22 @@ public class ProductDAO {
 		conn = JDBCUtil.connect();
 		try {			
 			conn.setAutoCommit(false);
-			for (ProductVO data : pvo) {
-				int pid = data.getProduct_id();
-				pstmt = conn.prepareStatement(sql_selectOne);
-				//select * from product where product_id = ?
-				pstmt.setInt(1, pid);
-				rs = pstmt.executeQuery();
-				rs.next();
-				int stock = rs.getInt("stock");
-				if(stock > 0) {
-					pstmt = conn.prepareStatement(sql_stock);
-					//update product set stock = stock - 1 where product_id = ?
-					pstmt.setInt(1, pid);
-					pstmt.executeUpdate();
-				}
-				else {
-					conn.rollback(); // 장바구니에 담긴 물품 중 하나라도 수량이 부족하다면 전체 주문을 취소시킨다.
-					return false;
-				}			
-			}
-			conn.commit();
-			
+	         for (ProductVO data : pvo) {
+	            int pid = data.getProduct_id(); // 결제를 진행할 product_id값 
+	            int stock = data.getStock(); // Controller에서 넘겨준 product의 수량값
+	            if(stock > 0) {
+	               pstmt = conn.prepareStatement(sql_stock);
+	               //update product set stock = stock - 1 where product_id = ?
+	               pstmt.setInt(1, pid);
+	               pstmt.executeUpdate();
+	            }
+	            else {
+	               conn.rollback(); // 장바구니에 담긴 물품 중 하나라도 수량이 부족하다면 전체 주문을 취소시킨다.
+	               return false;
+	            }         
+	         }
+	         conn.commit();      
+	         conn.setAutoCommit(true); // 다시 자동으로 Commit되게끔 원상태로 바꿔준다.
 			
 		} catch (SQLException e) {
 			System.out.println("ProductDAO stock(결제수량체크)중 에외발생");

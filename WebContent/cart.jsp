@@ -222,7 +222,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="load-more-btn text-center mt-70">
-            <a href="payment.jsp" class="btn oneMusic-btn btn-2 m-2">ORDER<i class="fa fa-angle-double-right"></i></a>
+                    <c:if test = "${not empty pvoData}">
+                    	<a href="paymentPage.do" class="btn oneMusic-btn btn-2 m-2">ORDER<i class="fa fa-angle-double-right"></i></a>
+                    </c:if>
                     <br><br>	
                     </div> 
                 </div>

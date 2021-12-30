@@ -11,7 +11,7 @@ import model.product.ProductDAO;
 import model.product.ProductSet;
 import model.product.ProductVO;
 
-public class CartPageAction implements Action {
+public class PaymentPageAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -34,7 +34,7 @@ public class CartPageAction implements Action {
 		}
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("cart.jsp");
+		forward.setPath("payment.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}
