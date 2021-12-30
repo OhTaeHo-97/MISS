@@ -254,11 +254,13 @@
 			    <c:set var = "total" value = "${totalPvo+10}" />
 			    <c:out value = "${total}" />₩
 			  </h3>		<br><br><br><br>	
+			  <form name = "checkBoxForm">
 			  <div class="ui checkbox">
-				  <input type="checkbox" name="example">
+				  <input type="checkbox" name="conditionCheck" onClick = "agreeCheck(this.form)">
 				  <label>Yes, I agree to the terms and conditions and privacy policy.</label>
 		 	  </div>
-			<button class="large ui black right floated button" onclick="location.href='payment.do'">Check Out</button>
+			<input type = "button" name = "checkButton" class="large ui black right floated button" value = "Check Out" onclick="location.href='payment.do'" disabled>
+    		</form>
     	</div>
   		</div>
   		<div class="ui vertical divider">
@@ -310,5 +312,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Active js -->
     <script src="js/active.js"></script>
 </body>
+<script>
+	function agreeCheck(frm) {
+		if(frm.checkButton.disabled == true) {
+			frm.checkButton.disabled = false;
+		} else {
+			frm.checkButton.disabled = true;
+		}
+	}
+</script>
 
 </html>
