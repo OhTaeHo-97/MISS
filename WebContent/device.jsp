@@ -112,16 +112,24 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                        	<div class="ui vertical menu">
-  							<div class="ui dropdown item">
-    						Filter 
-    						<i class="dropdown icon"></i>
-    						<div class="menu">
-     							 <a class="item">Electronics</a>
-     							 <a class="item">Automotive</a>
-     							 <a class="item">Home</a>
-   							</div>
-  							</div>
+						<div class="ui secondary big menu">
+						    <div class="item">
+						      <div class="ui icon input">
+						        <input type="text" placeholder="Search...">
+						        <i class="search link icon"></i>
+						      </div>
+						    </div>
+						    <div class="right menu">
+							<a class="active item">
+						  		인기순
+						 	</a>
+						  	<a class="item">
+						    	최신순
+						    </a>
+							<a class="item">
+						    	오래된순
+						    </a>
+							</div>
 						</div>
                     </div>
                 </div>
