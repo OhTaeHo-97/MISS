@@ -20,41 +20,14 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-	<script
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+		<script
  		 src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<style type="text/css">
-		table.type09 {
-		  border-collapse: collapse;
-		  text-align: left;
-		  line-height: 1.5;
-		  border-bottom: 3px solid #000000;
-		}
-		table.type09 thead th {
-		  padding: 10px;
-		  font-weight: bold;
-		  vertical-align: top;
-		  color: #000000;
-		  border-bottom: 3px solid #000000;
-		}
-		table.type09 tbody th {
-		  width: 150px;
-		  padding: 10px;
-		  font-weight: bold;
-		  vertical-align: top;
-		  border-bottom: 1px solid #ccc;
-		  background: #f3f6f7;
-		}
-		table.type09 td {
-		  width: 350px;
-		  padding: 10px;
-		  vertical-align: top;
-		  border-bottom: 1px solid #ccc;
-		}
-	</style>
+	<script src = "js/registCheck.js"></script>
+	<script src="https://cdn.tailwindcss.com/"></script>
 </head>
 
 <body>
@@ -96,13 +69,11 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="set_music_filter.do">Music</a></li>
-                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="shop.jsp">Music</a></li>
+                                    <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <c:if test = "${auth == 'Y'}">
-                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
-                                    </c:if>
                                 </ul>
+
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
@@ -127,68 +98,150 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Notice</h2>
+            <h2>Board</h2>
         </div>
     </section>
-    <!-- ##### Breadcumb Area End ##### -->
-
-    <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100-0">
+ <!-- ##### notice Area Start ##### -->
+    <section class="login-area section-padding-100">
         <div class="container">
-            <div class="row">
-				<div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                      <!-- Single -->
+                    <!-- This example requires Tailwind CSS v2.0+ -->
+<h2 class="ui header">
+  <i class="info circle icon"></i>
+  <div class="content">
+  
+  </div>
+</h2>
+<hr><br>
 
-					<!-- Single -->
-					<article>
-						<div class="container">
-							<table class="type09" style="margin: auto;">
-								<thead>
-									<tr>
-										<th style="padding: 0 20px 0 20px; ">No.</th>
-										<th style="padding: 0 300px 0 300px; ">Title.</th>
-										<th style="padding: 0 20px 0 20px; ">Date.</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${datas}" var="bvo">								
-										<tr>
-											<th><a href="">${bvo.board_id}</a></td> 
-											<td><a href="">${bvo.title}</a></td>
-											<td><a href="">${bvo.writedate}</a></td>
-										</tr>
-									</c:forEach>
-									<!-- 아직 BoardFrontController가 안만들어진 상태맞나요?? -->
-								</tbody>							
-							</table>
-							<hr>
-						</div>
-					</article>
-					
-					<br>
-					<a href="~~~.do?board_cnt=${board_cnt + 5}" >More</a>
-					<c:if test="${auth == 'Y'}">
-						<ul class="actions">
-							<li><a href="notice_write.jsp" class="button"
-								style="margin: 0 0 0 980px;">Write Board</a></li>
-						</ul>			
-					</c:if>	
-					<!-- Single -->
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Num
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Title
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Date
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Role
+              </th>
+              <th scope="col" class="relative px-6 py-3">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+      <!-- 반복부분 -->
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+  
+                    <div class="text-sm font-medium text-gray-900">
+                      	<div class="text-sm text-gray-900">1</div>
+                    </div>
 
-				</div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">2022/01/01 배송관련 공지</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  2022-01-01
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                Admin
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+              </td>
+            </tr>
+      <!-- 반복부분 -->
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="text-sm font-medium text-gray-900">
+                      	2
+                    </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">블랙 프라이데이 이벤트 기간안내</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  2022-01-01
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                Admin
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+              </td>
+            </tr>
+
+            <!-- More people... -->
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <div class = "row justify-content-center">
+      <a href="notice.do?cnt=${cnt}"><button class="ui basic button"> <i class="plus square icon"></i>  See More </button></a>
+      <c:if test="${auth == 'Y'}">
+      	<a href="notice_write.jsp"><button class="ui basic button"> <i class="edit icon"></i>  Write Board </button></a>
+      </c:if>     
+      </div>
+    </div>
+  </div>
+</div>
+          
+                    
+
+                    <!-- Single -->		
+                 
+                </div>
             </div>
         </div>
     </section>
-    <!-- ##### Contact Area End ##### -->
+    <!-- ##### Login Area End ##### -->
+                    
+                    
+
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- ##### Blog Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
-    <!-- <section class="contact-area section-padding-0-100">
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-heading">
+                    <div class="section-heading white">
                         <p>See what’s new</p>
                         <h2>Get In Touch</h2>
                     </div>
@@ -197,16 +250,16 @@
 
             <div class="row">
                 <div class="col-12">
-                    Contact Form Area
+                    <!-- Contact Form Area -->
                     <div class="contact-form-area">
                         <form action="#" method="post">
                             <div class="row">
-                                <div class="col-md-6 col-lg-4">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="name" placeholder="Name">
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <input type="email" class="form-control" id="email" placeholder="E-mail">
                                     </div>
@@ -230,7 +283,7 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
     <!-- ##### Contact Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
