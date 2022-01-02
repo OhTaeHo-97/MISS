@@ -143,6 +143,13 @@ public class ProductFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if(command.equals("/titleSearch.do")) {
+			try {
+				forward = new TitleSearchAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null) {

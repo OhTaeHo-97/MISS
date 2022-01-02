@@ -25,6 +25,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
+	<script src="js/devicePage.js"></script>
 
 </head>
 
@@ -112,14 +113,73 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-heading style-2" style = "height:50px !important;">
-						<div class="ui vertical menu">
+                    <div class="section-heading style-2">
+						<div class="ui secondary big menu">
 <!--   							<div class="ui dropdown item"> -->
-	  							<select name = "filter" onchange = "this.form.submit()" class="ui dropdown item" style = "height:50px !important; width: 98% !important;">
-	  								<option value = "recent" class="item">최신순</option>
-	  								<option value = "old" class="item">오래된순</option>
-	  								<option value = "fav" class="item" selected>좋아요순</option>
-	  							</select>
+							<div class="item">
+						      	<div class="ui icon input">
+						        	<input type="text" id = "titleInput" placeholder="Search...">
+						        	<i class="search link icon" onclick = "searchTitle(${device_cnt})"></i>
+						      	</div>
+						    </div>
+						    <div class="right menu">
+						    	<c:choose>
+						    		<c:when test = "${filterValue == 'fav'}">
+						    			<a href = "main_device.do?filter=fav" class="active item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:when>
+						    		<c:when test = "${filterValue == 'new'}">
+							    		<a href = "main_device.do?filter=fav" class="item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="active item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:when>
+						    		<c:when test = "${filterValue == 'old'}">
+						    			<a href = "main_device.do?filter=fav" class="item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="active item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:when>
+						    		<c:otherwise>
+						    			<a href = "main_device.do?filter=fav" class="active item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:otherwise>
+						    	</c:choose>
+
+<!-- 								<a class="active item" id = "favSort"> -->
+<!-- 						  			인기순 -->
+<!-- 						 		</a> -->
+<!-- 						  		<a class="item" id = "newSort"> -->
+<!-- 						    		최신순 -->
+<!-- 						    	</a> -->
+<!-- 								<a class="item" id = "oldSort"> -->
+<!-- 						    		오래된순 -->
+<!-- 						    	</a> -->
+							</div>
 						</div>
                     </div>
                 </div>

@@ -26,7 +26,35 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-
+	<style type="text/css">
+		table.type09 {
+		  border-collapse: collapse;
+		  text-align: left;
+		  line-height: 1.5;
+		
+		}
+		table.type09 thead th {
+		  padding: 10px;
+		  font-weight: bold;
+		  vertical-align: top;
+		  color: #000000;
+		  border-bottom: 3px solid #000000;
+		}
+		table.type09 tbody th {
+		  width: 150px;
+		  padding: 10px;
+		  font-weight: bold;
+		  vertical-align: top;
+		  border-bottom: 1px solid #ccc;
+		  background: #f3f6f7;
+		}
+		table.type09 td {
+		  width: 350px;
+		  padding: 10px;
+		  vertical-align: top;
+		  border-bottom: 1px solid #ccc;
+		}
+	</style>
 </head>
 
 <body>
@@ -109,62 +137,111 @@
 
     <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100-0">
-        <div class="container">
-            <div class="row">
+    	<div class = "container">
+    	<div style = "width:100%; margin: 0 auto; border-top: 2px solid black;">
+    	<ul style = "list-style:none;">
+    			<a href = "#" style = "color:black; line-height: 3rem;">
+    			<li style = "background-image:url('img/arrow.png') !important; box-sizing:border-box !important; background-size:10px !important; background-repeat: no-repeat; background-position: 98% 50%; height:5rem; border-bottom: 1px solid black; padding: 10px;">
+	    			<span style = "font-size: 1.6rem; padding: 0.5rem;">1</span>
+	    			<span style = "font-size: 1.6rem; padding: 0.5rem 3rem;">타이틀</span>
+    			</li>
+	    	</a>
+    	</ul>
+    	</div>
+    	</div>
+<!--         <div class="container"> -->
+<!--             <div class="row"> -->
+<!-- 				<div> -->
 
-                <div class="col-12 col-lg-3">
-                    <div class="contact-content mb-100">
-                        <!-- Title -->
-                        <div class="contact-title mb-50">
-                            <h5>Contact Info</h5>
-                        </div>
+<!-- 					Single -->
+<!-- 					<article> -->
+<!-- 						<div class="container"> -->
+<!-- 							<table class="type09" style="margin: auto;"> -->
+<!-- 								<thead> -->
+<!-- 									<tr> -->
+<!-- 										<th style="padding: 0 20px 0 20px; ">No.</th> -->
+<!-- 										<th style="padding: 0 300px 0 300px; ">Title.</th> -->
+<!-- 										<th style="padding: 0 20px 0 20px; ">Date.</th> -->
+<!-- 									</tr> -->
+<!-- 								</thead> -->
+<!-- 								<tbody> -->
+<%-- 									<c:forEach items="${datas}" var="bvo">								 --%>
+<!-- 										<tr> -->
+<%-- 											<th><a href="">${bvo.board_id}</a></td>  --%>
+<%-- 											<td><a href="">${bvo.title}</a></td> --%>
+<%-- 											<td><a href="">${bvo.writedate}</a></td> --%>
+<!-- 										</tr> -->
+<%-- 									</c:forEach> --%>
+<!-- 									아직 BoardFrontController가 안만들어진 상태맞나요?? -->
+<!-- 								</tbody> -->
+<!-- 							</table> -->
+							
+<!-- 						</div> -->
+<!-- 					</article> -->
+<%-- 					<a href="~~~.do?board_cnt=${board_cnt + 5}" >More</a> --%>
+<!-- 					<br> -->
+<%-- 					<c:if test="${auth == 'Y'}"> --%>
+<!-- 						<ul class="actions"> -->
+<!-- 							<li><a href="notice_write.jsp" class="button" -->
+<!-- 								style="margin: 0 0 0 980px;">Write Board</a></li> -->
+<!-- 						</ul>			 -->
+<%-- 					</c:if>	 --%>
+<!-- 					Single -->
 
-                        <!-- Single Contact Info -->
-                        <div class="single-contact-info d-flex align-items-center">
-                            <div class="icon mr-30">
-                                <span class="icon-placeholder"></span>
-                            </div>
-                            <p>1481 Creekside Lane Avila Beach, CA 931</p>
-                        </div>
+<!-- 				</div> -->
+<!--                 <div class="col-12 col-lg-3">
+<!--                     <div class="contact-content mb-100"> -->
+<!--                         Title -->
+<!--                         <div class="contact-title mb-50"> -->
+<!--                             <h5>Contact Info</h5> -->
+<!--                         </div> -->
 
-                        <!-- Single Contact Info -->
-                        <div class="single-contact-info d-flex align-items-center">
-                            <div class="icon mr-30">
-                                <span class="icon-smartphone"></span>
-                            </div>
-                            <p>+53 345 7953 32453</p>
-                        </div>
+<!--                         Single Contact Info -->
+<!--                         <div class="single-contact-info d-flex align-items-center"> -->
+<!--                             <div class="icon mr-30"> -->
+<!--                                 <span class="icon-placeholder"></span> -->
+<!--                             </div> -->
+<!--                             <p>1481 Creekside Lane Avila Beach, CA 931</p> -->
+<!--                         </div> -->
 
-                        <!-- Single Contact Info -->
-                        <div class="single-contact-info d-flex align-items-center">
-                            <div class="icon mr-30">
-                                <span class="icon-mail"></span>
-                            </div>
-                            <p>yourmail@gmail.com</p>
-                        </div>
+<!--                         Single Contact Info -->
+<!--                         <div class="single-contact-info d-flex align-items-center"> -->
+<!--                             <div class="icon mr-30"> -->
+<!--                                 <span class="icon-smartphone"></span> -->
+<!--                             </div> -->
+<!--                             <p>+53 345 7953 32453</p> -->
+<!--                         </div> -->
 
-                        <!-- Contact Social Info -->
-                        <div class="contact-social-info mt-50">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </div>
+<!--                         Single Contact Info -->
+<!--                         <div class="single-contact-info d-flex align-items-center"> -->
+<!--                             <div class="icon mr-30"> -->
+<!--                                 <span class="icon-mail"></span> -->
+<!--                             </div> -->
+<!--                             <p>yourmail@gmail.com</p> -->
+<!--                         </div> -->
 
-                    </div>
-                </div>
+<!--                         Contact Social Info -->
+<!--                         <div class="contact-social-info mt-50"> -->
+<!--                             <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a> -->
+<!--                             <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a> -->
+<!--                             <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a> -->
+<!--                             <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a> -->
+<!--                             <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a> -->
+<!--                             <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a> -->
+<!--                         </div> -->
 
-                <div class="col-12 col-lg-9">
-                    <!-- ##### Google Maps ##### -->
-                    <div class="map-area mb-100">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22236.40558254599!2d-118.25292394686001!3d34.057682914027104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2z4Kay4Ka4IOCmj-CmnuCnjeCmnOCnh-CmsuCnh-CmuCwg4KaV4KeN4Kav4Ka-4Kay4Ka_4Kar4KeL4Kaw4KeN4Kao4Ka_4Kav4Ka84Ka-LCDgpq7gpr7gprDgp43gppXgpr_gpqgg4Kav4KeB4KaV4KeN4Kak4Kaw4Ka-4Ka34KeN4Kaf4KeN4Kaw!5e0!3m2!1sbn!2sbd!4v1532328708137" allowfullscreen></iframe>
-                    </div>
-                </div>
+<!--                     </div> -->
+<!--                 </div> --> -->
 
-            </div>
-        </div>
+<!--                 <div class="col-12 col-lg-9">
+<!--                     ##### Google Maps ##### -->
+<!--                     <div class="map-area mb-100"> -->
+<!--                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22236.40558254599!2d-118.25292394686001!3d34.057682914027104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2z4Kay4Ka4IOCmj-CmnuCnjeCmnOCnh-CmsuCnh-CmuCwg4KaV4KeN4Kav4Ka-4Kay4Ka_4Kar4KeL4Kaw4KeN4Kao4Ka_4Kav4Ka84Ka-LCDgpq7gpr7gprDgp43gppXgpr_gpqgg4Kav4KeB4KaV4KeN4Kak4Kaw4Ka-4Ka34KeN4Kaf4KeN4Kaw!5e0!3m2!1sbn!2sbd!4v1532328708137" allowfullscreen></iframe> -->
+<!--                     </div> -->
+<!--                 </div> -->
+
+<!--             </div> -->
+<!--         </div> -->
     </section>
     <!-- ##### Contact Area End ##### -->
 

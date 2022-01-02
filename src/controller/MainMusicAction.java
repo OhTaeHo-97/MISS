@@ -31,12 +31,13 @@ public class MainMusicAction implements Action {
 		}
 		
 		ActionForward forward = new ActionForward();
-		if(filter.equals("recent")) {
+		if(filter.equals("new")) {
 			ProductVO pvo = new ProductVO();
 			pvo.setProduct_category("music");
 			ArrayList<ProductVO> datas = dao.searchNewest(pvo, mcnt);
 			request.setAttribute("datas", datas);
 			request.setAttribute("music_cnt", mcnt);
+			request.setAttribute("filterValue", "new");
 			forward.setPath("shop.jsp");
 			forward.setRedirect(false);
 		} else if(filter.equals("old")) {
@@ -46,6 +47,7 @@ public class MainMusicAction implements Action {
 			request.setAttribute("datas", datas);
 			forward.setPath("shop.jsp");
 			request.setAttribute("music_cnt", mcnt);
+			request.setAttribute("filterValue", "old");
 			forward.setRedirect(false);
 		} else if(filter.equals("fav")) {
 			ProductVO pvo = new ProductVO();
@@ -53,6 +55,7 @@ public class MainMusicAction implements Action {
 			ArrayList<ProductVO> datas = dao.searchFavoriteCnt(pvo, mcnt);
 			request.setAttribute("datas", datas);
 			request.setAttribute("music_cnt", mcnt);
+			request.setAttribute("filterValue", "fav");
 			forward.setPath("shop.jsp");
 			forward.setRedirect(false);
 		} else {

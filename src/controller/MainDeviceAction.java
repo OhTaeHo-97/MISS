@@ -31,12 +31,13 @@ public class MainDeviceAction implements Action {
 		}
 		
 		ActionForward forward = new ActionForward();
-		if(filter.equals("recent")) {
+		if(filter.equals("new")) {
 			ProductVO pvo = new ProductVO();
 			pvo.setProduct_category("device");
 			ArrayList<ProductVO> datas = dao.searchNewest(pvo, mcnt);
 			request.setAttribute("datas", datas);
 			request.setAttribute("device_cnt", mcnt);
+			request.setAttribute("filterValue", "new");
 			forward.setPath("device.jsp");
 			forward.setRedirect(false);
 		} else if(filter.equals("old")) {
@@ -44,8 +45,9 @@ public class MainDeviceAction implements Action {
 			pvo.setProduct_category("device");
 			ArrayList<ProductVO> datas = dao.searchOldest(pvo, mcnt);
 			request.setAttribute("datas", datas);
-			forward.setPath("device.jsp");
 			request.setAttribute("device_cnt", mcnt);
+			request.setAttribute("filterValue", "old");
+			forward.setPath("device.jsp");
 			forward.setRedirect(false);
 		} else if(filter.equals("fav")) {
 			ProductVO pvo = new ProductVO();
@@ -53,6 +55,7 @@ public class MainDeviceAction implements Action {
 			ArrayList<ProductVO> datas = dao.searchFavoriteCnt(pvo, mcnt);
 			request.setAttribute("datas", datas);
 			request.setAttribute("device_cnt", mcnt);
+			request.setAttribute("filterValue", "fav");
 			forward.setPath("device.jsp");
 			forward.setRedirect(false);
 		} else {
