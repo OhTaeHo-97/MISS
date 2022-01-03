@@ -146,7 +146,7 @@
                             </div>
                             <!-- Play Icon -->
                             <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+<!--                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a> -->
                             </div>
                         </div>
                         <div class="album-info">
