@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class EncFilter
  */
-@WebFilter({ "*.do", "*.mem", "*.jsp" })
+@WebFilter({ "*.do", "*.mem", "*.jsp", "*.board" })
 public class EncFilter implements Filter {
 	String encoding;
     /**

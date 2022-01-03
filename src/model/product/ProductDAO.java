@@ -37,7 +37,7 @@ public class ProductDAO {
 	String sql_searchFromNew = "select * from (select * from product where product_category = ? order by product_regdate desc) where ROWNUM <= ?";
 	String sql_searchFromOld = "select * from (select * from product where product_category = ? order by product_regdate asc) where ROWNUM <= ?";
 	String sql_searchFavorite = "select * from (select * from product where product_category = ? order by favorite_count desc) where ROWNUM <= ?";
-	String sql_searchWord = "select * from (select * from product where product_category = ? and product_name like ?) where ROWNUM <= ?";
+	String sql_searchWord = "select * from (select * from product where product_category = ? and upper(product_name) like upper(?)) where ROWNUM <= ?";
 	String sql_stock = "update product set stock = stock - 1 where product_id = ?";
 	String sql_insertProduct = "insert into product(product_id,product_name,price,product_comment,product_pictureurl,product_category,music_singer,music_genre,stock) values((select nvl(max(product_id),0)+1 from product),?,?,?,?,?,?,?,?)";
 	String sql_deleteReview = "delete from review where review_id = ?";

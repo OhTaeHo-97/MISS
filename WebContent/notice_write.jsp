@@ -113,7 +113,7 @@
 		style="background-image: url(img/bg-img/breadcumb3.jpg);">
 		<div class="bradcumbContent">
 			<p>See what’s new</p>
-			<h2>Register</h2>
+			<h2>BOARD</h2>
 		</div>
 	</section>
 	<!-- ##### Breadcumb Area End ##### -->
@@ -128,30 +128,30 @@
 
 					<article>
 						<div class="container" role="main">
-							<h3 style="font-size: 30px;">게시글 작성</h3>
+							<h3 style="font-size: 30px;">Write About..</h3>
 							
-							<form action="" method="post">
+							<form action="boardInsert.board" method="post">
 								<div class="mb-3">
-									<label>제목</label> <input type="text" class="form-control"
+									<label>Title :</label> <input type="text" class="form-control"
 										name="title" id="title" placeholder="제목을 입력해 주세요">
 								</div>
 								<div class="mb-3">
-									<label>내용</label>
+									<label>Content :</label>
 									<textarea class="form-control" rows="10" name="content"
 										id="content" placeholder="내용을 입력해 주세요"></textarea>
 								</div>
-								<input type="submit" value="등록">
+								<a class="ui left floated button" href="notice.jsp"><i class="arrow left icon"></i></a>
+								<input class="ui right floated button" type="submit" value="Complete">
+								<br>
 							</form>
 							
 							<br>
 							<hr>
 							<br>
+								<!-- <button type="button" class="btn btn-sm btn-primary"
+									id="btnList" onclick="location.href='notice.jsp'">목록</button> -->
 							
-							<div>
-								<button type="button" class="btn btn-sm btn-primary"
-									id="btnList" onclick="location.href='notice.jsp'">목록</button>
 								<!-- 이 부분은 바로 notice.jsp가 아니라 BoardFrontController를 거쳐가게 해야할 것 같습니다 -->	
-							</div>
 						</div>
 					</article>
 
@@ -162,59 +162,6 @@
 		</div>
 	</div>
 	<!-- ##### Blog Area End ##### -->
-
-	<!-- ##### Contact Area Start ##### -->
-	<section
-		class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img"
-		style="background-image: url(img/bg-img/bg-2.jpg);">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading white">
-						<p>See what’s new</p>
-						<h2>Get In Touch</h2>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<!-- Contact Form Area -->
-					<div class="contact-form-area">
-						<form action="#" method="post">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="form-group">
-										<input type="text" class="form-control" id="name"
-											placeholder="Name">
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="form-group">
-										<input type="email" class="form-control" id="email"
-											placeholder="E-mail">
-									</div>
-								</div>
-
-								<div class="col-12">
-									<div class="form-group">
-										<textarea name="message" class="form-control" id="message"
-											cols="50" rows="10" placeholder="Message"></textarea>
-									</div>
-								</div>
-								<div class="col-12 text-center">
-									<button class="btn oneMusic-btn mt-30" type="submit">
-										Send <i class="fa fa-angle-double-right"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- ##### Contact Area End ##### -->
 
 	<!-- ##### Footer Area Start ##### -->
 	<footer class="footer-area">

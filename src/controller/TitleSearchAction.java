@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,20 +19,32 @@ public class TitleSearchAction implements Action {
 		vo.setProduct_name(request.getParameter("titleInput"));
 		
 		String cnt = request.getParameter("search_cnt");
-		int mcnt = 6;
+		int mcnt = 8;
 		if(cnt != null) {
 			mcnt = Integer.parseInt(cnt);
 		}
 		
 		ArrayList<ProductVO> datas = dao.searchWord(vo, mcnt);
+		System.out.println(datas);
 		
-		request.setAttribute("datas", datas);
-		request.setAttribute("device_cnt", mcnt);
-		request.setAttribute("search_category", request.getParameter("category"));
+		request.setAttribute("searchDatas", datas);
+		request.setAttribute("search_cnt", mcnt);
+		request.setAttribute("titleInput", request.getParameter("titleInput"));
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("search_page.jsp");
-		forward.setRedirect(false);
+		ActionForward forward = null;
+		if(request.getParameter("category").equals("music")) {
+			forward = new ActionForward();
+			forward.setPath("searchMusic.jsp");
+			forward.setRedirect(false);
+		} else if(request.getParameter("category").equals("device")) {
+			forward = new ActionForward();
+			forward.setPath("searchDevice.jsp");
+			forward.setRedirect(false);
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다!');history.go(-1);</script>");
+		}
 		return forward;
 	}
 }

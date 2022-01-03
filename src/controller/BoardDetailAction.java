@@ -3,19 +3,23 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class NoticeRegisterAction implements Action {
+import model.board.BoardDAO;
+import model.board.BoardVO;
+
+public class BoardDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		BoardDAO dao = new BoardDAO();
 		BoardVO vo = new BoardVO();
-		vo.setTitle(request.getParameter("title"));
-		vo.setBoardContent(request.getParameter("content"));
-		dao.insert(vo);
+		vo.setBoard_id(Integer.parseInt(request.getParameter("bid")));
+		BoardVO data = dao.selectOne(vo);
+		request.setAttribute("boardData", data);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("notice.do");
-		forward.setRedirect(true);
+		forward.setPath("notice_detail.jsp");
+		forward.setRedirect(false);
 		return forward;
 	}
+
 }

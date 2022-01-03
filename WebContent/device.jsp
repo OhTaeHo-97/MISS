@@ -25,7 +25,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script src="js/devicePage.js"></script>
+	<script src = "js/devicePage2.js"></script>
 
 </head>
 
@@ -119,7 +119,7 @@
 							<div class="item">
 						      	<div class="ui icon input">
 						        	<input type="text" id = "titleInput" placeholder="Search...">
-						        	<i class="search link icon" onclick = "searchTitle(${device_cnt})"></i>
+						        	<i class="search link icon" onclick = "searchTitle()"></i>
 						      	</div>
 						    </div>
 						    <div class="right menu">
