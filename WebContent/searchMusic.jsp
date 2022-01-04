@@ -145,7 +145,7 @@
         <div class="container">
         	<c:choose>
         		<c:when test = "${empty searchDatas}">
-        			검색 결과가 없습니다.
+        			<div style = "text-align:center;"><h4>검색 결과가 없습니다.</h4></div>
         		</c:when>
         		<c:otherwise>
         			<div class="row">
@@ -197,7 +197,7 @@
 <!--                             </div> -->
 <!--                             Play Icon -->
 <!--                             <div class="play-icon"> -->
-<!-- <!--                                 <span class="icon-play-button"></span> --> -->
+<!--                                 <span class="icon-play-button"></span> -->
 <!--                             </div> -->
 <!--                         </div> -->
 <!--                         <div class="album-info"> -->
