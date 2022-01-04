@@ -118,7 +118,7 @@
 		style="background-image: url(img/bg-img/breadcumb3.jpg);">
 		<div class="bradcumbContent">
 			<p>See what’s new</p>
-			<h2>Register</h2>
+			<h2>Board</h2>
 		</div>
 	</section>
 	<!-- ##### Breadcumb Area End ##### -->
@@ -134,41 +134,35 @@
 					<article>
 
 						<div class="container" role="main">
-
-							<h3 style="font-size: 30px;">상세페이지</h3>
-
+							<label style="font-size: 30px;">Board</label>
+							<hr>
 							<form>
 
 								<div class="mb-3">
-
-									<label>제목</label> <input type="text" class="form-control"
-										name="title" id="title" value="${title}">
+								<label style="font-size: 20px;">Title. | ${data.title}</label>
+								<h5>21.12.31 ${data.wirtedate}</h5>
 
 								</div>
 
+								
+								<hr>
+								
 								<div class="mb-3">
 
-									<label>작성자</label> <input type="text" class="form-control"
-										name="writer" id="writer" value="관리자" readonly>
-								</div>
-
-								<div class="mb-3">
-
-									<label>내용</label>
-
-									<textarea class="form-control" rows="10" name="content"
-										id="content">${content}</textarea>
+									<label style="font-size: 15px;">Content.</label>
+									<p>${data.board_content} 로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.로렘 입숨은 전통 라틴어와 닮은 점 때문에 종종 호기심을 유발하기도 하지만 그 이상의 의미를 담지는 않는다. 문서에서 텍스트가 보이면 사람들은 전체적인 프레젠테이션보다는 텍스트에 담긴 뜻에 집중하는 경향이 있어서 출판사들은 서체나 디자인을 보일 때는 프레젠테이션 자체에 초점을 맞추기 위해 로렘 입숨을 사용한다.로렘 입숨은 영어에서 사용하는 문자들의 전형적인 분포에 근접하다고도 하는데, 이 점 때문에 프레젠테이션으로 초점을 이동하는 데에도 도움을 준다</p>
+									
 
 								</div>
-
+								<hr>
 							</form>
 
 							<div>
-								<button type="button" class="btn btn-sm btn-primary"
-									id="btnSave" onclick="location.href='notice.jsp'">돌아가기</button>
-
-								<button type="button" class="btn btn-sm btn-primary"
-									id="btnList" onclick="'">삭제</button>
+								<a class="ui left floated button" href="notice.jsp"><i class="arrow left icon"></i></a>
+								<c:if test="${auth == 'Y'}">
+									<a class="ui right floated button" href="delete.do?bid=${data.bid}">삭제</a>
+									<a class="ui right floated button" href="delete.do?bid=${data.bid}">수정</a>
+								</c:if>
 
 							</div>
 

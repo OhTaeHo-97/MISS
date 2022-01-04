@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,7 +50,7 @@ public class BoardFrontController extends HttpServlet {
 		ActionForward forward = null;
 		if(command.equals("/boardPage.board")) {
 			try {
-				forward = new BoardInsertAction().execute(request, response);
+				forward = new BoardPageAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -64,6 +65,27 @@ public class BoardFrontController extends HttpServlet {
 		} else if(command.equals("/boardDetail.board")) {
 			try {
 				forward = new BoardDetailAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardDelete.board")) {
+			try {
+				forward = new BoardDeleteAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardEditPage.board")) {
+			try {
+				forward = new BoardEditPageAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardEdit.board")) {
+			try {
+				forward = new BoardEditAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

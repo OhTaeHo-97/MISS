@@ -38,10 +38,16 @@ select * from consumer;
 
 create table board(
     board_id int primary key,
-    title VARCHAR2(30),
-    board_content VARCHAR2(200),
+    title VARCHAR2(100),
+    board_content VARCHAR2(400),
     writedate date default SYSDATE
 );
+
+drop table board;
+select * from board;
+
+insert into board(board_id, title, board_content) values(1, '2022/01/01 배송관련 공지', '2022/01/01 배송이 지연될 예정입니다.');
+insert into board(board_id, title, board_content) values(2, '블랙 프라이데이 이벤트 기간안내', '2022/01/01 ~ 2022/01/14');
 
 create table product(
     product_id int primary key,

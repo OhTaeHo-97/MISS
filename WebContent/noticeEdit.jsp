@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix = "mytag" tagdir = "/WEB-INF/tags" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -19,8 +21,6 @@
 
 <!-- Stylesheet -->
 <link rel="stylesheet" href="style.css">
-
-
 <link rel="stylesheet" type="text/css"
 	href="semantic/dist/semantic.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -72,11 +72,12 @@
 							<!-- Nav Start -->
 							<div class="classynav">
 								<ul>
-									<li><a href="shop.jsp">Albums</a></li>
-									<li><a href="device.jsp">Device</a></li>
-									<li><a href="notice.jsp">Notice</a></li>
-									<li><a href="basket.jsp">Sign_Up</a></li>
-									<!-- 어드민사용자만이 접근가능하게 수정 -->
+									<li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <c:if test = "${auth == 'Y'}">
+                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    </c:if>
 								</ul>
 
 								<!-- Login/Register & Cart Button -->
@@ -112,7 +113,7 @@
 		style="background-image: url(img/bg-img/breadcumb3.jpg);">
 		<div class="bradcumbContent">
 			<p>See what’s new</p>
-			<h2 style="">Register</h2>
+			<h2>BOARD</h2>
 		</div>
 	</section>
 	<!-- ##### Breadcumb Area End ##### -->
@@ -124,42 +125,36 @@
 				<div>
 
 					<!-- Single -->
-					<article>
-						<div class="container">
-							<table border="1" style="margin: auto;">
-								<tr>
-									<td style="padding: 0 20px 0 20px; ">글번호</td>
-									<td style="padding: 0 200px 0 200px; ">글제목</td>
-									<td style="padding: 0 20px 0 20px; ">작성자</td>
-								</tr>
 
-								<%--
-								for (BoardVO v : (ArrayList<BoardVO>) datas) {
-							--%>
-								<tr>
-									<td><a
-										href="controller.jsp?action=board&bid=<%--v.getBid()--%>">
-											<%--v.getBid()--%>
-									</a></td>
-									<td>
-										<%--v.getTitle()--%>
-									</td>
-									<td>
-										<%--v.getWriter()--%>
-									</td>
-								</tr>
-								-
-								<%--
-								}
-							--%>
-							</table>
+					<article>
+						<div class="container" role="main">
+							<h3 style="font-size: 30px;">Edit..</h3>
+							
+							<form action="boardEdit.board" method="post">
+								<input type = "hidden" name = "bid" value = "${boardData.board_id}">
+								<div class="mb-3">
+									<label>Title :</label> <input type="text" class="form-control"
+										name="title" id="title" value = "${boardData.title}" placeholder="제목을 입력해 주세요">
+								</div>
+								<div class="mb-3">
+									<label>Content :</label>
+									<textarea class="form-control" rows="10" name="content"
+										id="content" placeholder="내용을 입력해 주세요">${boardData.board_content}</textarea>
+								</div>
+								<a class="ui left floated button" href="boardPage.board"><i class="arrow left icon"></i></a>
+								<input class="ui right floated button" type="submit" value="Edit">
+								<br>
+							</form>
+							
+							<br>
+							<hr>
+							<br>
+								<!-- <button type="button" class="btn btn-sm btn-primary"
+									id="btnList" onclick="location.href='notice.jsp'">목록</button> -->
+							
+								<!-- 이 부분은 바로 notice.jsp가 아니라 BoardFrontController를 거쳐가게 해야할 것 같습니다 -->	
 						</div>
 					</article>
-					<br>
-					<ul class="actions">
-						<li><a href="notice_write.jsp" class="button"
-							style="margin: 0 0 0 980px;">글 작성하기</a></li>
-					</ul>
 
 					<!-- Single -->
 
@@ -168,59 +163,6 @@
 		</div>
 	</div>
 	<!-- ##### Blog Area End ##### -->
-
-	<!-- ##### Contact Area Start ##### -->
-	<section
-		class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img"
-		style="background-image: url(img/bg-img/bg-2.jpg);">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading white">
-						<p>See what’s new</p>
-						<h2>Get In Touch</h2>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<!-- Contact Form Area -->
-					<div class="contact-form-area">
-						<form action="#" method="post">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="form-group">
-										<input type="text" class="form-control" id="name"
-											placeholder="Name">
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="form-group">
-										<input type="email" class="form-control" id="email"
-											placeholder="E-mail">
-									</div>
-								</div>
-
-								<div class="col-12">
-									<div class="form-group">
-										<textarea name="message" class="form-control" id="message"
-											cols="50" rows="10" placeholder="Message"></textarea>
-									</div>
-								</div>
-								<div class="col-12 text-center">
-									<button class="btn oneMusic-btn mt-30" type="submit">
-										Send <i class="fa fa-angle-double-right"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- ##### Contact Area End ##### -->
 
 	<!-- ##### Footer Area Start ##### -->
 	<footer class="footer-area">

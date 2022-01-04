@@ -130,7 +130,7 @@
 						<div class="container" role="main">
 							<h3 style="font-size: 30px;">Write About..</h3>
 							
-							<form action="boardInsert.board" method="post">
+							<form action="" method="post">
 								<div class="mb-3">
 									<label>Title :</label> <input type="text" class="form-control"
 										name="title" id="title" placeholder="제목을 입력해 주세요">

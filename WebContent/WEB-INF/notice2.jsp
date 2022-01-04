@@ -72,9 +72,6 @@
                                     <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
-                                    <c:if test = "${auth == 'Y'}">
-                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
-                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -104,7 +101,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Notice</h2>
+            <h2>Board</h2>
         </div>
     </section>
  <!-- ##### notice Area Start ##### -->
@@ -114,86 +111,110 @@
                 <div class="col-12 col-lg-8">
                       <!-- Single -->
                     <!-- This example requires Tailwind CSS v2.0+ -->
+<h2 class="ui header">
+  <i class="info circle icon"></i>
+  <div class="content">
+  
+  </div>
+</h2>
+<hr><br>
 
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="lg:flex lg:items-center lg:justify-between">
-  <div class="flex-1 min-w-0">
-    <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-      	${boardData.title}
-    </h2>
-    <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
-      <div class="mt-2 flex items-center text-sm text-gray-500">
-        <!-- Heroicon name: solid/briefcase -->
-		<i class="user icon"></i>
-        Admin
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Num
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Title
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Date
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Role
+              </th>
+              <th scope="col" class="relative px-6 py-3">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+      <!-- 반복부분 -->
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+  
+                    <div class="text-sm font-medium text-gray-900">
+                      	<div class="text-sm text-gray-900">1</div>
+                    </div>
+
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">2022/01/01 배송관련 공지</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  2022-01-01
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                Admin
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+              </td>
+            </tr>
+      <!-- 반복부분 -->
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="text-sm font-medium text-gray-900">
+                      	2
+                    </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">블랙 프라이데이 이벤트 기간안내</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  2022-01-01
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                Admin
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+              </td>
+            </tr>
+
+            <!-- More people... -->
+          </tbody>
+        </table>
       </div>
-      <div class="mt-2 flex items-center text-sm text-gray-500">
-        <!-- Heroicon name: solid/location-marker -->
-        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-        </svg>
-        Remote
-      </div>
-      <div class="mt-2 flex items-center text-sm text-gray-500">
-        <!-- Heroicon name: solid/calendar -->
-        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-        </svg>
-        	${boardData.writedate}
+      <br>
+      <div class = "row justify-content-center">
+      <a href="notice.do?cnt=${cnt}"><button class="ui basic button"> <i class="plus square icon"></i>  See More </button></a>
+      <c:if test="${auth == 'Y'}">
+      	<a href="notice_write.jsp"><button class="ui basic button"> <i class="edit icon"></i>  Write Board </button></a>
+      </c:if>     
       </div>
     </div>
   </div>
-  <div class="mt-5 flex lg:mt-0 lg:ml-4">
-  <c:if test = "${auth == 'Y'}">
-  	<span class="hidden sm:block">
-      <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick = "location.href = 'boardEditPage.board?bid=${boardData.board_id}'">
-        <!-- Heroicon name: solid/pencil -->
-        <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-        </svg>
-        Edit
-      </button>
-    </span>
-
-    <span class="sm:ml-3">
-      <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick = "location.href = 'boardDelete.board?bid=${boardData.board_id}'">
-        <!-- Heroicon name: solid/check -->
-        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-        </svg>
-        Delete
-      </button>
-    </span>
-  </c:if>
-
-  </div>
 </div>
-<br><hr><br><br>
-	<!-- 공지내용 노출부분 시작 -->
-	<div style = "white-space:pre;"><c:out value = "${boardData.board_content}" /></div>
-    
-	
-
-    <!-- 공지내용 노출부분 끝 -->
-    <br><br><br>
-    <button class="ui right floated button" onclick = "location.href = 'boardPage.board'"><i class="list icon"></i>
-	   List
-	</button>            
-	<!-- 관리자만 보이도록해야하는 삭제버튼
-	
-	<button class="ui left floated black button">Delete</button> -->
-	
-
-
-	
-  </div>
-</div>
-
           
                     
 
                     <!-- Single -->		
+                 
                 </div>
+            </div>
+        </div>
     </section>
     <!-- ##### Login Area End ##### -->
                     
@@ -207,7 +228,12 @@
                    
                    
                    
+                </div>
 
+
+            </div>
+        </div>
+    </div>
     <!-- ##### Blog Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->

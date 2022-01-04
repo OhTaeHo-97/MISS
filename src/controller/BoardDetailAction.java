@@ -17,7 +17,7 @@ public class BoardDetailAction implements Action {
 		request.setAttribute("boardData", data);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("notice_detail.jsp");
+		forward.setPath("noticeDetail.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

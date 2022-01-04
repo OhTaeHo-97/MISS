@@ -28,6 +28,17 @@
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src = "js/registCheck.js"></script>
 	<script src="https://cdn.tailwindcss.com/"></script>
+	<script>
+		<c:if test = "${isDelete == true}">
+			alert("공지사항 삭제를 성공하였습니다!");
+		</c:if>
+		<c:if test = "${isInsert == true}">
+			alert("공지사항 등록을 성공하였습니다!");
+		</c:if>
+		<c:if test = "${isEdit == true}">
+			alert("공지사항 수정을 성공하였습니다!");
+		</c:if>
+	</script>
 </head>
 
 <body>
@@ -72,6 +83,9 @@
                                     <li><a href="shop.jsp">Music</a></li>
                                     <li><a href="device.jsp">Device</a></li>
                                     <li><a href="notice.jsp">Notice</a></li>
+                                    <c:if test = "${auth == 'Y'}">
+                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -119,77 +133,104 @@
 </h2>
 <hr><br>
 
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Num
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Title
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Date
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Role
-              </th>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
+	<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+		<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+			<table class="min-w-full divide-y divide-gray-200">
+ 				<thead class="bg-gray-50">
+            		<tr>
+              			<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                			Num
+              			</th>
+              			<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+		                	Title
+						</th>
+						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+							Date
+						</th>
+		              	<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+		                	Role
+		              	</th>
+		              	<th scope="col" class="relative px-6 py-3">
+		                	<span class="sr-only">Edit</span>
+		              	</th>
+            		</tr>
+          		</thead>
+				<tbody class="bg-white divide-y divide-gray-200">
       <!-- 반복부분 -->
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="text-sm font-medium text-gray-900">
-                      	<div class="text-sm text-gray-900">1</div>
-                    </div>
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">2022/01/01 배송관련 공지</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  2022-01-01
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Admin
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-              </td>
-            </tr>
-      <!-- 반복부분 -->
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="text-sm font-medium text-gray-900">
-                      	2
-                    </div>
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">블랙 프라이데이 이벤트 기간안내</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  2022-01-01
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Admin
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-              </td>
-            </tr>
+      			<c:forEach var = "bvo" items = "${board_datas}">
+      				<tr>
+	              		<td class="px-6 py-4 whitespace-nowrap">
+	                		<div class="flex items-center">
+	                    		<div class="text-sm font-medium text-gray-900">
+	                      			<div class="text-sm text-gray-900">${bvo.board_id}</div>
+	                    		</div>
+	                		</div>
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap" style = "cursor:pointer;" onclick="location.href='boardDetail.board?bid=${bvo.board_id}'">
+	                		<div class="text-sm text-gray-900">${bvo.title}</div>
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap">
+	                		<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+	                  			${bvo.writedate}
+	                		</span>
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+	                		Admin
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+	              			<c:if test = "${auth == 'Y'}">
+	              				<a href="boardDelete.board?bid=${bvo.board_id}" class="text-indigo-600 hover:text-indigo-900">Delete</a>
+	              			</c:if>
+	              		</td>
+	              	</tr>
+      			</c:forEach>
+<!--             	<tr> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 		<div class="flex items-center"> -->
+<!--                     		<div class="text-sm font-medium text-gray-900"> -->
+<!--                       			<div class="text-sm text-gray-900">1</div> -->
+<!--                     		</div> -->
+<!--                 		</div> -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 		<div class="text-sm text-gray-900">2022/01/01 배송관련 공지</div> -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 		<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> -->
+<!--                   			2022-01-01 -->
+<!--                 		</span> -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> -->
+<!--                 		Admin -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> -->
+<!--                 		<a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
+<!--               		</td> -->
+<!--               	</tr> -->
+<!--       반복부분 -->
+<!--             <tr> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 <div class="flex items-center"> -->
+<!--                     <div class="text-sm font-medium text-gray-900"> -->
+<!--                       	2 -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 <div class="text-sm text-gray-900">블랙 프라이데이 이벤트 기간안내</div> -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> -->
+<!--                   2022-01-01 -->
+<!--                 </span> -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> -->
+<!--                 Admin -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> -->
+<!--                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
+<!--               </td> -->
+<!--             </tr> -->
 
             <!-- More people... -->
           </tbody>
@@ -211,13 +252,15 @@
   <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
     <div>
       <p class="text-sm text-gray-700">
-	   <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <c:if test = "${auth == 'Y'}">
+      	<button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick = "location.href='noticeWrite.jsp'">
 	        <!-- Heroicon name: solid/pencil -->
 	        <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 	          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
 	        </svg>
 	        POST
        </button>
+      </c:if>
       </p>
     </div>
     <div>
