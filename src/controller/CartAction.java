@@ -21,9 +21,10 @@ public class CartAction implements Action {
 		cartData.add(Integer.parseInt(request.getParameter("productId")));
 		System.out.println(cartData);
 		
+		request.setAttribute("isInsertCart", true);
 		ActionForward forward = new ActionForward();
 		forward.setPath("detail.do?productid=" + request.getParameter("productId"));
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		return forward;
 	}
 }

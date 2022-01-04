@@ -10,9 +10,10 @@ public class LogoutAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		session.invalidate();
+		request.setAttribute("isLogout", true);
 		ActionForward forward = new ActionForward();
 		forward.setPath("main.jsp");
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		return forward;
 	}
 

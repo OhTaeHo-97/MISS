@@ -40,9 +40,10 @@ public class RegistAction implements Action {
 		
 		ActionForward forward = null;
 		if(dao.insert(set)) {
+			request.setAttribute("isRegister", true);
 			forward = new ActionForward();
 			forward.setPath("main.jsp");
-			forward.setRedirect(true);
+			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

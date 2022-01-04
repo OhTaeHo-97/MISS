@@ -38,11 +38,15 @@ public class PaymentAction implements Action {
 		
 		ActionForward forward = null;
 		if(stockList.size() == 0) {
+			request.setAttribute("isPay", true);
+			session.removeAttribute("cartData");
 			forward = new ActionForward();
 			forward.setPath("main.jsp");
 			forward.setRedirect(false);
 		} else {
 			if(dao.stock(stockList)) {
+				request.setAttribute("isPay", true);
+				session.removeAttribute("cartData");
 				forward = new ActionForward();
 				forward.setPath("main.jsp");
 				forward.setRedirect(false);

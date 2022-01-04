@@ -26,6 +26,7 @@
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src="js/searchDevice.js"></script>
+	<script src = "js/logout.js"></script>
 </head>
 
 <body>
@@ -67,9 +68,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                     </c:if>
@@ -83,8 +84,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -133,29 +143,68 @@
     <!-- ##### Buy Now Area Start ##### -->
     <div class="oneMusic-buy-now-area mb-100">
         <div class="container">
-            <div class="row">
-				<c:forEach var = "data" items = "${searchDatas}">
-					<div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-album-area">
-                    <a href="detail.do?productid=${data.product_id}">
-                        <div class="album-thumb">
-                            <img src="${data.product_pictureurl}" alt="${data.product_name}">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>${data.price}₩</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-<!--                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a> -->
-                            </div>
-                        </div>
-                        <div class="album-info">
-                                <h5>${data.product_name}</h5>
-                        </div>
-                       </a>
-                    </div>
-                </div>
-				</c:forEach>
+        	<c:choose>
+        		<c:when test = "${empty searchDatas}">
+        			검색 결과가 없습니다.
+        		</c:when>
+        		<c:otherwise>
+        			<div class="row">
+					<c:forEach var = "data" items = "${searchDatas}">
+						<div class="col-12 col-sm-6 col-md-3">
+	                    <div class="single-album-area">
+	                    <a href="detail.do?productid=${data.product_id}">
+	                        <div class="album-thumb">
+	                            <img src="${data.product_pictureurl}" alt="${data.product_name}">
+	                            <!-- Album Price -->
+	                            <div class="album-price">
+	                                <p>${data.price}₩</p>
+	                            </div>
+	                            <!-- Play Icon -->
+	                            <div class="play-icon">
+	<!--                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a> -->
+	                            </div>
+	                        </div>
+	                        <div class="album-info">
+	                                <h5>${data.product_name}</h5>
+	                        </div>
+	                       </a>
+	                    </div>
+	                </div>
+					</c:forEach>
+					</div>
+
+		            <div class="row">
+		                <div class="col-12">
+		                    <div class="load-more-btn text-center">
+		                        <a href="titleSearch.do?category=device&titleInput=${titleInput}&search_cnt=${search_cnt + 4}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
+		                    </div>
+		                </div>
+		            </div>
+        		</c:otherwise>
+        	</c:choose>
+<!--             <div class="row"> -->
+<%-- 				<c:forEach var = "data" items = "${searchDatas}"> --%>
+<!-- 					<div class="col-12 col-sm-6 col-md-3"> -->
+<!--                     <div class="single-album-area"> -->
+<%--                     <a href="detail.do?productid=${data.product_id}"> --%>
+<!--                         <div class="album-thumb"> -->
+<%--                             <img src="${data.product_pictureurl}" alt="${data.product_name}"> --%>
+<!--                             Album Price -->
+<!--                             <div class="album-price"> -->
+<%--                                 <p>${data.price}₩</p> --%>
+<!--                             </div> -->
+<!--                             Play Icon -->
+<!--                             <div class="play-icon"> -->
+<!-- <!--                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a> --> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="album-info"> -->
+<%--                                 <h5>${data.product_name}</h5> --%>
+<!--                         </div> -->
+<!--                        </a> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<%-- 				</c:forEach> --%>
                 <!-- Single Album Area -->
 <!--                 <div class="col-12 col-sm-6 col-md-3"> -->
 <!--                     <div class="single-album-area"> -->
@@ -224,15 +273,15 @@
 <!--                     </div> -->
 <!--                 </div> -->
 
-            </div>
+<!--             </div> -->
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="load-more-btn text-center">
-                        <a href="titleSearch.do?category=device&titleInput=${titleInput}&search_cnt=${search_cnt + 4}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-            </div>
+<!--             <div class="row"> -->
+<!--                 <div class="col-12"> -->
+<!--                     <div class="load-more-btn text-center"> -->
+<%--                         <a href="titleSearch.do?category=device&titleInput=${titleInput}&search_cnt=${search_cnt + 4}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a> --%>
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
         </div>
     </div>
     <!-- ##### Buy Now Area End ##### -->

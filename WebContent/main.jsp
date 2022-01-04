@@ -26,6 +26,20 @@
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src = "js/logout.js"></script>
+	<script>
+		<c:if test = "${isLogout == true}">
+			alert("로그아웃하였습니다!");
+		</c:if>
+		<c:if test = "${isRegister == true}">
+			alert("회원가입되었습니다!");
+		</c:if>
+		<c:if test = "${isRegistProduct == true}">
+			alert("제품 등록이 완료되었습니다!");
+		</c:if>
+		<c:if test = "${isPay == true}">
+			alert("결제가 완료되었습니다!");
+		</c:if>
+	</script>
 
 </head>
 
@@ -86,7 +100,16 @@
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
-                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do"><span class="quantity">1</span></a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>

@@ -34,9 +34,10 @@ public class AccountEditAction implements Action {
 		
 		ActionForward forward = null;
 		if(dao.update(set)) {
+			request.setAttribute("isEdit", true);
 			forward = new ActionForward();
 			forward.setPath("account_edit_page.mem");
-			forward.setRedirect(true);
+			forward.setRedirect(false);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
