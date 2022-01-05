@@ -132,7 +132,7 @@
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-1.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(img/main.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -150,7 +150,7 @@
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-2.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(img/device2.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
