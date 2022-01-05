@@ -25,6 +25,8 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
+	<script src="js/searchMusic.js"></script>
+	<script src = "js/logout.js"></script>
 </head>
 
 <body>
@@ -66,9 +68,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                     </c:if>
@@ -82,8 +84,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -113,14 +124,14 @@
                     <div class="section-heading style-2">
                     
 						<div class="ui sizer vertical segment">
-						 	 <div class="ui medium header">'music'에대한 검색 결과 입니다.</div>
+						 	 <div class="ui medium header">'music'에 대한 검색 결과 입니다.</div>
 						 </div>
 						 
 						<div class="ui secondary big menu">
 						    <div class="item">
 						      <div class="ui icon input">
-						        <input type="text" placeholder="Search...">
-						        <i class="search link icon"></i>
+						        <input type="text" id = "searchTitle" placeholder="Search...">
+						        <i class="search link icon" onclick = "searchMusic()"></i>
 						      </div>
 						    </div>
 						</div>
@@ -132,85 +143,150 @@
     <!-- ##### Buy Now Area Start ##### -->
     <div class="oneMusic-buy-now-area mb-100">
         <div class="container">
-            <div class="row">
+        	<c:choose>
+        		<c:when test = "${empty searchDatas}">
+        			<div style = "text-align:center;"><h4>검색 결과가 없습니다.</h4></div>
+        		</c:when>
+        		<c:otherwise>
+        			<div class="row">
+		            	<c:forEach var = "data" items = "${searchDatas}">
+		            		<div class="col-12 col-sm-6 col-md-3">
+		                   	<a href="detail.do?productid=${data.product_id}">
+		                    <div class="single-album-area">
+		                        <div class="album-thumb">
+		                            <img src="${data.product_pictureurl}" alt="${data.product_name}">
+		                            <!-- Album Price -->
+		                            <div class="album-price">
+		                                <p>${data.price}₩</p>
+		                            </div>
+		                            <!-- Play Icon -->
+		                            <div class="play-icon">
+		<!--                                 <span class="icon-play-button"></span> -->
+		                            </div>
+		                        </div>
+		                        <div class="album-info">
+		                                <h5>${data.product_name}</h5>
+		                            <p>${data.music_singer}</p>
+		                        </div>
+		                    </div>
+						</a>
+		                </div>
+		            	</c:forEach>
+		            	</div>
 
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-album-area">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
+			            <div class="row">
+			                <div class="col-12">
+			                    <div class="load-more-btn text-center">
+			                        <a href="titleSearch.do?category=music&titleInput=${titleInput}&search_cnt=${search_cnt + 4}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
+			                    </div>
+			                </div>
+			            </div>
+        		</c:otherwise>
+        	</c:choose>
+        	
+<!--             <div class="row"> -->
+<%--             	<c:forEach var = "data" items = "${searchDatas}"> --%>
+<!--             		<div class="col-12 col-sm-6 col-md-3"> -->
+<%--                    	<a href="detail.do?productid=${data.product_id}"> --%>
+<!--                     <div class="single-album-area"> -->
+<!--                         <div class="album-thumb"> -->
+<%--                             <img src="${data.product_pictureurl}" alt="${data.product_name}"> --%>
+<!--                             Album Price -->
+<!--                             <div class="album-price"> -->
+<%--                                 <p>${data.price}₩</p> --%>
+<!--                             </div> -->
+<!--                             Play Icon -->
+<!--                             <div class="play-icon"> -->
+<!--                                 <span class="icon-play-button"></span> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="album-info"> -->
+<%--                                 <h5>${data.product_name}</h5> --%>
+<%--                             <p>${data.music_singer}</p> --%>
+<!--                         </div> -->
+<!--                     </div> -->
+<!-- 				</a> -->
+<!--                 </div> -->
+<%--             	</c:forEach> --%>
 
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-album-area">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
+<!--                 Single Album Area -->
+<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
+<!--                     <div class="single-album-area"> -->
+<!--                         <div class="album-thumb"> -->
+<!--                             <img src="img/bg-img/b1.jpg" alt=""> -->
+<!--                             Album Price -->
+<!--                             <div class="album-price"> -->
+<!--                                 <p>$0.90</p> -->
+<!--                             </div> -->
+<!--                             Play Icon -->
+<!--                             <div class="play-icon"> -->
+<!--                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="album-info"> -->
+<!--                             <a href="#"> -->
+<!--                                 <h5>Garage Band</h5> -->
+<!--                             </a> -->
+<!--                             <p>Radio Station</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-album-area">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
+<!--                 Single Album Area -->
+<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
+<!--                     <div class="single-album-area"> -->
+<!--                         <div class="album-thumb"> -->
+<!--                             <img src="img/bg-img/b2.jpg" alt=""> -->
+<!--                         </div> -->
+<!--                         <div class="album-info"> -->
+<!--                             <a href="#"> -->
+<!--                                 <h5>Noises</h5> -->
+<!--                             </a> -->
+<!--                             <p>Buble Gum</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-album-area">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
+<!--                 Single Album Area -->
+<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
+<!--                     <div class="single-album-area"> -->
+<!--                         <div class="album-thumb"> -->
+<!--                             <img src="img/bg-img/b3.jpg" alt=""> -->
+<!--                         </div> -->
+<!--                         <div class="album-info"> -->
+<!--                             <a href="#"> -->
+<!--                                 <h5>Jess Parker</h5> -->
+<!--                             </a> -->
+<!--                             <p>The Album</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
-            </div>
+<!--                 Single Album Area -->
+<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
+<!--                     <div class="single-album-area"> -->
+<!--                         <div class="album-thumb"> -->
+<!--                             <img src="img/bg-img/b4.jpg" alt=""> -->
+<!--                         </div> -->
+<!--                         <div class="album-info"> -->
+<!--                             <a href="#"> -->
+<!--                                 <h5>Noises</h5> -->
+<!--                             </a> -->
+<!--                             <p>Buble Gum</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+                
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="load-more-btn text-center">
-                        <a href="#" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-            </div>
+<!--             </div> -->
+
+<!--             <div class="row"> -->
+<!--                 <div class="col-12"> -->
+<!--                     <div class="load-more-btn text-center"> -->
+<%--                         <a href="titleSearch.do?category=music&titleInput=${titleInput}&search_cnt=${search_cnt + 4}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a> --%>
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
         </div>
     </div>
     <!-- ##### Buy Now Area End ##### -->

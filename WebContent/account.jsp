@@ -26,6 +26,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
+	<script src = "js/logout.js"></script>
 
 </head>
 
@@ -68,9 +69,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                     </c:if>
@@ -84,8 +85,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -109,28 +119,27 @@
     <!-- ##### Breadcumb Area End ##### -->
 
     <!-- ##### Blog Area Start ##### -->
-    <div class="blog-area section-padding-100">
+ <!-- ##### notice Area Start ##### -->
+    <section class="login-area section-padding-100">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-9">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
 
                     <!-- Single -->
      <h2 class="ui header">
   Account Settings
   <div class="sub header">Manage your account settings and set e-mail preferences.</div>
 </h2>               
-<form class="ui form">
-  
+<form class="ui form" action = "account.mem" method = "POST">
+<input type = "hidden" name = "member_id" id = "member_id" value = "${data.member_id}">
 <div class="ui form">
 
   <!-- 첫 비밀번호확인 --> 
   	<div class="required field">
     	<label>Confirm Password</label>
-    	<input type="password" placeholder="Write it including -">
+    	<input type="password" name = "member_pw" id = "member_pw" placeholder="비밀번호를 입력해주세요.">
   	</div>	
-  	<button class="ui primary button">
- 	 confirm
-	</button> 
+  	<input type = "submit" class="ui primary button" value = "confirm">
 	
      <!--  비밀번호 확인 완료시 (현재 로그인중인 세션의 비밀번호랑 파라미터값이 일치하는지)
   <div class="two fields">
@@ -170,75 +179,12 @@
  
                 </div>
 
-                <div class="col-12 col-lg-3">
-                    <div class="blog-sidebar-area">
 
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <div class="widget-title">
-                                <h5>Categories</h5>
-                            </div>
-                            <div class="widget-content">
-                                <ul>
-                                    <li><a href="#">Music</a></li>
-                                    <li><a href="#">Events &amp; Press</a></li>
-                                    <li><a href="#">Festivals</a></li>
-                                    <li><a href="#">Lyfestyle</a></li>
-                                    <li><a href="#">Uncategorized</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <div class="widget-title">
-                                <h5>Archive</h5>
-                            </div>
-                            <div class="widget-content">
-                                <ul>
-                                    <li><a href="#">February 2018</a></li>
-                                    <li><a href="#">March 2018</a></li>
-                                    <li><a href="#">April 2018</a></li>
-                                    <li><a href="#">May 2018</a></li>
-                                    <li><a href="#">June 2018</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <div class="widget-title">
-                                <h5>Tags</h5>
-                            </div>
-                            <div class="widget-content">
-                                <ul class="tags">
-                                    <li><a href="#">music</a></li>
-                                    <li><a href="#">events</a></li>
-                                    <li><a href="#">artists</a></li>
-                                    <li><a href="#">press</a></li>
-                                    <li><a href="#">mp3</a></li>
-                                    <li><a href="#">videos</a></li>
-                                    <li><a href="#">concerts</a></li>
-                                    <li><a href="#">performers</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <a href="#"><img src="img/bg-img/add.gif" alt=""></a>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <a href="#"><img src="img/bg-img/add2.gif" alt=""></a>
-                        </div>
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+    
+    </section>
     <!-- ##### Blog Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->

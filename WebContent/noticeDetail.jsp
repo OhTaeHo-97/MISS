@@ -28,6 +28,7 @@
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src = "js/registCheck.js"></script>
 	<script src="https://cdn.tailwindcss.com/"></script>
+	<script src = "js/logout.js"></script>
 </head>
 
 <body>
@@ -69,9 +70,12 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
+                                    <c:if test = "${auth == 'Y'}">
+                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -82,8 +86,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +129,7 @@
 <div class="lg:flex lg:items-center lg:justify-between">
   <div class="flex-1 min-w-0">
     <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-      	공지 제목
+      	${boardData.title}
     </h2>
     <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
       <div class="mt-2 flex items-center text-sm text-gray-500">
@@ -136,13 +149,14 @@
         <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
         </svg>
-        	2022-01-01
+        	${boardData.writedate}
       </div>
     </div>
   </div>
   <div class="mt-5 flex lg:mt-0 lg:ml-4">
-    <span class="hidden sm:block">
-      <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+  <c:if test = "${auth == 'Y'}">
+  	<span class="hidden sm:block">
+      <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick = "location.href = 'boardEditPage.board?bid=${boardData.board_id}'">
         <!-- Heroicon name: solid/pencil -->
         <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
@@ -151,42 +165,28 @@
       </button>
     </span>
 
-    <span class="hidden sm:block ml-3">
-      <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        <!-- Heroicon name: solid/link -->
-        <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-        </svg>
-        URL
-      </button>
-    </span>
-
     <span class="sm:ml-3">
-      <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick = "location.href = 'boardDelete.board?bid=${boardData.board_id}'">
         <!-- Heroicon name: solid/check -->
         <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
         </svg>
-        Publish
+        Delete
       </button>
     </span>
-
+  </c:if>
 
   </div>
 </div>
-<br><hr><br>
+<br><hr><br><br>
 	<!-- 공지내용 노출부분 시작 -->
-<p>전시소개</p>
-<p>비비고와 LA레이커스가 맺은 글로벌 마케팅 파트너쉽을 기념하며, 쿨레인 작가의 대표 작품 중 하나인</p>
-<p></p>
-<p></p>
-<p></p>
+	<div style = "white-space:pre;"><c:out value = "${boardData.board_content}" /></div>
     
 	
 
     <!-- 공지내용 노출부분 끝 -->
     <br><br><br>
-    <button class="ui right floated button"><i class="list icon"></i>
+    <button class="ui right floated button" onclick = "location.href = 'boardPage.board'"><i class="list icon"></i>
 	   List
 	</button>            
 	<!-- 관리자만 보이도록해야하는 삭제버튼

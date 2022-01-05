@@ -27,6 +27,7 @@
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src = "js/registCheck.js"></script>
+	<script src = "js/logout.js"></script>
 </head>
 
 <body>
@@ -68,9 +69,12 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
+                                    <c:if test = "${auth == 'Y'}">
+                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -81,8 +85,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -103,74 +116,71 @@
             <h2>Register</h2>
         </div>
     </section>
- <!-- ##### Login Area Start ##### -->
-    <section class="login-area section-padding-100">
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Blog Area Start ##### -->
+    <div class="blog-area section-padding-100">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                      <!-- Single -->
+            <div class="row">
+                <div class="col-12 col-lg-9">
+
+                    <!-- Single -->
                     
-						<form class="ui form" action = "regist.mem" method = "POST" name = "regForm" id = "regForm" onsubmit = "return check()">
-						  <h4 class="ui dividing header">Create Account</h4>
-						  <div class="ui form">
-						     <div class="two fields">
-							    <div class="required field">
-							     	 <label>ID</label>
-							     	 <input type="text" name = "member_id" id = "member_id">
-							    </div>
-							    <div class="field">
-							    <label><br></label>
-								   <button class="ui button">
-								  		Duplication Confirm
-								   </button>
-							   </div>
-						    </div>
-						  </div>
-						  <div class="two fields">
-						    <div class="required field">
-						     	 <label>Password</label>
-						     	 <input type="password" name = "member_pw" id = "member_pw">
-						    </div>
-						   	<div class="field">
-						     	 <label>Confirm Password</label>
-						     	<input type="password" name = "confirm_pw" id = "confirm_pw">
-						    </div>
-						  </div>
-							 <br><br>
-							<div class="required field">
-						    	<label>Phone Number</label>
-						    	<input type="text" name = "phone" id = "phone" placeholder="">
-						  	</div>
-						     <div class="two fields">
-							    <div class="required field">
-							     	 <label>NickName</label>
-							     	 <input type="text" name = "nickname" id = "nickname">
-							    </div>
-							    <div class="field">
-							    <label><br></label>
-								   <button class="ui button">
-								  		Duplication Confirm
-								   </button>
-							   </div>
-						    </div>
-						  	<div class="field">
-						    	<label>E-mail</label>
-						    	<input type="email" name = "email" id = "email" placeholder="oscar2272@naver.com">
-						  	</div>
-						  	<div class="required field">
-						    	<label>Billing Address</label>
-						    	<input type="text" name = "address" id = "address" placeholder="Street Address">
-						  	</div>
-						  	  	<input type = "submit" class="ui secondary button" value = "sign up" />
-						<br>
-						</form>
-                    <!-- Single -->		
-                 
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Login Area End ##### -->
+<form class="ui form" action = "regist.mem" method = "POST" name = "regForm" id = "regForm" onsubmit = "return check()">
+  <h4 class="ui dividing header">Create Account</h4>
+  <div class="ui form">
+     <div class="two fields">
+	    <div class="required field">
+	     	 <label>ID</label>
+	     	 <input type="text" name = "member_id" id = "member_id">
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <button class="ui button">
+		  		Duplication Confirm
+		   </button>
+	   </div>
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="required field">
+     	 <label>Password</label>
+     	 <input type="password" name = "member_pw" id = "member_pw">
+    </div>
+   	<div class="field">
+     	 <label>Confirm Password</label>
+     	<input type="password" name = "confirm_pw" id = "confirm_pw">
+    </div>
+  </div>
+	 <br><br>
+	<div class="required field">
+    	<label>Phone Number</label>
+    	<input type="text" name = "phone" id = "phone" placeholder="Write it down except for -">
+  	</div>
+     <div class="two fields">
+	    <div class="required field">
+	     	 <label>NickName</label>
+	     	 <input type="text" name = "nickname" id = "nickname">
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <button class="ui button">
+		  		Duplication Confirm
+		   </button>
+	   </div>
+    </div>
+  	<div class="field">
+    	<label>E-mail</label>
+    	<input type="email" name = "email" id = "email" placeholder="oscar2272@naver.com">
+  	</div>
+  	<div class="required field">
+    	<label>Billing Address</label>
+    	<input type="text" name = "address" id = "address" placeholder="Street Address">
+  	</div>
+  	  	<input type = "submit" class="ui secondary button" value = "sign up" />
+<br>
+</form>
+                    <!-- Single -->
                     
                     
 
@@ -184,7 +194,72 @@
                    
                 </div>
 
+                <div class="col-12 col-lg-3">
+                    <div class="blog-sidebar-area">
 
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <div class="widget-title">
+                                <h5>Categories</h5>
+                            </div>
+                            <div class="widget-content">
+                                <ul>
+                                    <li><a href="#">Music</a></li>
+                                    <li><a href="#">Events &amp; Press</a></li>
+                                    <li><a href="#">Festivals</a></li>
+                                    <li><a href="#">Lyfestyle</a></li>
+                                    <li><a href="#">Uncategorized</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <div class="widget-title">
+                                <h5>Archive</h5>
+                            </div>
+                            <div class="widget-content">
+                                <ul>
+                                    <li><a href="#">February 2018</a></li>
+                                    <li><a href="#">March 2018</a></li>
+                                    <li><a href="#">April 2018</a></li>
+                                    <li><a href="#">May 2018</a></li>
+                                    <li><a href="#">June 2018</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <div class="widget-title">
+                                <h5>Tags</h5>
+                            </div>
+                            <div class="widget-content">
+                                <ul class="tags">
+                                    <li><a href="#">music</a></li>
+                                    <li><a href="#">events</a></li>
+                                    <li><a href="#">artists</a></li>
+                                    <li><a href="#">press</a></li>
+                                    <li><a href="#">mp3</a></li>
+                                    <li><a href="#">videos</a></li>
+                                    <li><a href="#">concerts</a></li>
+                                    <li><a href="#">performers</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <a href="#"><img src="img/bg-img/add.gif" alt=""></a>
+                        </div>
+
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <a href="#"><img src="img/bg-img/add2.gif" alt=""></a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -25,6 +25,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
+	<script src = "js/logout.js"></script>
 
 </head>
 
@@ -67,9 +68,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                     </c:if>
@@ -83,8 +84,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -115,48 +125,102 @@
 
 			<div class="ui items">
 			<!-- for each구문으로 장바구니에 담겨있는만큼 출력필요 -->
-  			<div class="item">
-    			<div class="ui small image">
-      				<img src="img/chance.jpg">
-    			</div>
-  			    <div class="content">
-     			 <div class="header">chance the rapper - coloring book</div>
-   				 <div class="meta">
-      			 	<span class="price">$1200</span>
-   				 </div>
-				 <div class="extra">
-        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
-      			 </div>
-    		     </div>
-  			</div>
-  			<div class="item">
-    			<div class="ui small image">
-      				<img src="img/1975.jpg">
-    			</div>
-  			    <div class="content">
-     			 <div class="header">The1975 - A Brief Inquiry into Online Relationships</div>
-   				 <div class="meta">
-      			 	<span class="price">$1340</span>
-   				 </div>
-				 <div class="extra">
-        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
-      			 </div>
-    		     </div>
-  			</div>
-  			<div class="item">
-    			<div class="ui small image">
-      				<img src="img/lp.jpg">
-    			</div>
-  			    <div class="content">
-     			 <div class="header">LP Player Gadhouse x Honne</div>
-   				 <div class="meta">
-      			 	<span class="price">$1840</span>
-   				 </div>
-				 <div class="extra">
-        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a>
-      			 </div>
-    		     </div>
-  			</div>
+			<c:choose>
+				<c:when test = "${empty data}">
+					<div style = "text-align:center;"><h6>로그인이 필요합니다!</h6></div>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test = "${empty pvoData}">
+							<div style = "text-align:center;"><h6>장바구니에 담긴 상품이 없습니다!</h6></div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var = "pvo" items = "${pvoData}">
+								<div class="item">
+					    			<div class="ui small image">
+					      				<img src="${pvo.product_pictureurl}">
+					    			</div>
+					  			    <div class="content">
+					     			 <div class="header">${pvo.product_name}
+					     			 <c:if test = "${pvo.product_category == 'music'}">
+					     			 	&nbsp;&nbsp;- ${pvo.music_singer}
+					     			 </c:if>
+					     			 </div>
+					   				 <div class="meta">
+					      			 	<span class="price">${pvo.price}₩</span>
+					   				 </div>
+									 <div class="extra">
+					        		 	<a href="deleteCart.do?deleteId=${pvo.product_id}"><i class="minus circle icon"></i></a>
+					      			 </div>
+					    		     </div>
+					  			</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
+<%-- 			<c:forEach var = "pvo" items = "pvoData"> --%>
+<!-- 				<div class="item"> -->
+<!-- 	    			<div class="ui small image"> -->
+<!-- 	      				<img src="img/chance.jpg"> -->
+<!-- 	    			</div> -->
+<!-- 	  			    <div class="content"> -->
+<%-- 	     			 <div class="header">${pvo.product_name} --%>
+<%-- 	     			 <c:if test = "${pvo.product_category == 'music'}"> --%>
+<%-- 	     			 	&nbsp;&nbsp;- ${pvo.music_singer} --%>
+<%-- 	     			 </c:if> --%>
+<!-- 	     			 </div> -->
+<!-- 	   				 <div class="meta"> -->
+<%-- 	      			 	<span class="price">${pvo.price}₩</span> --%>
+<!-- 	   				 </div> -->
+<!-- 					 <div class="extra"> -->
+<!-- 	        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!-- 	      			 </div> -->
+<!-- 	    		     </div> -->
+<!-- 	  			</div> -->
+<%-- 			</c:forEach> --%>
+<!--   			<div class="item"> -->
+<!--     			<div class="ui small image"> -->
+<!--       				<img src="img/chance.jpg"> -->
+<!--     			</div> -->
+<!--   			    <div class="content"> -->
+<!--      			 <div class="header">chance the rapper - coloring book</div> -->
+<!--    				 <div class="meta"> -->
+<!--       			 	<span class="price">$1200</span> -->
+<!--    				 </div> -->
+<!-- 				 <div class="extra"> -->
+<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!--       			 </div> -->
+<!--     		     </div> -->
+<!--   			</div> -->
+<!--   			<div class="item"> -->
+<!--     			<div class="ui small image"> -->
+<!--       				<img src="img/1975.jpg"> -->
+<!--     			</div> -->
+<!--   			    <div class="content"> -->
+<!--      			 <div class="header">The1975 - A Brief Inquiry into Online Relationships</div> -->
+<!--    				 <div class="meta"> -->
+<!--       			 	<span class="price">$1340</span> -->
+<!--    				 </div> -->
+<!-- 				 <div class="extra"> -->
+<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!--       			 </div> -->
+<!--     		     </div> -->
+<!--   			</div> -->
+<!--   			<div class="item"> -->
+<!--     			<div class="ui small image"> -->
+<!--       				<img src="img/lp.jpg"> -->
+<!--     			</div> -->
+<!--   			    <div class="content"> -->
+<!--      			 <div class="header">LP Player Gadhouse x Honne</div> -->
+<!--    				 <div class="meta"> -->
+<!--       			 	<span class="price">$1840</span> -->
+<!--    				 </div> -->
+<!-- 				 <div class="extra"> -->
+<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
+<!--       			 </div> -->
+<!--     		     </div> -->
+<!--   			</div> -->
   			
 			</div>
             </div>
@@ -168,7 +232,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="load-more-btn text-center mt-70">
-            <a href="payment.jsp" class="btn oneMusic-btn btn-2 m-2">ORDER<i class="fa fa-angle-double-right"></i></a>
+                    <c:if test = "${not empty pvoData}">
+                    	<a href="paymentPage.do" class="btn oneMusic-btn btn-2 m-2">ORDER<i class="fa fa-angle-double-right"></i></a>
+                    </c:if>
                     <br><br>	
                     </div> 
                 </div>

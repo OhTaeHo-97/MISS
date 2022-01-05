@@ -25,6 +25,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
+	<script src = "js/logout.js"></script>
 
 </head>
 
@@ -67,9 +68,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                     </c:if>
@@ -83,8 +84,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -201,20 +211,32 @@
      	 <p>YOUR ORDER</p>
      	 	<!--  for each 구문으로 장바구니목록들 나열 -->
 			<div class="ui relaxed divided list">
-			  <div class="item">
-			  <i class="music icon"></i>			  
-			    <div class="content">
-			      SONNY Record LP
-			      <div class="description">$2000</div>
-			    </div>
-			  </div>
-			  <div class="item">
-			  <i class="music icon"></i>
-			    <div class="content">
-			      	Chance The Rapper-coloring book
-			      <div class="description">$1200</div>
-			    </div>
-			  </div>
+				<c:forEach var = "pvo"  items = "${pvoData}">
+					<div class="item">
+						<i class="music icon"></i>			  
+					    <div class="content">
+							${pvo.product_name}
+							<c:if test = "${pvo.product_category == 'music'}">
+							&nbsp;&nbsp;- ${pvo.music_singer}
+							</c:if>
+							<div class="description">${pvo.price}₩</div>
+						</div>
+					</div>
+				</c:forEach>
+<!-- 			  <div class="item"> -->
+<!-- 			  <i class="music icon"></i>			   -->
+<!-- 			    <div class="content"> -->
+<!-- 			      SONNY Record LP -->
+<!-- 			      <div class="description">$2000</div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
+<!-- 			  <div class="item"> -->
+<!-- 			  <i class="music icon"></i> -->
+<!-- 			    <div class="content"> -->
+<!-- 			      	Chance The Rapper-coloring book -->
+<!-- 			      <div class="description">$1200</div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
 			</div><br><br>
 			
 			
@@ -222,26 +244,33 @@
 				Price Total
 			  </h3>			  
 			  <h3 class="ui right floated header">
-			    $3200
+			  	<c:set var = "totalPvo" value = "0" />
+			  	<c:forEach var = "pvo" items = "${pvoData}">
+			  		<c:set var = "totalPvo" value = "${totalPvo+pvo.price}" />
+			  	</c:forEach>
+			    <c:out value = "${totalPvo}" />₩
 			  </h3><br><br>
 			  <h3 class="ui left floated header">
 			    shipping
 			  </h3>
 			  <h4 class="ui right floated header">
-			    $10
+			    10₩
 			  </h4>
 			  <br><hr>
 			  <h3 class="ui left floated header">
 				Order Total
 			  </h3>					    
 			  <h3 class="ui right floated header">
-			    $3210
+			    <c:set var = "total" value = "${totalPvo+10}" />
+			    <c:out value = "${total}" />₩
 			  </h3>		<br><br><br><br>	
+			  <form name = "checkBoxForm">
 			  <div class="ui checkbox">
-				  <input type="checkbox" name="example">
+				  <input type="checkbox" name="conditionCheck" onClick = "agreeCheck(this.form)">
 				  <label>Yes, I agree to the terms and conditions and privacy policy.</label>
 		 	  </div>
-			<button class="large ui black right floated button" onclick="location.href='main.jsp' ">Check Out</button>
+			<input type = "button" name = "checkButton" class="large ui black right floated button" value = "Check Out" onclick="location.href='payment.do'" disabled>
+    		</form>
     	</div>
   		</div>
   		<div class="ui vertical divider">
@@ -293,5 +322,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Active js -->
     <script src="js/active.js"></script>
 </body>
+<script>
+	function agreeCheck(frm) {
+		if(frm.checkButton.disabled == true) {
+			frm.checkButton.disabled = false;
+		} else {
+			frm.checkButton.disabled = true;
+		}
+	}
+</script>
 
 </html>

@@ -25,6 +25,8 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
+	<script src = "js/devicePage2.js"></script>
+	<script src = "js/logout.js"></script>
 
 </head>
 
@@ -67,9 +69,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
                                     <c:if test = "${auth == 'Y'}">
                                     	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
                                     </c:if>
@@ -83,8 +85,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -107,226 +118,110 @@
     </section>
     <!-- ##### Breadcumb Area End ##### -->
 	<!-- ##### Shop Content Area Start ##### -->
-     <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+	<section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+     <form name = "frm" id = "devicePageForm" action = "main_device.do" method = "POST">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
 						<div class="ui secondary big menu">
-						    <div class="item">
-						      <div class="ui icon input">
-						        <input type="text" placeholder="Search...">
-						        <i class="search link icon"></i>
-						      </div>
+<!--   							<div class="ui dropdown item"> -->
+							<div class="item">
+						      	<div class="ui icon input">
+						        	<input type="text" id = "titleInput" placeholder="Search...">
+						        	<i class="search link icon" onclick = "searchTitle()"></i>
+						      	</div>
 						    </div>
 						    <div class="right menu">
-							<a class="active item">
-						  		인기순
-						 	</a>
-						  	<a class="item">
-						    	최신순
-						    </a>
-							<a class="item">
-						    	오래된순
-						    </a>
+						    	<c:choose>
+						    		<c:when test = "${filterValue == 'fav'}">
+						    			<a href = "main_device.do?filter=fav" class="active item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:when>
+						    		<c:when test = "${filterValue == 'new'}">
+							    		<a href = "main_device.do?filter=fav" class="item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="active item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:when>
+						    		<c:when test = "${filterValue == 'old'}">
+						    			<a href = "main_device.do?filter=fav" class="item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="active item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:when>
+						    		<c:otherwise>
+						    			<a href = "main_device.do?filter=fav" class="active item" id = "favSort">
+								  			인기순
+								 		</a>
+								  		<a href = "main_device.do?filter=new" class="item" id = "newSort">
+								    		최신순
+								    	</a>
+										<a href = "main_device.do?filter=old" class="item" id = "oldSort">
+								    		오래된순
+								    	</a>
+						    		</c:otherwise>
+						    	</c:choose>
+
+<!-- 								<a class="active item" id = "favSort"> -->
+<!-- 						  			인기순 -->
+<!-- 						 		</a> -->
+<!-- 						  		<a class="item" id = "newSort"> -->
+<!-- 						    		최신순 -->
+<!-- 						    	</a> -->
+<!-- 								<a class="item" id = "oldSort"> -->
+<!-- 						    		오래된순 -->
+<!-- 						    	</a> -->
 							</div>
 						</div>
                     </div>
                 </div>
             </div>
-
             <div class="row">
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <c:forEach var = "pvo" items = "${datas}">
+            	<div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
-                            <img src="img/lp.jpg" alt="">
+                            <img src="${pvo.product_pictureurl}" alt="${pvo.product_name}">
                         </div>
                         <div class="album-info">
-                            <a href="product.jsp">
-                                <h5>LP Player</h5>
+                            <a href="detail.do?productid=${pvo.product_id}">
+                                <h5>${pvo.product_name}</h5>
                             </a>
-                            <p>$1400</p>
+                            <p>${pvo.price}₩</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
+    		</c:forEach>
+    		</div>
 
             </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
-                        <a href="#" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
+            </form>
+           	<div class="row">
+               <div class="col-12">
+                   <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
+                       <a href="main_device.do?device_cnt=${device_cnt + 6}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
+                   </div>
+               </div>
             </div>
-        </div>
+<!--         </div> -->
     </section>
       <!-- ##### shop content Area End ##### -->
 
