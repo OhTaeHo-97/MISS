@@ -24,8 +24,8 @@ public class MemberDAO {
 	String sql_selectAdmin = "select * from admin where member_id =?";
 	String sql_selectNickname = "select * from consumer where nickname = ?";
 	String sql_insertMVO = "insert into member(member_id,member_pw) values(?,?)"; // 회원가입때 필요한 sql구문 - member 테이블용
-	String sql_insertCVO = "insert into consumer values(?,?,?,?,?)"; // 회원가입때 필요한 sql구문 - consumer 테이블용
-	String sql_updateCon = "UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?";
+	String sql_insertCVO = "insert into consumer values(?,?,?,?,?,?,?,?)"; // 회원가입때 필요한 sql구문 - consumer 테이블용
+	String sql_updateCon = "update consumer set nickname=?, address=?, phonenumber=?, email=?, postcode=?, better_address=?, reference=? where member_id=?";
 	String sql_updateMem = "update member set member_pw = ? where member_id = ?";
 	String sql_delete = "delete from member where member_id = ?";
 	
@@ -157,12 +157,15 @@ public class MemberDAO {
 			pstmt.executeUpdate();
 			
 			pstmt = conn.prepareStatement(sql_insertCVO);
-			//insert into consumer values(?,?,?,?,?)
+			//insert into consumer values(?,?,?,?,?,?,?,?)
 			pstmt.setString(1, cvo.getMember_id());
 			pstmt.setString(2, cvo.getNickname());
 			pstmt.setString(3, cvo.getAddress());
 			pstmt.setString(4, cvo.getPhoneNumber());
 			pstmt.setString(5, cvo.getEmail());
+			pstmt.setInt(6, cvo.getPostcode());
+			pstmt.setString(7, cvo.getBetter_address());
+			pstmt.setString(8, cvo.getReference());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -210,12 +213,15 @@ public class MemberDAO {
 			
 			
 			pstmt = conn.prepareStatement(sql_updateCon);
-			//UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?
+			//update consumer set nickname=?, address=?, phonenumber=?, email=?, postcode=?, better_address=?, reference=? where member_id=?
 			pstmt.setString(1, cvo.getNickname());
 			pstmt.setString(2, cvo.getAddress());
 			pstmt.setString(3, cvo.getPhoneNumber());
 			pstmt.setString(4, cvo.getEmail());
-			pstmt.setString(5, cvo.getMember_id());
+			pstmt.setInt(5, cvo.getPostcode());
+			pstmt.setString(6, cvo.getBetter_address());
+			pstmt.setString(7, cvo.getReference());
+			pstmt.setString(8, cvo.getMember_id());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
