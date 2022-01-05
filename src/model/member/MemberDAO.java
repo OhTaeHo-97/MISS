@@ -134,6 +134,9 @@ public class MemberDAO {
 	            cvo.setEmail(rs.getString("email"));
 	            cvo.setNickname(rs.getString("nickname")); 
 	            cvo.setPhoneNumber(rs.getString("phoneNumber"));
+	            cvo.setPostcode(rs.getInt("postcode"));
+	            cvo.setBetter_address("better_address");
+	            cvo.setReference("reference");
 	         } 		
 		} catch (SQLException e) {
 			System.out.println("MemberDAO detail에서 예외발생");
