@@ -17,8 +17,8 @@ public class RegistAction implements Action {
 		// TODO Auto-generated method stub
 		MemberDAO dao = new MemberDAO();
 		ConsumerSet set = new ConsumerSet();
-		System.out.println(request.getParameter("member_id"));
-		System.out.println(request.getParameter("member_pw"));
+//		System.out.println(request.getParameter("member_id"));
+//		System.out.println(request.getParameter("member_pw"));
 		
 		MemberVO mvo = set.getMvo();
 		mvo = new MemberVO();
@@ -29,7 +29,10 @@ public class RegistAction implements Action {
 		mvo.setMember_pw(request.getParameter("member_pw"));
 		cvo.setMember_id(request.getParameter("member_id"));
 		cvo.setNickname(request.getParameter("nickname"));
+		cvo.setPostcode(Integer.parseInt(request.getParameter("postcode")));
 		cvo.setAddress(request.getParameter("address"));
+		cvo.setReference(request.getParameter("reference"));
+		cvo.setBetter_address(request.getParameter("better_address"));
 		cvo.setPhoneNumber(request.getParameter("phone"));
 		cvo.setEmail(request.getParameter("email"));
 		

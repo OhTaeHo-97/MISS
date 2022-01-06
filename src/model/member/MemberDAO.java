@@ -24,8 +24,8 @@ public class MemberDAO {
 	String sql_selectAdmin = "select * from admin where member_id =?";
 	String sql_selectNickname = "select * from consumer where nickname = ?";
 	String sql_insertMVO = "insert into member(member_id,member_pw) values(?,?)"; // 회원가입때 필요한 sql구문 - member 테이블용
-	String sql_insertCVO = "insert into consumer values(?,?,?,?,?)"; // 회원가입때 필요한 sql구문 - consumer 테이블용
-	String sql_updateCon = "UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?";
+	String sql_insertCVO = "insert into consumer values(?,?,?,?,?,?,?,?)"; // 회원가입때 필요한 sql구문 - consumer 테이블용
+	String sql_updateCon = "update consumer set nickname=?, address=?, phonenumber=?, email=?, postcode=?, better_address=?, reference=? where member_id=?";
 	String sql_updateMem = "update member set member_pw = ? where member_id = ?";
 	String sql_delete = "delete from member where member_id = ?";
 	
@@ -123,18 +123,21 @@ public class MemberDAO {
 		conn = JDBCUtil.connect();
 		ConsumerVO cvo = null;
 		try {
-			pstmt = conn.prepareStatement(sql_selectCVO); 
-			// select * from member where member_id = ?
-			pstmt.setString(1, mvo.getMember_id());
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				System.out.println(rs.getString("address"));
-				cvo = new ConsumerVO();
-				cvo.setAddress(rs.getString("address"));
-				cvo.setEmail(rs.getString("email"));
-				cvo.setNickname(rs.getString("nickname")); 
-				cvo.setPhoneNumber(rs.getString("phoneNumber"));
-			}		
+			 pstmt = conn.prepareStatement(sql_selectCVO); 
+	         // select * from consumer where member_id = ?
+	         pstmt.setString(1, mvo.getMember_id());
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            System.out.println(rs.getString("address"));
+	            cvo = new ConsumerVO();
+	            cvo.setAddress(rs.getString("address"));
+	            cvo.setEmail(rs.getString("email"));
+	            cvo.setNickname(rs.getString("nickname")); 
+	            cvo.setPhoneNumber(rs.getString("phoneNumber"));
+	            cvo.setPostcode(rs.getInt("postcode"));
+	            cvo.setBetter_address(rs.getString("better_address"));
+	            cvo.setReference(rs.getString("reference"));
+	         } 		
 		} catch (SQLException e) {
 			System.out.println("MemberDAO detail에서 예외발생");
 			e.printStackTrace();
@@ -155,14 +158,18 @@ public class MemberDAO {
 			pstmt.setString(1, mvo.getMember_id());
 			pstmt.setString(2, mvo.getMember_pw());
 			pstmt.executeUpdate();
+			System.out.println("멤버 완료");
 			
 			pstmt = conn.prepareStatement(sql_insertCVO);
-			//insert into consumer values(?,?,?,?,?)
+			//insert into consumer values(?,?,?,?,?,?,?,?)
 			pstmt.setString(1, cvo.getMember_id());
 			pstmt.setString(2, cvo.getNickname());
 			pstmt.setString(3, cvo.getAddress());
 			pstmt.setString(4, cvo.getPhoneNumber());
 			pstmt.setString(5, cvo.getEmail());
+			pstmt.setInt(6, cvo.getPostcode());
+			pstmt.setString(7, cvo.getBetter_address());
+			pstmt.setString(8, cvo.getReference());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -180,20 +187,17 @@ public class MemberDAO {
 		MemberVO mvo = cs.getMvo();
 		ConsumerVO cvo = cs.getCvo();
 		try {
-			pstmt = conn.prepareStatement(sql_selectOne);	// 기존 비밀번호가 무엇인지 우선 가져와서 비교.
-			//select * from member where member_id = ?
-			pstmt.setString(1, mvo.getMember_id());
-			rs = pstmt.executeQuery();
-			String originalPw = "";
-			if(rs.next()) {
-				originalPw = rs.getString("member_pw");
-			} else {
-				SQLException se = new SQLException();
-				throw se;
-			}
-			
-			System.out.println(mvo.getMember_pw());
-			
+			pstmt = conn.prepareStatement(sql_selectOne);   // 기존 비밀번호가 무엇인지 우선 가져와서 비교.
+	         //select * from member where member_id = ?
+	         pstmt.setString(1, mvo.getMember_id());
+	         rs = pstmt.executeQuery();
+	         String originalPw = "";
+	         if(rs.next()) {
+	            originalPw = rs.getString("member_pw");
+	         } else {
+	            SQLException se = new SQLException();
+	            throw se;
+	         }
 			if(mvo.getMember_pw().equals("")) {				
 				System.out.println("기존 비밀번호 유지");
 			}
@@ -212,12 +216,15 @@ public class MemberDAO {
 			
 			
 			pstmt = conn.prepareStatement(sql_updateCon);
-			//UPDATE consumer SET nickname = ?, address = ?, phonenumber = ?, email = ? where member_id = ?
+			//update consumer set nickname=?, address=?, phonenumber=?, email=?, postcode=?, better_address=?, reference=? where member_id=?
 			pstmt.setString(1, cvo.getNickname());
 			pstmt.setString(2, cvo.getAddress());
 			pstmt.setString(3, cvo.getPhoneNumber());
 			pstmt.setString(4, cvo.getEmail());
-			pstmt.setString(5, cvo.getMember_id());
+			pstmt.setInt(5, cvo.getPostcode());
+			pstmt.setString(6, cvo.getBetter_address());
+			pstmt.setString(7, cvo.getReference());
+			pstmt.setString(8, cvo.getMember_id());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -244,8 +251,8 @@ public class MemberDAO {
 		return true;
 	}
 	
-	public boolean checkId(MemberVO mvo) { // ID 중복검사 : 버튼클릭해서 중복여부 확인
-		boolean usable = false;
+	public int checkId(MemberVO mvo) { // ID 중복검사 : 버튼클릭해서 중복여부 확인
+		int usable = 0;
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(sql_selectOne);
@@ -253,10 +260,10 @@ public class MemberDAO {
 			pstmt.setString(1, mvo.getMember_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) { // 존재한다면?? false값 반환
-				usable = false;
+				usable = 0;
 			}
 			else {			// 존재안한다면?? true값 반환
-				usable = true;
+				usable = 1;
 			}
 			
 		} catch (SQLException e) {
@@ -268,8 +275,8 @@ public class MemberDAO {
 		return usable;
 	}
 	
-	public boolean checkNickname(ConsumerVO cvo) { //Nickname 중복검사
-		boolean usable = false;
+	public int checkNickname(ConsumerVO cvo) { //Nickname 중복검사
+		int usable = 0;
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(sql_selectNickname);
@@ -277,10 +284,10 @@ public class MemberDAO {
 			pstmt.setString(1, cvo.getNickname());
 			rs = pstmt.executeQuery();
 			if(rs.next()) { // 존재한다면?? false값 반환
-				usable = false;
+				usable = 0;
 			}
 			else {			// 존재안한다면?? true값 반환
-				usable = true;
+				usable = 1;
 			}
 		} catch (SQLException e) {
 			System.out.println("MemberDAO checkNickname진행 중 오류");

@@ -118,7 +118,7 @@
     <!--  제품등록 시작 -->
 
     <section class="events-area section-padding-100">
-    	<form name = "signUpForm" action = "insertProduct.do" method = "POST">
+    	<form name = "signUpForm" name = "signUpForm" action = "insertProduct.do" method = "POST">
         <div class="container">	
 		<h4 class="ui horizontal divider header">
 		  <i class="tag icon"></i>
@@ -134,19 +134,19 @@
 			    <tr>
 			      <td>Category</td>
 			      <td><input type="radio" id = "category" name="category" checked="checked" value = "music">Music
-			      <input type="radio" name="category" value = "device">Device</td>
+			      <input type="radio" name="category" id = "category" value = "device">Device</td>
 			    </tr>
 			    <tr>
 			      <td>Image</td>
-			      <td><input type="file" id="image" name="image" accept=".jpg, .jpeg, .png"></td>
+			      <td><input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" onchange="this.select(); document.getElementById('file_path').value=document.selection.createRange().text.toString();"></td>
 			    </tr>
 			    <tr>
 			      <td>Product_Name(Song)</td>
-			      <td><input type="text" name = "pname" value="finish line"></td>
+			      <td><input type="text" name = "pname" id = "pname" value="finish line"></td>
 			    </tr>
 			    <tr>
 			      <td>Singer</td>
-			      <td><input type="text" name = "singer" value="chance the rapper"></td>
+			      <td><input type="text" name = "singer" id = "singer" value="chance the rapper"></td>
 			    </tr>
 			    <tr>
 			      <td>Genre</td>
@@ -166,11 +166,11 @@
 			    </tr>
 			    <tr>
 			      <td>Price</td>
-			      <td><input type="text" name = "price" value="120">₩</td>
+			      <td><input type="text" name = "price" id = "price" value="120">₩</td>
 			    </tr>
 			    <tr>
 			      <td>Stock</td>
-			      <td><input type="text" name = "stock" value="992"></td>
+			      <td><input type="text" name = "stock" id = "stock" value="992"></td>
 			    </tr>
 			    <tr>
 			      <td>Introduce Product(song)</td>
@@ -178,6 +178,7 @@
 			    </tr>
 			  </tbody>
 			</table>
+<!-- 			<input type = "submit" class="positive ui button" value = "Sign Up"> -->
 			<input type = "submit" class="positive ui button" value = "Sign Up">
 			</div>
 		</form>

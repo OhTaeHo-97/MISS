@@ -86,9 +86,8 @@
 									class="login-register-cart-button d-flex align-items-center">
 									<!-- Login/Register -->
 									<div class="login-register-btn mr-50">
-										<a href="login.jsp" id="login">Login</a> / <a
-											href="register.jsp" id="register">Register</a>
-									</div>
+                                        <mytag:login/>
+                                    </div>
 
 									<!-- Cart Button -->
 									 <div class="cart-btn" onclick = "location.href='cartPage.do'">

@@ -4,6 +4,9 @@ public class ConsumerVO{
 	private String member_id;
 	private String nickname;
 	private String address;
+	private int postcode;
+	private String better_address;
+	private String reference;
 	private String phoneNumber;
 	private String email;
 	
@@ -37,10 +40,31 @@ public class ConsumerVO{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public int getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(int postcode) {
+		this.postcode = postcode;
+	}
+	public String getBetter_address() {
+		return better_address;
+	}
+	public void setBetter_address(String better_address) {
+		this.better_address = better_address;
+	}
+	public String getReference() {
+		return reference;
+	}
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
 	@Override
 	public String toString() {
-		return "ConsumerVO [member_id=" + member_id + ", nickname=" + nickname + ", address=" + address
-				+ ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
+		return "ConsumerVO [member_id=" + member_id + ", nickname=" + nickname + ", address=" + address + ", postcode="
+				+ postcode + ", better_address=" + better_address + ", reference=" + reference + ", phoneNumber="
+				+ phoneNumber + ", email=" + email + "]";
 	}
+	
 	
 }

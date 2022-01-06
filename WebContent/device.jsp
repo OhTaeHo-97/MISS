@@ -25,7 +25,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script src = "js/devicePage2.js"></script>
+	<script src = "js/devicePage.js"></script>
 	<script src = "js/logout.js"></script>
 
 </head>

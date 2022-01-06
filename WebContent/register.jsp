@@ -26,8 +26,9 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script src = "js/registCheck.js"></script>
+	<script src = "js/registPage.js"></script>
 	<script src = "js/logout.js"></script>
+	<script src = "js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -121,7 +122,7 @@
     <!-- ##### Blog Area Start ##### -->
     <div class="blog-area section-padding-100">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-12 col-lg-9">
 
                     <!-- Single -->
@@ -135,10 +136,8 @@
 	     	 <input type="text" name = "member_id" id = "member_id">
 	    </div>
 	    <div class="field">
-	    <label><br></label>
-		   <button class="ui button">
-		  		Duplication Confirm
-		   </button>
+		    <label><br></label>
+		    <font id = "checkId"></font>
 	   </div>
     </div>
   </div>
@@ -147,7 +146,7 @@
      	 <label>Password</label>
      	 <input type="password" name = "member_pw" id = "member_pw">
     </div>
-   	<div class="field">
+   	<div class="required field">
      	 <label>Confirm Password</label>
      	<input type="password" name = "confirm_pw" id = "confirm_pw">
     </div>
@@ -163,20 +162,44 @@
 	     	 <input type="text" name = "nickname" id = "nickname">
 	    </div>
 	    <div class="field">
-	    <label><br></label>
-		   <button class="ui button">
-		  		Duplication Confirm
-		   </button>
+		    <label><br></label>
+		    <font id = "checkNickname"></font>
 	   </div>
     </div>
   	<div class="field">
     	<label>E-mail</label>
     	<input type="email" name = "email" id = "email" placeholder="oscar2272@naver.com">
   	</div>
-  	<div class="required field">
-    	<label>Billing Address</label>
-    	<input type="text" name = "address" id = "address" placeholder="Street Address">
-  	</div>
+<!--   	<div class="required field"> -->
+<!--     	<label>Billing Address</label> -->
+    	<div class="two fields">
+		    <div class="required field">
+		     	 <label>Billing Address</label>
+		     	 <input type="text" name = "postcode" id="sample6_postcode" value = "" placeholder="우편번호" readonly>
+		    </div>
+		    <div class="field">
+		    <label><br></label>
+			   <input type="button" class="ui button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+		   </div>
+	    </div>
+		<div class="two fields">
+		    <div class="field">
+		     	 <label><br></label>
+		     	 <input type="text" name = "address" id="sample6_address" value = "" placeholder="주소" readonly>
+		    </div>
+		    <div class="field">
+		    <label><br></label>
+			   <input type="text" name = "reference" id="sample6_extraAddress" value = "" placeholder="참고항목" readonly>
+		   </div>
+	    </div>
+	    <div class = "field">
+		    <input type="text" name = "better_address" id="sample6_detailAddress" value = "" placeholder="상세주소">
+		</div>
+		
+<!-- 		<input type="text" name = "address" id="sample6_address" placeholder="주소"><br><br> -->
+<!-- 		<input type="text" name = "better_address" id="sample6_detailAddress" placeholder="상세주소"> -->
+<!--     	<input type="text" name = "address" id = "address" placeholder="Street Address"> -->
+<!--   	</div> -->
   	  	<input type = "submit" class="ui secondary button" value = "sign up" />
 <br>
 </form>
@@ -192,73 +215,6 @@
                    
                    
                    
-                </div>
-
-                <div class="col-12 col-lg-3">
-                    <div class="blog-sidebar-area">
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <div class="widget-title">
-                                <h5>Categories</h5>
-                            </div>
-                            <div class="widget-content">
-                                <ul>
-                                    <li><a href="#">Music</a></li>
-                                    <li><a href="#">Events &amp; Press</a></li>
-                                    <li><a href="#">Festivals</a></li>
-                                    <li><a href="#">Lyfestyle</a></li>
-                                    <li><a href="#">Uncategorized</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <div class="widget-title">
-                                <h5>Archive</h5>
-                            </div>
-                            <div class="widget-content">
-                                <ul>
-                                    <li><a href="#">February 2018</a></li>
-                                    <li><a href="#">March 2018</a></li>
-                                    <li><a href="#">April 2018</a></li>
-                                    <li><a href="#">May 2018</a></li>
-                                    <li><a href="#">June 2018</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <div class="widget-title">
-                                <h5>Tags</h5>
-                            </div>
-                            <div class="widget-content">
-                                <ul class="tags">
-                                    <li><a href="#">music</a></li>
-                                    <li><a href="#">events</a></li>
-                                    <li><a href="#">artists</a></li>
-                                    <li><a href="#">press</a></li>
-                                    <li><a href="#">mp3</a></li>
-                                    <li><a href="#">videos</a></li>
-                                    <li><a href="#">concerts</a></li>
-                                    <li><a href="#">performers</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <a href="#"><img src="img/bg-img/add.gif" alt=""></a>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="single-widget-area mb-30">
-                            <a href="#"><img src="img/bg-img/add2.gif" alt=""></a>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -353,6 +309,105 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	    function sample6_execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("sample6_extraAddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("sample6_extraAddress").value = '';
+	                }
+	
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('sample6_postcode').value = data.zonecode;
+	                document.getElementById("sample6_address").value = addr;
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("sample6_detailAddress").focus();
+	            }
+	        }).open();
+	    }
+	</script>
+	<script>
+		$('#member_id').focusout(function(){
+			let memberId = $('#member_id').val(); // input_id에 입력되는 값
+			
+			$.ajax({
+				url : "idRedundancyCheck.mem",
+				type : "post",
+				data : {memberId: memberId},
+				dataType : 'json',
+				success : function(result){
+					if(result == 0){
+						$("#checkId").html('사용할 수 없는 아이디입니다.');
+						$("#checkId").attr('color','red');
+					} else{
+						$("#checkId").html('사용할 수 있는 아이디입니다.');
+						$("#checkId").attr('color','green');
+					} 
+				},
+				error : function(){
+					alert("서버요청실패");
+				}
+			})
+		})
+	 </script>
+	 <script>
+		$('#nickname').focusout(function(){
+			let nickname = $('#nickname').val(); // input_id에 입력되는 값
+			
+			$.ajax({
+				url : "nicknameRedundancyCheck.mem",
+				type : "post",
+				data : {nickname: nickname},
+				dataType : 'json',
+				success : function(result){
+					if(result == 0){
+						$("#checkNickname").html('사용할 수 없는 닉네임입니다.');
+						$("#checkNickname").attr('color','red');
+					} else{
+						$("#checkNickname").html('사용할 수 있는 닉네임입니다.');
+						$("#checkNickname").attr('color','green');
+					} 
+				},
+				error : function(){
+					alert("서버요청실패");
+				}
+			})
+			 
+		})
+	 </script>
 </body>
 
 </html>
