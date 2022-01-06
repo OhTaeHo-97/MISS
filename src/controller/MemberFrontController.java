@@ -45,7 +45,9 @@ public class MemberFrontController extends HttpServlet {
 	
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
+		System.out.println(uri);
 		String cp = request.getContextPath();
+		System.out.println(cp);
 		String command = uri.substring(cp.length());
 		
 		ActionForward forward = null;
@@ -87,6 +89,27 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/account_edit.mem")) {
 			try {
 				forward = new AccountEditAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/delete_mem.mem")) {
+			try {
+				forward = new DeleteMemAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/idRedundancyCheck.mem")) {
+			try {
+				forward = new CheckIdRedundancyAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/nicknameRedundancyCheck.mem")) {
+			try {
+				forward = new CheckNicknameRedundancyAction().execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

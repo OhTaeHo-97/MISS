@@ -5,11 +5,12 @@ create table member(
 );
 
 drop table member;
-insert into member(member_id, member_pw) values('test', '1234');
+insert into member(member_id, member_pw) values('test2', '1234');
 insert into member values('admin', '1234', 'Y');
 select * from member;
 delete from member where member_id = 'test2';
 delete from member where member_id = 'test3';
+delete from member where member_id = 'test4';
 
 create table admin(
     member_id varchar2(30),
@@ -30,8 +31,12 @@ create table consumer(
     CONSTRAINT consumerfk FOREIGN KEY(member_id)
     REFERENCES member(member_id) on DELETE CASCADE
 );
+ALTER table consumer modify (address varchar2(200));
+ALTER table consumer add (postcode number(10));
+ALTER table consumer add (better_address varchar(300));
+ALTER table consumer add (reference varchar(100));
 
-insert into consumer values('test', 'nick', 'korea', '01012345678', 'test@test.com');
+insert into consumer(member_id, nickname, address, phoneNumber, email) values('test2', 'test2', 'korea', '01012341234', 'test2@test.com');
 select * from member;
 drop table consumer;
 select * from consumer;
