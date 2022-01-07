@@ -279,7 +279,7 @@
         <c:set var="startPage" value="${page-(page-1)%5}"/>
         <c:set var="lastPage" value="${board_last}"/>
         
-        <a href="boardPage.board?board_page=${(page==1)?1:(page-1)}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+        <a href="boardPage.board?board_page=${(startPage==1)?1:(startPage-1)}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
           <span class="sr-only">Previous</span>
           <!-- Heroicon name: solid/chevron-left -->
           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -297,7 +297,7 @@
         	 </c:if>
         </c:forEach>
        
-        <a href="boardPage.board?board_page=${(page==lastPage)?lastPage:(page+1)}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+        <a href="boardPage.board?board_page=${(startPage+5<=lastPage)?startPage+5:lastPage}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
           <span class="sr-only">Next</span>
           <!-- Heroicon name: solid/chevron-right -->
           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

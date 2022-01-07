@@ -21,8 +21,8 @@ public class BoardPageAction implements Action {
 			page = Integer.parseInt(cnt);
 		}
 		int totalCount = dao.boardCount();
-		int lastPage = totalCount/5;
-		lastPage = totalCount%5>0?lastPage+1:lastPage;
+		int lastPage = totalCount/8;
+		lastPage = totalCount%8>0?lastPage+1:lastPage;
 		//ArrayList<BoardVO> datas = dao.selectAll(mcnt);
 		ArrayList<BoardVO> datas = dao.selectAllbyPage(page);
 		ActionForward forward = null;
