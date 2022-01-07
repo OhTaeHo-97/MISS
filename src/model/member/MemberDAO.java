@@ -28,7 +28,7 @@ public class MemberDAO {
 	String sql_updateCon = "update consumer set nickname=?, address=?, phonenumber=?, email=?, postcode=?, better_address=?, reference=? where member_id=?";
 	String sql_updateMem = "update member set member_pw = ? where member_id = ?";
 	String sql_delete = "delete from member where member_id = ?";
-	
+	String sql_findId = "select * from consumer where phonenumber=?";
 	
 	public ConsumerSet consumerLogin(MemberVO mvo) { // mvo객체를 통해 member_id와 member_pw를 넘겨받아야 한다.
 		conn = JDBCUtil.connect();
@@ -135,8 +135,8 @@ public class MemberDAO {
 	            cvo.setNickname(rs.getString("nickname")); 
 	            cvo.setPhoneNumber(rs.getString("phoneNumber"));
 	            cvo.setPostcode(rs.getInt("postcode"));
-	            cvo.setBetter_address("better_address");
-	            cvo.setReference("reference");
+	            cvo.setBetter_address(rs.getString("better_address"));
+	            cvo.setReference(rs.getString("reference"));
 	         } 		
 		} catch (SQLException e) {
 			System.out.println("MemberDAO detail에서 예외발생");
@@ -158,6 +158,7 @@ public class MemberDAO {
 			pstmt.setString(1, mvo.getMember_id());
 			pstmt.setString(2, mvo.getMember_pw());
 			pstmt.executeUpdate();
+			System.out.println("멤버 완료");
 			
 			pstmt = conn.prepareStatement(sql_insertCVO);
 			//insert into consumer values(?,?,?,?,?,?,?,?)
@@ -196,9 +197,8 @@ public class MemberDAO {
 	         } else {
 	            SQLException se = new SQLException();
 	            throw se;
-	         } 
-			
-			if(mvo.getMember_pw()==null) {				
+	         }
+			if(mvo.getMember_pw().equals("")) {				
 				System.out.println("기존 비밀번호 유지");
 			}
 			else {
@@ -251,8 +251,8 @@ public class MemberDAO {
 		return true;
 	}
 	
-	public boolean checkId(MemberVO mvo) { // ID 중복검사 : 버튼클릭해서 중복여부 확인
-		boolean usable = false;
+	public int checkId(MemberVO mvo) { // ID 중복검사 : 버튼클릭해서 중복여부 확인
+		int usable = 0;
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(sql_selectOne);
@@ -260,10 +260,10 @@ public class MemberDAO {
 			pstmt.setString(1, mvo.getMember_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) { // 존재한다면?? false값 반환
-				usable = false;
+				usable = 0;
 			}
 			else {			// 존재안한다면?? true값 반환
-				usable = true;
+				usable = 1;
 			}
 			
 		} catch (SQLException e) {
@@ -275,8 +275,8 @@ public class MemberDAO {
 		return usable;
 	}
 	
-	public boolean checkNickname(ConsumerVO cvo) { //Nickname 중복검사
-		boolean usable = false;
+	public int checkNickname(ConsumerVO cvo) { //Nickname 중복검사
+		int usable = 0;
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(sql_selectNickname);
@@ -284,10 +284,10 @@ public class MemberDAO {
 			pstmt.setString(1, cvo.getNickname());
 			rs = pstmt.executeQuery();
 			if(rs.next()) { // 존재한다면?? false값 반환
-				usable = false;
+				usable = 0;
 			}
 			else {			// 존재안한다면?? true값 반환
-				usable = true;
+				usable = 1;
 			}
 		} catch (SQLException e) {
 			System.out.println("MemberDAO checkNickname진행 중 오류");
@@ -297,6 +297,28 @@ public class MemberDAO {
 		}
 		return usable;	
 	}
+	
+	public String findId(ConsumerVO cvo) {
+		String findId = "";
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql_findId);
+			//select * from consumer where phonenumber=?
+			pstmt.setString(1, cvo.getPhoneNumber());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				findId = rs.getString("member_id");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("MemberDAO findId진행 중 오류");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return findId;	// 일치하는 Id가 없을시 ""가 리턴됩니다.
+	}
+	
 }
 
 
