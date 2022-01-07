@@ -28,6 +28,18 @@
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src = "js/registCheck.js"></script>
 	<script src="https://cdn.tailwindcss.com/"></script>
+	<script src = "js/logout.js"></script>
+	<script>
+		<c:if test = "${isDelete == true}">
+			alert("공지사항 삭제를 성공하였습니다!");
+		</c:if>
+		<c:if test = "${isInsert == true}">
+			alert("공지사항 등록을 성공하였습니다!");
+		</c:if>
+		<c:if test = "${isEdit == true}">
+			alert("공지사항 수정을 성공하였습니다!");
+		</c:if>
+	</script>
 </head>
 
 <body>
@@ -69,9 +81,12 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="shop.jsp">Music</a></li>
-                                    <li><a href="device.jsp">Device</a></li>
-                                    <li><a href="notice.jsp">Notice</a></li>
+                                    <li><a href="set_music_filter.do">Music</a></li>
+                                    <li><a href="set_device_filter.do">Device</a></li>
+                                    <li><a href="boardPage.board">Notice</a></li>
+                                    <c:if test = "${auth == 'Y'}">
+                                    	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                                    </c:if>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -82,8 +97,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"> <a href="cart.jsp"></a></span><a href="cart.jsp"> <span class="quantity">1</span></a></p>
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                        <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
+                                        	<span class="quantity">
+	                                        	<c:set var = "cart_num" value = "0" />
+	                                        	<c:forEach var = "pvo" items = "${cartData}">
+	                                        		<c:set var = "cart_num" value = "${cart_num + 1}" />
+	                                        	</c:forEach>
+	                                        	${cart_num}
+                                        	</span>
+                                        </a><!-- <a href="cart.jsp"> <span class="quantity">1</span></a></p> -->
+                                       </p>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +125,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Board</h2>
+            <h2>Notice</h2>
         </div>
     </section>
  <!-- ##### notice Area Start ##### -->
@@ -119,94 +143,179 @@
 </h2>
 <hr><br>
 
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Num
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Title
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Date
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Role
-              </th>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
+	<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+		<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+			<table class="min-w-full divide-y divide-gray-200">
+ 				<thead class="bg-gray-50">
+            		<tr>
+              			<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                			Num
+              			</th>
+              			<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+		                	Title
+						</th>
+						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+							Date
+						</th>
+		              	<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+		                	Role
+		              	</th>
+		              	<th scope="col" class="relative px-6 py-3">
+		                	<span class="sr-only">Edit</span>
+		              	</th>
+            		</tr>
+          		</thead>
+				<tbody class="bg-white divide-y divide-gray-200">
       <!-- 반복부분 -->
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-  
-                    <div class="text-sm font-medium text-gray-900">
-                      	<div class="text-sm text-gray-900">1</div>
-                    </div>
-
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">2022/01/01 배송관련 공지</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  2022-01-01
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Admin
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-              </td>
-            </tr>
-      <!-- 반복부분 -->
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="text-sm font-medium text-gray-900">
-                      	2
-                    </div>
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">블랙 프라이데이 이벤트 기간안내</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  2022-01-01
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Admin
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-              </td>
-            </tr>
+      			<c:forEach var = "bvo" items = "${board_datas}">
+      				<tr>
+	              		<td class="px-6 py-4 whitespace-nowrap">
+	                		<div class="flex items-center">
+	                    		<div class="text-sm font-medium text-gray-900">
+	                      			<div class="text-sm text-gray-900">${bvo.board_id}</div>
+	                    		</div>
+	                		</div>
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap" style = "cursor:pointer;" onclick="location.href='boardDetail.board?bid=${bvo.board_id}'">
+	                		<div class="text-sm text-gray-900">${bvo.title}</div>
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap">
+	                		<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+	                  			${bvo.writedate}
+	                		</span>
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+	                		Admin
+	              		</td>
+	              		<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+	              			<c:if test = "${auth == 'Y'}">
+	              				<a href="boardDelete.board?bid=${bvo.board_id}" class="text-indigo-600 hover:text-indigo-900">Delete</a>
+	              			</c:if>
+	              		</td>
+	              	</tr>
+      			</c:forEach>
+<!--             	<tr> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 		<div class="flex items-center"> -->
+<!--                     		<div class="text-sm font-medium text-gray-900"> -->
+<!--                       			<div class="text-sm text-gray-900">1</div> -->
+<!--                     		</div> -->
+<!--                 		</div> -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 		<div class="text-sm text-gray-900">2022/01/01 배송관련 공지</div> -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 		<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> -->
+<!--                   			2022-01-01 -->
+<!--                 		</span> -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> -->
+<!--                 		Admin -->
+<!--               		</td> -->
+<!--               		<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> -->
+<!--                 		<a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
+<!--               		</td> -->
+<!--               	</tr> -->
+<!--       반복부분 -->
+<!--             <tr> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 <div class="flex items-center"> -->
+<!--                     <div class="text-sm font-medium text-gray-900"> -->
+<!--                       	2 -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 <div class="text-sm text-gray-900">블랙 프라이데이 이벤트 기간안내</div> -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
+<!--                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> -->
+<!--                   2022-01-01 -->
+<!--                 </span> -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> -->
+<!--                 Admin -->
+<!--               </td> -->
+<!--               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> -->
+<!--                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
+<!--               </td> -->
+<!--             </tr> -->
 
             <!-- More people... -->
           </tbody>
         </table>
       </div>
-      <br>
-      <div class = "row justify-content-center">
-      <a href="notice.do?cnt=${cnt}"><button class="ui basic button"> <i class="plus square icon"></i>  See More </button></a>
-      <c:if test="${auth == 'Y'}">
-      	<a href="notice_write.jsp"><button class="ui basic button"> <i class="edit icon"></i>  Write Board </button></a>
-      </c:if>     
-      </div>
+    </div>
+    
+    
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+  <div class="flex-1 flex justify-between sm:hidden">
+    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      Previous
+    </a>
+    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      Next
+    </a>
+  </div>
+  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700">
+      <c:if test = "${auth == 'Y'}">
+      	<button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick = "location.href='noticeWrite.jsp'">
+	        <!-- Heroicon name: solid/pencil -->
+	        <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+	          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+	        </svg>
+	        POST
+       </button>
+      </c:if>
+      </p>
+    </div>
+    <div>
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        <c:set var="page" value="${board_page}"/>
+        <c:set var="startPage" value="${page-(page-1)%5}"/>
+        <c:set var="lastPage" value="${board_last}"/>
+        
+        <a href="boardPage.board?board_page=${(page==1)?1:(page-1)}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">Previous</span>
+          <!-- Heroicon name: solid/chevron-left -->
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+        
+        
+        <c:forEach var="i" begin="0" end="4">
+        	 <c:if test="${(startPage+i) <= lastPage}">        	 
+	        	 <a href="boardPage.board?board_page=${startPage+i}" class="bg-white border-gray-300 ${((startPage+i)==page)?'text-blue-500':'text-gray-500'} hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+	          		${startPage+i}
+	        	</a>
+        	 </c:if>
+        </c:forEach>
+       
+        <a href="boardPage.board?board_page=${(page==lastPage)?lastPage:(page+1)}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">Next</span>
+          <!-- Heroicon name: solid/chevron-right -->
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </nav>
     </div>
   </div>
 </div>
+    
+  </div>
+  
+
+  
+</div>
+
+
           
                     
 
