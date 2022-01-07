@@ -114,20 +114,42 @@ public class MemberFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if(command.equals("/nicknameEditRedundancyCheck.mem")) {
+			try {
+				forward = new CheckNicknameEditRedundancyAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/findId.mem")) {
+			try {
+				forward = new FindIdAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/findPw.mem")) {
+			try {
+				forward = new FindPwAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/findPwPage.mem")) {
+			try {
+				forward = new FindPwPageAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/newPw.mem")) {
+			try {
+				forward = new ResetPasswordAction().execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-//		else if(command.equals("/idcheck.mem")) {
-//			String userId = request.getParameter("userId");
-//			PrintWriter out = response.getWriter();
-//			
-//			MemberDAO dao = new MemberDAO();
-//			int idCheck = dao.checkId(userId);
-//			if(idCheck == 0) {
-//				System.out.println("이미 존재하는 아이디입니다.");
-//			} else if(idCheck == 1) {
-//				System.out.println("사용 가능한 아이디입니다.");
-//			}
-//			out.write(idCheck + "");
-//		}
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {

@@ -26,7 +26,6 @@
 						$("#id_check").css("color", "red");
 						$("#reg_submit").attr("disabled", true);
 					} else {
-						
 						if(idJ.test(user_id)){
 							// 0 : 아이디 길이 / 문자열 검사
 							$("#id_check").text("");

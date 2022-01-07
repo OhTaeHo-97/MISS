@@ -16,6 +16,7 @@ public class ProductRegistAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		ProductVO vo = new ProductVO();
 		System.out.println(request.getParameter("image"));
+		System.out.println(request.getServletContext().getRealPath("upload"));
 		System.out.println(request.getParameter("comment"));
 		
 		vo.setMusic_genre(request.getParameter("genre"));

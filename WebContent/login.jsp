@@ -150,6 +150,9 @@
 									        <label>admin</label>
 									      </div>
 									    </div>
+									    <div class = "field" style = "margin-left: 37%;">
+									    	<a href = "findId.jsp" style = "font-size: 14px; margin:0; padding:0;">아이디</a> / <a href = "findPw.jsp" style = "font-size: 14px; margin:0; padding:0;">비밀번호 찾기</a>
+									    </div>
 								  	</div>
 								  </div>
 								  

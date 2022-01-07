@@ -28,6 +28,24 @@ const edit_check = function() {
 		return false;
 	}
 	
+	const nickname = document.editForm.nickname;
+	const checkNickname = document.getElementById("checkNickname");
+	if(nickname.value == '') {
+		alert("닉네임을 입력하세요.");
+		nickname.focus();
+		return false;
+	}
+	if(checkNickname.innerText == '사용할 수 없는 닉네임입니다.') {
+		alert("닉네임을 확인하세요.");
+		nickname.focus();
+		return false;
+	}
+	if(checkNickname.innerText == '') {
+		alert("닉네임을 확인하세요.");
+		nickname.focus();
+		return false;
+	}
+	
 	const email = document.editForm.email;
 	if(email.value != '') {
 		const expEmailText = /^[A-Za-z0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z0-9\.\-]+$/;
@@ -38,10 +56,17 @@ const edit_check = function() {
 		}
 	}
 	
-	const address = document.editForm.address;
-	if(address.value == '') {
-		alert("주소를 입력하세요.");
-		address.focus();
+	const sample6_postcode = document.getElementById("sample6_postcode");
+	if(sample6_postcode.value == '') {
+		alert("우편번호 및 주소를 입력하세요.");
+		sample6_postcode.focus();
+		return false;
+	}
+	
+	const sample6_detailAddress = document.getElementById("sample6_detailAddress");
+	if(sample6_detailAddress.value == '') {
+		alert("상세주소를 입력하세요.");
+		sample6_detailAddress.focus();
 		return false;
 	}
 	return true;

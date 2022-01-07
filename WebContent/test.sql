@@ -53,6 +53,44 @@ select * from board;
 
 insert into board(board_id, title, board_content) values(1, '2022/01/01 배송관련 공지', '2022/01/01 배송이 지연될 예정입니다.');
 insert into board(board_id, title, board_content) values(2, '블랙 프라이데이 이벤트 기간안내', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(4, '1', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(5, '2', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(6, '3', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(7, '4', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(8, '5', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(9, '6', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(10, '7', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(11, '8', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(12, '9', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(13, '10', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(14, '11', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(15, '12', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(16, '13', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(17, '14', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(18, '15', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(19, '16', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(20, '17', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(21, '8', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(22, '9', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(23, '10', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(24, '11', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(25, '12', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(26, '13', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(27, '14', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(28, '15', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(29, '16', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(30, '17', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(31, '8', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(32, '9', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(33, '10', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(34, '11', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(35, '12', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(36, '13', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(37, '14', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(38, '15', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(39, '16', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(40, '17', '2022/01/01 ~ 2022/01/14');
+
 
 create table product(
     product_id int primary key,

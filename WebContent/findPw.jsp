@@ -12,40 +12,20 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Miss - Music Song/Speaker</title>
+    <title>Miss. - Find Password</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 	<script
  		 src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src = "js/logout.js"></script>
-	<script>
-		<c:if test = "${isLogout == true}">
-			alert("로그아웃하였습니다!");
-		</c:if>
-		<c:if test = "${isRegister == true}">
-			alert("회원가입되었습니다!");
-		</c:if>
-		<c:if test = "${isRegistProduct == true}">
-			alert("제품 등록이 완료되었습니다!");
-		</c:if>
-		<c:if test = "${isPay == true}">
-			alert("결제가 완료되었습니다!");
-		</c:if>
-		<c:if test = "${isDelete == true}">
-			alert("탈퇴가 완료되었습니다!");
-		</c:if>
-		<c:if test = "${resetPassword == true}">
-			alert("비밀번호를 변경하였습니다!");
-		</c:if>
-	</script>
 
 </head>
 
@@ -71,7 +51,6 @@
 
                         <!-- Nav brand -->
                         <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-						
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -105,7 +84,7 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn" onclick = "location.href='cartPage.do'">
+                                     <div class="cart-btn" onclick = "location.href='cartPage.do'">
                                         <p><span class="icon-shopping-cart"></span><a href="cartPage.do">
                                         	<span class="quantity">
 	                                        	<c:set var = "cart_num" value = "0" />
@@ -124,57 +103,50 @@
                         </div>
                     </nav>
                 </div>
-                
-                
-                
             </div>
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
-        <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/main.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>Find Account</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
 
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/device2.jpg);"></div>
-                <!-- Slide Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
-                            </div>
+ <!-- ##### Login Area Start ##### -->
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Find Password</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+                            <form action="findPw.mem" method="post">
+                            	<div class="form-group">
+                                    <label for="member_id">ID</label>
+                                    <input type="text" class="form-control" name = "member_id" id="member_id" aria-describedby="emailHelp" placeholder="Enter your ID" value = "${result_id}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="text" class="form-control" name = "phoneNumber" id="phoneNumber" aria-describedby="emailHelp" placeholder="Enter your phone number">
+                                </div>
+                                <button type="submit" class="btn oneMusic-btn mt-30">비밀번호 찾기</button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ##### Hero Area End ##### -->
+    <!-- ##### Login Area End ##### -->
 
-
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
@@ -188,6 +160,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
+                            <li><a href="#">Home</a></li>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>

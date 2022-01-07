@@ -26,7 +26,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script src = "js/accountEditCheck.js"></script>
+	<script src = "js/accountEditCheck.js?ver=1"></script>
 	<script src = "js/logout.js"></script>
 	<script src="https://cdn.tailwindcss.com/"></script>
 	<script>
@@ -166,10 +166,8 @@
 	     	 <input type="text" name = "nickname" id = "nickname" value="${cvo.nickname}">
 	    </div>
 	    <div class="field">
-	    <label><br></label>
-		   <button class="ui button">
-		  		Duplication Confirm
-		   </button>
+		    <label><br></label>
+		    <font id = "checkNickname"></font>
 	   </div>
     </div>
   	<div class="field">
@@ -351,6 +349,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	        }).open();
 	    }
 	</script>
+	<script>
+		$('#nickname').focusout(function(){
+			let nickname = $('#nickname').val(); // input_id에 입력되는 값
+			
+			$.ajax({
+				url : "nicknameEditRedundancyCheck.mem",
+				type : "post",
+				data : {nickname: nickname},
+				dataType : 'json',
+				success : function(result){
+					if(result == 0){
+						$("#checkNickname").html('사용할 수 없는 닉네임입니다.');
+						$("#checkNickname").attr('color','red');
+					} else{
+						$("#checkNickname").html('사용할 수 있는 닉네임입니다.');
+						$("#checkNickname").attr('color','green');
+					} 
+				},
+				error : function(){
+					alert("서버요청실패");
+				}
+			})
+			 
+		})
+	 </script>
 </body>
 
 </html>
