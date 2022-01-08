@@ -2,16 +2,46 @@
  * 
  */
 
-const edit_check = function() {
-	const member_pw = document.editForm.member_pw;
-	const confirm_pw = document.editForm.confirm_pw;
+const check = function() {
+	const member_id = document.regForm.member_id;
+	const checkId = document.getElementById("checkId");
+	console.log(member_id.value);
+	console.log(checkId.innerText);
+	if(member_id.value == '') {
+		alert("아이디를 입력하세요.");
+		member_id.focus();
+		return false;
+	}
+	if(checkId.innerText == '사용할 수 없는 아이디입니다.') {
+		alert("아이디를 확인하세요.");
+		member_id.focus();
+		return false;
+	}
+	if(checkId.innerText == '') {
+		alert("아이디를 확인하세요.");
+		member_id.focus();
+		return false;
+	}
+	
+	const member_pw = document.regForm.member_pw;
+	const confirm_pw = document.regForm.confirm_pw;
+	if(member_pw.value == '') {
+		alert("비밀번호를 입력하세요.");
+		member_pw.focus();
+		return false;
+	}
+	if(confirm_pw.value == '') {
+		alert("비밀번호 확인을 입력하세요.");
+		confirm_pw.focus();
+		return false;
+	}
 	if(member_pw.value != confirm_pw.value) {
 		alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 		member_pw.focus();
 		return false;
 	}
 	
-	const phone = document.editForm.phone;
+	const phone = document.regForm.phone;
 	if(phone.value == '') {
 		alert("전화번호를 입력하세요.");
 		phone.focus();
@@ -28,7 +58,7 @@ const edit_check = function() {
 		return false;
 	}
 	
-	const nickname = document.editForm.nickname;
+	const nickname = document.regForm.nickname;
 	const checkNickname = document.getElementById("checkNickname");
 	if(nickname.value == '') {
 		alert("닉네임을 입력하세요.");
@@ -46,7 +76,7 @@ const edit_check = function() {
 		return false;
 	}
 	
-	const email = document.editForm.email;
+	const email = document.regForm.email;
 	if(email.value != '') {
 		const expEmailText = /^[A-Za-z0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z0-9\.\-]+$/;
 		if(!expEmailText.test(email.value)) {

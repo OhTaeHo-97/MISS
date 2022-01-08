@@ -39,6 +39,12 @@
 		<c:if test = "${isPay == true}">
 			alert("결제가 완료되었습니다!");
 		</c:if>
+		<c:if test = "${isDelete == true}">
+			alert("탈퇴가 완료되었습니다!");
+		</c:if>
+		<c:if test = "${resetPassword == true}">
+			alert("비밀번호를 변경하였습니다!");
+		</c:if>
 	</script>
 
 </head>
@@ -64,7 +70,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="img/5.png" alt=""></a>
 						
 
                         <!-- Navbar Toggler -->
@@ -138,9 +144,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                            	<h6 data-animation="fadeInUp" data-delay="100ms">Streaming</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="set_music_filter.do" class="btn oneMusic-btn mt-50">Music <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -156,9 +162,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Innovative</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Bring Everywhere <span>Bring Everywhere</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="set_device_filter.do" class="btn oneMusic-btn mt-50">Device <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -173,26 +179,41 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="img/2.png" alt=""></a>
+
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Miss</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
-
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
-                        <ul>
-                            <li><a href="#">Music</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+						<ul>
+                            <li><a href="set_music_filter.do">Music</a></li>
+                            <li><a href="set_device_filter.do">Device</a></li>
+                            <li><a href="boardPage.board">Notice</a></li>
+                            <c:if test = "${auth == 'Y'}">
+                            	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                            </c:if>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <div class="ui icon buttons">
+			                    <button class="ui black button" onclick="location.href='https://www.instagram.com/'">
+			                    	<i class="instagram icon" style="user-select: auto;"></i>
+			                    </button>		
+			                    <button class="ui black button" onclick="location.href='https://www.youtube.com/'">
+			                    	<i class="youtube square icon" style="user-select: auto;"></i>
+			                    </button>				                    			                    
+			                    <button class="ui black button" onclick="location.href='https://www.facebook.com/'">
+			                    	<i class="facebook icon" style="user-select: auto;"></i>
+			                    </button>			                    
+				            	</div>        
+				            </li>                   
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </footer>
-    <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->

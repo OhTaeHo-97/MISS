@@ -12,7 +12,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Miss. - Cart</title>
+    <title>Miss. - Find Password</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -112,138 +112,40 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>cart</h2>
+            <h2>Find Account</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
 
-    <!-- ##### Cart Area Start ##### -->
+ <!-- ##### Login Area Start ##### -->
     <section class="login-area section-padding-100">
-    
         <div class="container">
             <div class="row justify-content-center">
-
-			<div class="ui items">
-			<!-- for each구문으로 장바구니에 담겨있는만큼 출력필요 -->
-			<c:choose>
-				<c:when test = "${empty data}">
-					<div style = "text-align:center;"><h6>로그인이 필요합니다!</h6></div>
-				</c:when>
-				<c:otherwise>
-					<c:choose>
-						<c:when test = "${empty pvoData}">
-							<div style = "text-align:center;"><h6>장바구니에 담긴 상품이 없습니다!</h6></div>
-						</c:when>
-						<c:otherwise>
-							<c:forEach var = "pvo" items = "${pvoData}">
-								<div class="item">
-					    			<div class="ui small image">
-					      				<img src="${pvo.product_pictureurl}">
-					    			</div>
-					  			    <div class="content">
-					     			 <div class="header">${pvo.product_name}
-					     			 <c:if test = "${pvo.product_category == 'music'}">
-					     			 	&nbsp;&nbsp;- ${pvo.music_singer}
-					     			 </c:if>
-					     			 </div>
-					   				 <div class="meta">
-					      			 	<span class="price">${pvo.price}₩</span>
-					   				 </div>
-									 <div class="extra">
-					        		 	<a href="deleteCart.do?deleteId=${pvo.product_id}"><i class="minus circle icon"></i></a>
-					      			 </div>
-					    		     </div>
-					  			</div>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</c:otherwise>
-			</c:choose>
-<%-- 			<c:forEach var = "pvo" items = "pvoData"> --%>
-<!-- 				<div class="item"> -->
-<!-- 	    			<div class="ui small image"> -->
-<!-- 	      				<img src="img/chance.jpg"> -->
-<!-- 	    			</div> -->
-<!-- 	  			    <div class="content"> -->
-<%-- 	     			 <div class="header">${pvo.product_name} --%>
-<%-- 	     			 <c:if test = "${pvo.product_category == 'music'}"> --%>
-<%-- 	     			 	&nbsp;&nbsp;- ${pvo.music_singer} --%>
-<%-- 	     			 </c:if> --%>
-<!-- 	     			 </div> -->
-<!-- 	   				 <div class="meta"> -->
-<%-- 	      			 	<span class="price">${pvo.price}₩</span> --%>
-<!-- 	   				 </div> -->
-<!-- 					 <div class="extra"> -->
-<!-- 	        		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
-<!-- 	      			 </div> -->
-<!-- 	    		     </div> -->
-<!-- 	  			</div> -->
-<%-- 			</c:forEach> --%>
-<!--   			<div class="item"> -->
-<!--     			<div class="ui small image"> -->
-<!--       				<img src="img/chance.jpg"> -->
-<!--     			</div> -->
-<!--   			    <div class="content"> -->
-<!--      			 <div class="header">chance the rapper - coloring book</div> -->
-<!--    				 <div class="meta"> -->
-<!--       			 	<span class="price">$1200</span> -->
-<!--    				 </div> -->
-<!-- 				 <div class="extra"> -->
-<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
-<!--       			 </div> -->
-<!--     		     </div> -->
-<!--   			</div> -->
-<!--   			<div class="item"> -->
-<!--     			<div class="ui small image"> -->
-<!--       				<img src="img/1975.jpg"> -->
-<!--     			</div> -->
-<!--   			    <div class="content"> -->
-<!--      			 <div class="header">The1975 - A Brief Inquiry into Online Relationships</div> -->
-<!--    				 <div class="meta"> -->
-<!--       			 	<span class="price">$1340</span> -->
-<!--    				 </div> -->
-<!-- 				 <div class="extra"> -->
-<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
-<!--       			 </div> -->
-<!--     		     </div> -->
-<!--   			</div> -->
-<!--   			<div class="item"> -->
-<!--     			<div class="ui small image"> -->
-<!--       				<img src="img/lp.jpg"> -->
-<!--     			</div> -->
-<!--   			    <div class="content"> -->
-<!--      			 <div class="header">LP Player Gadhouse x Honne</div> -->
-<!--    				 <div class="meta"> -->
-<!--       			 	<span class="price">$1840</span> -->
-<!--    				 </div> -->
-<!-- 				 <div class="extra"> -->
-<!--         		 	<a href="cart.jsp"><i class="minus circle icon"></i></a> -->
-<!--       			 </div> -->
-<!--     		     </div> -->
-<!--   			</div> -->
-  			
-			</div>
-            </div>
-            
-        </div>
-        
-    </section>
-    <!-- ##### Cart Area End ##### -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="load-more-btn text-center mt-70">
-                    <c:if test = "${not empty pvoData}">
-                    	<a href="paymentPage.do" class="btn oneMusic-btn btn-2 m-2">ORDER<i class="fa fa-angle-double-right"></i></a>
-                    </c:if>
-                    <br><br>	
-                    </div> 
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Find Password</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+							<form action="newPw.mem" method="post">
+	                       		<input type = "hidden" name = "member_id" value = "${member_id}">
+	                           	<div class="form-group">
+									<label for="member_id">New Password</label>
+									<input type="password" class="form-control" name = "member_pw" id="member_pw" aria-describedby="emailHelp" placeholder="Enter your new password">
+								</div>
+								<div class="form-group">
+									<label for="member_pw_confirm">New Password Confirm</label>
+									<input type="password" class="form-control" name = "member_pw_confirm" id="member_pw_confirm" placeholder="Confirm your new password">
+								</div>
+								<input type = "submit" class="btn oneMusic-btn mt-30" value = "비밀번호 변경">
+	                       	</form>
+                        </div>
+                    </div>
                 </div>
             </div>
-	
+        </div>
+    </section>
+    <!-- ##### Login Area End ##### -->
 
-	
-	
-	
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
@@ -298,4 +200,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Active js -->
     <script src="js/active.js"></script>
 </body>
+
 </html>

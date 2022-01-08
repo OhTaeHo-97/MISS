@@ -26,7 +26,7 @@
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script src = "js/accountEditCheck.js"></script>
+	<script src = "js/accountEditCheck.js?ver=1"></script>
 	<script src = "js/logout.js"></script>
 	<script src="https://cdn.tailwindcss.com/"></script>
 	<script>
@@ -58,7 +58,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="img/5.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -126,13 +126,12 @@
     <!-- ##### Breadcumb Area End ##### -->
 
     <!-- ##### Blog Area Start ##### -->
- <!-- ##### notice Area Start ##### -->
     <section class="login-area section-padding-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
 
-                    <!-- Account settings Start -->
+                    <!-- Single -->
                     
 <form class="ui form" action = "account_edit.mem" method = "POST" name = "editForm" id = "editForm" onsubmit = "return edit_check()">
   <h4 class="ui dividing header">Edit Account</h4>
@@ -167,30 +166,48 @@
 	     	 <input type="text" name = "nickname" id = "nickname" value="${cvo.nickname}">
 	    </div>
 	    <div class="field">
-	    <label><br></label>
-		   <button class="ui button">
-		  		Duplication Confirm
-		   </button>
+		    <label><br></label>
+		    <font id = "checkNickname"></font>
 	   </div>
     </div>
   	<div class="field">
     	<label>E-mail</label>
     	<input type="email" name = "email" id = "email" placeholder="sks232@naver.com" value="${cvo.email}">
   	</div>
-  	<div class="field">
-    	<label>Billing Address</label>
-    	<input type="text" name = "address" id = "address" placeholder="Street Address" value="${cvo.address}">
-  	</div>
-  	<div class="field">
+  	
+  	<div class="two fields">
+	    <div class="field">
+	     	 <label>Billing Address</label>
+	     	 <input type="text" name = "postcode" id="sample6_postcode" value = "${cvo.postcode}" placeholder="우편번호" readonly>
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <input type="button" class="ui button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+	   </div>
+    </div>
+	<div class="two fields">
+	    <div class="field">
+	     	 <label><br></label>
+	     	 <input type="text" name = "address" id="sample6_address" value = "${cvo.address}" placeholder="주소" readonly>
+	    </div>
+	    <div class="field">
+	    <label><br></label>
+		   <input type="text" name = "reference" id="sample6_extraAddress" value = "${cvo.reference}" placeholder="참고항목" readonly>
+	   </div>
+    </div>
+    <div class = "field">
+	    <input type="text" name = "better_address" id="sample6_detailAddress" value = "${cvo.better_address}" placeholder="상세주소">
+	</div>
+	<div class="field">
   	  	<input type = "submit" class="ui secondary button" value = "Save">
-  	  	<button class="ui blue button">Delete</button>
-  	  </div>
+  	  	<input type = "button" class="ui blue button" onclick = "location.href='delete_mem.mem'" value = "Delete">
+	</div>
 <br>
 </form>
-				<!-- Account settings End -->
-               </div>
-         </div>
-    </div>
+                    <!-- Single -->            
+                </div>
+            </div>
+        </div>
     </section>
     <!-- ##### Blog Area End ##### -->
 
@@ -249,23 +266,38 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="img/2.png" alt=""></a>
+
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Miss</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
-
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Music</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+						<ul>
+                            <li><a href="set_music_filter.do">Music</a></li>
+                            <li><a href="set_device_filter.do">Device</a></li>
+                            <li><a href="boardPage.board">Notice</a></li>
+                            <c:if test = "${auth == 'Y'}">
+                            	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                            </c:if>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <div class="ui icon buttons">
+			                    <button class="ui black button" onclick="location.href='https://www.instagram.com/'">
+			                    	<i class="instagram icon" style="user-select: auto;"></i>
+			                    </button>		
+			                    <button class="ui black button" onclick="location.href='https://www.youtube.com/'">
+			                    	<i class="youtube square icon" style="user-select: auto;"></i>
+			                    </button>				                    			                    
+			                    <button class="ui black button" onclick="location.href='https://www.facebook.com/'">
+			                    	<i class="facebook icon" style="user-select: auto;"></i>
+			                    </button>			                    
+				            	</div>        
+				            </li>                   
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </footer>
@@ -282,6 +314,81 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+	    function sample6_execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("sample6_extraAddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("sample6_extraAddress").value = '';
+	                }
+	
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('sample6_postcode').value = data.zonecode;
+	                document.getElementById("sample6_address").value = addr;
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("sample6_detailAddress").focus();
+	            }
+	        }).open();
+	    }
+	</script>
+	<script>
+		$('#nickname').focusout(function(){
+			let nickname = $('#nickname').val(); // input_id에 입력되는 값
+			
+			$.ajax({
+				url : "nicknameEditRedundancyCheck.mem",
+				type : "post",
+				data : {nickname: nickname},
+				dataType : 'json',
+				success : function(result){
+					if(result == 0){
+						$("#checkNickname").html('사용할 수 없는 닉네임입니다.');
+						$("#checkNickname").attr('color','red');
+					} else{
+						$("#checkNickname").html('사용할 수 있는 닉네임입니다.');
+						$("#checkNickname").attr('color','green');
+					} 
+				},
+				error : function(){
+					alert("서버요청실패");
+				}
+			})
+			 
+		})
+	 </script>
 </body>
 
 </html>

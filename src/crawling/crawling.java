@@ -74,7 +74,7 @@ public class crawling {
 				pstmt.setString(1, title.get(i));
 				pstmt.setInt(2, 15000);
 				pstmt.setString(3, album_img.get(i));
-				pstmt.setString(4, "device");
+				pstmt.setString(4, "music");
 				pstmt.setInt(5, 100);
 				pstmt.executeUpdate();
 			}
