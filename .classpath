@@ -26,5 +26,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/Web_Development/resource/jsoup-1.14.3.jar"/>
+	<classpathentry kind="lib" path="D:/Web_Project/resource/activation.jar"/>
+	<classpathentry kind="lib" path="D:/Web_Project/resource/javax.mail-1.5.5.jar"/>
+	<classpathentry kind="lib" path="D:/Web_Project/resource/javax.mail-api-1.5.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -63,7 +63,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="img/5.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -167,12 +167,14 @@
           		</thead>
 				<tbody class="bg-white divide-y divide-gray-200">
       <!-- 반복부분 -->
+      			<c:set var = "count" value = "${board_count - ((board_page - 1) * 8)}" />
       			<c:forEach var = "bvo" items = "${board_datas}">
       				<tr>
 	              		<td class="px-6 py-4 whitespace-nowrap">
 	                		<div class="flex items-center">
 	                    		<div class="text-sm font-medium text-gray-900">
-	                      			<div class="text-sm text-gray-900">${bvo.board_id}</div>
+									<div class="text-sm text-gray-900">${count}</div>
+									<c:set var = "count" value = "${count - 1}" />
 	                    		</div>
 	                		</div>
 	              		</td>
@@ -194,53 +196,6 @@
 	              		</td>
 	              	</tr>
       			</c:forEach>
-<!--             	<tr> -->
-<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
-<!--                 		<div class="flex items-center"> -->
-<!--                     		<div class="text-sm font-medium text-gray-900"> -->
-<!--                       			<div class="text-sm text-gray-900">1</div> -->
-<!--                     		</div> -->
-<!--                 		</div> -->
-<!--               		</td> -->
-<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
-<!--                 		<div class="text-sm text-gray-900">2022/01/01 배송관련 공지</div> -->
-<!--               		</td> -->
-<!--               		<td class="px-6 py-4 whitespace-nowrap"> -->
-<!--                 		<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> -->
-<!--                   			2022-01-01 -->
-<!--                 		</span> -->
-<!--               		</td> -->
-<!--               		<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> -->
-<!--                 		Admin -->
-<!--               		</td> -->
-<!--               		<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> -->
-<!--                 		<a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
-<!--               		</td> -->
-<!--               	</tr> -->
-<!--       반복부분 -->
-<!--             <tr> -->
-<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
-<!--                 <div class="flex items-center"> -->
-<!--                     <div class="text-sm font-medium text-gray-900"> -->
-<!--                       	2 -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--               </td> -->
-<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
-<!--                 <div class="text-sm text-gray-900">블랙 프라이데이 이벤트 기간안내</div> -->
-<!--               </td> -->
-<!--               <td class="px-6 py-4 whitespace-nowrap"> -->
-<!--                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> -->
-<!--                   2022-01-01 -->
-<!--                 </span> -->
-<!--               </td> -->
-<!--               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> -->
-<!--                 Admin -->
-<!--               </td> -->
-<!--               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> -->
-<!--                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
-<!--               </td> -->
-<!--             </tr> -->
 
             <!-- More people... -->
           </tbody>
@@ -276,10 +231,10 @@
     <div>
       <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
         <c:set var="page" value="${board_page}"/>
-        <c:set var="startPage" value="${page-(page-1)%5}"/>
+        <c:set var="startPage" value="${page - (page - 1) % 5}"/>
         <c:set var="lastPage" value="${board_last}"/>
         
-        <a href="boardPage.board?board_page=${(startPage == 1)?1:(pagstartPagee - 1)}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+        <a href="boardPage.board?board_page=${(startPage == 1)? 1 : (startPage - 1)}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
           <span class="sr-only">Previous</span>
           <!-- Heroicon name: solid/chevron-left -->
           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -289,7 +244,7 @@
         <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
         <c:forEach var = "i" begin = "0" end = "4">
         	<c:if test = "${(startPage + i) <= lastPage}">
-        		<a href = "boardPage.board?board_page=${startPage+i}" class = "bg-white border-gray-300 ${((startPage+i)==page)?'text-blue-500':'text-gray-500'} hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+        		<a href = "boardPage.board?board_page=${startPage + i}" class = "bg-white border-gray-300 ${((startPage + i) == page)? 'text-blue-500' : 'text-gray-500'} hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
         			${startPage + i}
         		</a>
         	</c:if>
@@ -302,34 +257,6 @@
 				<path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
 			</svg>
         </a>
-<!--         <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> -->
-<!--           1 -->
-<!--         </a> -->
-<!--         <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> -->
-<!--           2 -->
-<!--         </a> -->
-<!--         <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> -->
-<!--           3 -->
-<!--         </a> -->
-<!--         <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> -->
-<!--           ... -->
-<!--         </span> -->
-<!--         <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> -->
-<!--           8 -->
-<!--         </a> -->
-<!--         <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> -->
-<!--           9 -->
-<!--         </a> -->
-<!--         <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> -->
-<!--           10 -->
-<!--         </a> -->
-<!--         <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"> -->
-<!--           <span class="sr-only">Next</span> -->
-<!--           Heroicon name: solid/chevron-right -->
-<!--           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"> -->
-<!--             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /> -->
-<!--           </svg> -->
-<!--         </a> -->
       </nav>
     </div>
   </div>
@@ -391,22 +318,22 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
+                                        <input type="text" class="form-control" id="member_name" name = "member_name" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
+                                        <input type="email" class="form-control" id="email" name = "email" placeholder="E-mail">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                        <input type="text" class="form-control" id="subject" name = "subject" placeholder="Subject">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                        <textarea name="message" class="form-control" id="message" name = "message" cols="30" rows="10" placeholder="Message"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
@@ -426,23 +353,38 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="img/2.png" alt=""></a>
+
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Miss</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
-
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Music</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+						<ul>
+                            <li><a href="set_music_filter.do">Music</a></li>
+                            <li><a href="set_device_filter.do">Device</a></li>
+                            <li><a href="boardPage.board">Notice</a></li>
+                            <c:if test = "${auth == 'Y'}">
+                            	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                            </c:if>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <div class="ui icon buttons">
+			                    <button class="ui black button" onclick="location.href='https://www.instagram.com/'">
+			                    	<i class="instagram icon" style="user-select: auto;"></i>
+			                    </button>		
+			                    <button class="ui black button" onclick="location.href='https://www.youtube.com/'">
+			                    	<i class="youtube square icon" style="user-select: auto;"></i>
+			                    </button>				                    			                    
+			                    <button class="ui black button" onclick="location.href='https://www.facebook.com/'">
+			                    	<i class="facebook icon" style="user-select: auto;"></i>
+			                    </button>			                    
+				            	</div>        
+				            </li>                   
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </footer>

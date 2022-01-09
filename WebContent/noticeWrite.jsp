@@ -53,7 +53,7 @@
 
 						<!-- Nav brand -->
 						<a href="main.jsp" class="nav-brand"><img
-							src="img/core-img/logo.png" alt=""></a>
+							src="img/5.png" alt=""></a>
 
 						<!-- Navbar Toggler -->
 						<div class="classy-navbar-toggler">
@@ -170,35 +170,45 @@
 	<!-- ##### Blog Area End ##### -->
 
 	<!-- ##### Footer Area Start ##### -->
-	<footer class="footer-area">
-		<div class="container">
-			<div class="row d-flex flex-wrap align-items-center">
-				<div class="col-12 col-md-6">
-					<a href="#"><img src="img/core-img/logo.png" alt=""></a>
-					<p class="copywrite-text">
-						<a href="#"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;<script>
-								document.write(new Date().getFullYear());
-							</script> All rights reserved | This template is made with <i
-							class="fa fa-heart-o" aria-hidden="true"></i> by <a
-							href="https://colorlib.com" target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#"><img src="img/2.png" alt=""></a>
 
-				<div class="col-12 col-md-6">
-					<div class="footer-nav">
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Miss</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="footer-nav">
 						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Albums</a></li>
-							<li><a href="#">Events</a></li>
-							<li><a href="#">News</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+                            <li><a href="set_music_filter.do">Music</a></li>
+                            <li><a href="set_device_filter.do">Device</a></li>
+                            <li><a href="boardPage.board">Notice</a></li>
+                            <c:if test = "${auth == 'Y'}">
+                            	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                            </c:if>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <div class="ui icon buttons">
+			                    <button class="ui black button" onclick="location.href='https://www.instagram.com/'">
+			                    	<i class="instagram icon" style="user-select: auto;"></i>
+			                    </button>		
+			                    <button class="ui black button" onclick="location.href='https://www.youtube.com/'">
+			                    	<i class="youtube square icon" style="user-select: auto;"></i>
+			                    </button>				                    			                    
+			                    <button class="ui black button" onclick="location.href='https://www.facebook.com/'">
+			                    	<i class="facebook icon" style="user-select: auto;"></i>
+			                    </button>			                    
+				            	</div>        
+				            </li>                   
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
 	<!-- ##### Footer Area Start ##### -->
 
 	<!-- ##### All Javascript Script ##### -->

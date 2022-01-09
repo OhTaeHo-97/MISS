@@ -90,6 +90,16 @@ insert into board(board_id, title, board_content) values(37, '14', '2022/01/01 ~
 insert into board(board_id, title, board_content) values(38, '15', '2022/01/01 ~ 2022/01/14');
 insert into board(board_id, title, board_content) values(39, '16', '2022/01/01 ~ 2022/01/14');
 insert into board(board_id, title, board_content) values(40, '17', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(41, '41', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(42, '42', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(43, '43', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(44, '44', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(45, '45', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(46, '46', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(47, '47', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(48, '48', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(49, '49', '2022/01/01 ~ 2022/01/14');
+insert into board(board_id, title, board_content) values(50, '50', '2022/01/01 ~ 2022/01/14');
 
 
 create table product(
@@ -108,6 +118,7 @@ create table product(
 
 select * from product;
 drop table product;
+drop table review;
 
 
 create table review(

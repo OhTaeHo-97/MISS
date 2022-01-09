@@ -50,7 +50,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="img/5.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -182,106 +182,6 @@
 		            </div>
         		</c:otherwise>
         	</c:choose>
-<!--             <div class="row"> -->
-<%-- 				<c:forEach var = "data" items = "${searchDatas}"> --%>
-<!-- 					<div class="col-12 col-sm-6 col-md-3"> -->
-<!--                     <div class="single-album-area"> -->
-<%--                     <a href="detail.do?productid=${data.product_id}"> --%>
-<!--                         <div class="album-thumb"> -->
-<%--                             <img src="${data.product_pictureurl}" alt="${data.product_name}"> --%>
-<!--                             Album Price -->
-<!--                             <div class="album-price"> -->
-<%--                                 <p>${data.price}₩</p> --%>
-<!--                             </div> -->
-<!--                             Play Icon -->
-<!--                             <div class="play-icon"> -->
-<!--                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a> -->
-<!--                             </div> -->
-<!--                         </div> -->
-<!--                         <div class="album-info"> -->
-<%--                                 <h5>${data.product_name}</h5> --%>
-<!--                         </div> -->
-<!--                        </a> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<%-- 				</c:forEach> --%>
-                <!-- Single Album Area -->
-<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
-<!--                     <div class="single-album-area"> -->
-<!--                         <div class="album-thumb"> -->
-<!--                             <img src="img/bg-img/b1.jpg" alt=""> -->
-<!--                             Album Price -->
-<!--                             <div class="album-price"> -->
-<!--                                 <p>$0.90</p> -->
-<!--                             </div> -->
-<!--                             Play Icon -->
-<!--                             <div class="play-icon"> -->
-<!--                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a> -->
-<!--                             </div> -->
-<!--                         </div> -->
-<!--                         <div class="album-info"> -->
-<!--                             <a href="#"> -->
-<!--                                 <h5>Garage Band</h5> -->
-<!--                             </a> -->
-<!--                             <p>Radio Station</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-
-<!--                 Single Album Area -->
-<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
-<!--                     <div class="single-album-area"> -->
-<!--                         <div class="album-thumb"> -->
-<!--                             <img src="img/bg-img/b2.jpg" alt=""> -->
-<!--                         </div> -->
-<!--                         <div class="album-info"> -->
-<!--                             <a href="#"> -->
-<!--                                 <h5>Noises</h5> -->
-<!--                             </a> -->
-<!--                             <p>Buble Gum</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-
-<!--                 Single Album Area -->
-<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
-<!--                     <div class="single-album-area"> -->
-<!--                         <div class="album-thumb"> -->
-<!--                             <img src="img/bg-img/b3.jpg" alt=""> -->
-<!--                         </div> -->
-<!--                         <div class="album-info"> -->
-<!--                             <a href="#"> -->
-<!--                                 <h5>Jess Parker</h5> -->
-<!--                             </a> -->
-<!--                             <p>The Album</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-
-<!--                 Single Album Area -->
-<!--                 <div class="col-12 col-sm-6 col-md-3"> -->
-<!--                     <div class="single-album-area"> -->
-<!--                         <div class="album-thumb"> -->
-<!--                             <img src="img/bg-img/b4.jpg" alt=""> -->
-<!--                         </div> -->
-<!--                         <div class="album-info"> -->
-<!--                             <a href="#"> -->
-<!--                                 <h5>Noises</h5> -->
-<!--                             </a> -->
-<!--                             <p>Buble Gum</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-
-<!--             </div> -->
-
-<!--             <div class="row"> -->
-<!--                 <div class="col-12"> -->
-<!--                     <div class="load-more-btn text-center"> -->
-<%--                         <a href="titleSearch.do?category=device&titleInput=${titleInput}&search_cnt=${search_cnt + 4}" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a> --%>
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
         </div>
     </div>
     <!-- ##### Buy Now Area End ##### -->
@@ -293,65 +193,6 @@
 	</div>
     </section>
       <!-- ##### shop content Area End ##### -->
-
-    <!-- ##### Newsletter & Testimonials Area Start ##### -->
-    <section class="newsletter-testimonials-area">
-        <div class="container">
-            <div class="row">
-
-                <!-- Newsletter Area -->
-                <div class="col-12 col-lg-6">
-                    <div class="newsletter-area mb-100">
-                        <div class="section-heading text-left mb-50">
-                            <p>See what’s new</p>
-                            <h2>Subscribe to newsletter</h2>
-                        </div>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="search" name="search" id="newsletterSearch" placeholder="E-mail">
-                                <button type="submit" class="btn oneMusic-btn">Subscribe <i class="fa fa-angle-double-right"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonials Area -->
-                <div class="col-12 col-lg-6">
-                    <div class="testimonials-area mb-100 bg-img bg-overlay" style="background-image: url(img/bg-img/bg-3.jpg);">
-                        <div class="section-heading white text-left mb-50">
-                            <p>See what’s new</p>
-                            <h2>Testimonial</h2>
-                        </div>
-                        <!-- Testimonial Slide -->
-                        <div class="testimonials-slide owl-carousel">
-                            <!-- Single Slide -->
-                            <div class="single-slide">
-                                <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum.</p>
-                                <div class="testimonial-info d-flex align-items-center">
-                                    <div class="testimonial-thumb">
-                                        <img src="img/bg-img/t1.jpg" alt="">
-                                    </div>
-                                    <p>William Smith, Customer</p>
-                                </div>
-                            </div>
-                            <!-- Single Slide -->
-                            <div class="single-slide">
-                                <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum.</p>
-                                <div class="testimonial-info d-flex align-items-center">
-                                    <div class="testimonial-thumb">
-                                        <img src="img/bg-img/t1.jpg" alt="">
-                                    </div>
-                                    <p>Nazrul Islam, Developer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- ##### Newsletter & Testimonials Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
@@ -408,23 +249,38 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="img/2.png" alt=""></a>
+
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Miss</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
-
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Music</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+						<ul>
+                            <li><a href="set_music_filter.do">Music</a></li>
+                            <li><a href="set_device_filter.do">Device</a></li>
+                            <li><a href="boardPage.board">Notice</a></li>
+                            <c:if test = "${auth == 'Y'}">
+                            	<li><a href="sign_up.jsp">Sign_Up</a></li> <!-- 어드민사용자만이 접근가능하게 수정 -->
+                            </c:if>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <div class="ui icon buttons">
+			                    <button class="ui black button" onclick="location.href='https://www.instagram.com/'">
+			                    	<i class="instagram icon" style="user-select: auto;"></i>
+			                    </button>		
+			                    <button class="ui black button" onclick="location.href='https://www.youtube.com/'">
+			                    	<i class="youtube square icon" style="user-select: auto;"></i>
+			                    </button>				                    			                    
+			                    <button class="ui black button" onclick="location.href='https://www.facebook.com/'">
+			                    	<i class="facebook icon" style="user-select: auto;"></i>
+			                    </button>			                    
+				            	</div>        
+				            </li>                   
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </footer>

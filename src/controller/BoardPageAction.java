@@ -34,6 +34,7 @@ public class BoardPageAction implements Action {
 			request.setAttribute("board_datas", datas);
 			request.setAttribute("board_page", mcnt);
 			request.setAttribute("board_last", lastPage); // 추가됨
+			request.setAttribute("board_count", dao.boardCount());
 			forward = new ActionForward();
 			forward.setPath("notice.jsp");
 			forward.setRedirect(false);
