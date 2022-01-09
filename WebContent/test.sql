@@ -104,7 +104,7 @@ insert into board(board_id, title, board_content) values(50, '50', '2022/01/01 ~
 
 create table product(
     product_id int primary key,
-    product_name varchar2(100) not null,
+    product_name varchar2(150) not null,
     price int not null,
     product_regdate date default SYSDATE,
     product_comment varchar(300) DEFAULT 'No Comments',

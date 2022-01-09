@@ -26,6 +26,7 @@
   		crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
 	<script src = "js/logout.js"></script>
+	<script src = "js/findPwResultPage.js"></script>
 
 </head>
 
@@ -126,7 +127,7 @@
                         <h3>Find Password</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-							<form action="newPw.mem" method="post">
+							<form action="newPw.mem" method="post" name = "newPwForm" onsubmit = "return newPwWrite()">
 	                       		<input type = "hidden" name = "member_id" value = "${member_id}">
 	                           	<div class="form-group">
 									<label for="member_id">New Password</label>
