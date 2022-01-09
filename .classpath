@@ -10,5 +10,24 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="lib" path="D:/Web_Development/resource/jstl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Web_Development/resource/ojdbc6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Web_Development/resource/standard.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Web_Development/resource/jsoup-1.14.3.jar"/>
+	<classpathentry kind="lib" path="D:/Web_Project/resource/activation.jar"/>
+	<classpathentry kind="lib" path="D:/Web_Project/resource/javax.mail-1.5.5.jar"/>
+	<classpathentry kind="lib" path="D:/Web_Project/resource/javax.mail-api-1.5.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
